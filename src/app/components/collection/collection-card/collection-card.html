@@ -1,1 +1,17 @@
-<p>collection-card works!</p>
+<div class="todo-detail">
+  <h2>CollectionId: {{ collection.collectionId }}</h2>
+  <p>Name: {{ collection.collectionName }}</p>
+  <p>Description: {{ collection.description }}</p>
+  <p>Completed: {{ collection.completed }}</p>
+  <p>Creation Date: {{ collection.createAt }}</p>
+  <p>Collection Date: {{ collection.collectionDate }}</p>
+  <p>Category ID: {{ collection.categoryId }}</p>
+  <p>User ID: {{ collection.userId }}</p>
+  <p>Visibility: {{ collection.visibility }}</p>
+  <p>Visibility Status: {{ collection.visibilityStatus }}</p>
+  <p>For Sale: {{ collection.forSale }}</p>
+  <p>Sale Price: {{ collection.salePrice }} €</p>
+
+  <button (click)="onDelete()">Delete Collection</button>
+  <button (click)="onUpdate()">Update Collection</button>
+</div>
