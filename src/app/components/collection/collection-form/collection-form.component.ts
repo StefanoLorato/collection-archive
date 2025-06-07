@@ -6,7 +6,6 @@ import { CollectionService } from '../../../service/collectionService'; // suppo
 
 @Component({
   selector: 'app-collection-form',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './collection-form.component.html',
   styleUrls: ['./collection-form.component.css']
