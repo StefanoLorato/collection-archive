@@ -5,7 +5,7 @@ import { Item } from '../../../models/item';
 @Component({
   selector: 'app-item-card',
   imports: [],
-  templateUrl: './item-card.html',
+  templateUrl: './item-card.component.html',
   styleUrl: './item-card.component.css'
 })
 export class ItemCardComponent {

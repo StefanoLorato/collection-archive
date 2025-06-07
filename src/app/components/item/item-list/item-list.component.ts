@@ -7,7 +7,7 @@ import { ItemCardComponent } from '../item-card/item-card.component';
 @Component({
   selector: 'app-item-list',
   imports: [ItemCardComponent],
-  templateUrl: './item-list.html',
+  templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.css'
 })
 export class ItemListComponent  implements OnInit{
@@ -17,6 +17,33 @@ export class ItemListComponent  implements OnInit{
 
   ngOnInit(): void {
     this.loadItem();
+  }
+
+  handleDelete(obj:{ id: number }) {
+    console.log(obj.id)
+    this._service.deleteItem(obj.id).subscribe({
+      next: () => {
+        this.list = this.list.filter((i) => i.itemId != obj.id);
+        alert("l'item è stato eliminato con successo");
+      },
+      error: e => {
+        alert("Errore nell cancellazione");
+        this.loadItem();
+      }
+    })
+  }
+
+  handleUpdate(obj: { id: number}) {
+    const item = this.findItemById(obj.id);
+    if(item != null){
+      this._service.updateItem(item).subscribe({
+        next: ()=> {
+            alert("item modificato");
+            this.loadItem();
+        },
+        error: e =>alert("Errore nel modifica dell item " + e)
+      });
+    }
   }
 
   loadItem() {
@@ -29,7 +56,10 @@ export class ItemListComponent  implements OnInit{
 
   findItemById(id:number) {
     this._service.getItemById(id).subscribe({
-      next: t => this.item = t,
+      next: t => {
+        this.item = t;
+        return this.item
+      },
       error: e => alert("Errore nella ricerca dell'item")
     });
   }
