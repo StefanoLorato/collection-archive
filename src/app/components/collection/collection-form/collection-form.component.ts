@@ -25,7 +25,7 @@ export class CollectionFormComponent {
       collectionDate: [''],
       forSale: [false],
       salePrice: [''],
-      userId:[3],
+      userId:[1],
     });
   }
 

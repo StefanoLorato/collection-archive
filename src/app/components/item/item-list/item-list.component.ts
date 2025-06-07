@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Item } from '../../../models/item';
 import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { ItemCardComponent } from '../item-card/item-card.component';
 
 @Component({
@@ -12,11 +13,19 @@ import { ItemCardComponent } from '../item-card/item-card.component';
 })
 export class ItemListComponent  implements OnInit{
   item!: Item;
+  collectionId! : number;
   list: Item[] = [];
   private _service = inject(ItemService);
+  private _route = inject(ActivatedRoute);
 
-  ngOnInit(): void {
-    this.loadItem();
+ngOnInit(): void {
+    this._route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.collectionId = +id;
+        this.loadItem();
+      }
+    });
   }
 
   handleDelete(obj:{ id: number }) {
@@ -46,13 +55,12 @@ export class ItemListComponent  implements OnInit{
     }
   }
 
-  loadItem() {
-    const itemObservable: Observable<Item[]> = this._service.getItems();
-    itemObservable.subscribe({
-      next: items => this.list = items,
-      error: e => alert("Errore nel caricamento dell'item " + e)
-    });
-  }
+ loadItem() {
+  this._service.getItemsByCollectionId(this.collectionId).subscribe({
+    next: items => this.list = items,
+    error: e => alert("Errore nel caricamento degli item " + e)
+  });
+}
 
   findItemById(id:number) {
     this._service.getItemById(id).subscribe({
