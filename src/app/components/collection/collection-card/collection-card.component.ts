@@ -1,7 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Collection } from '../../../models/collection';
-import { CollectionList} from '../collection-list/collection-list.component';
 
 @Component({
   selector: 'app-collection-card',
@@ -9,7 +8,7 @@ import { CollectionList} from '../collection-list/collection-list.component';
   templateUrl: './collection-card.component.html',
   styleUrl: './collection-card.component.css'
 })
-export class CollectionCard {
+export class CollectionCardComponent {
 
   private _router = inject(Router);
 

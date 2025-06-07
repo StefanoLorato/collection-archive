@@ -2,15 +2,15 @@ import { Component, inject } from '@angular/core';
 import { Collection } from '../../../models/collection';
 import { CollectionService } from '../../../service/collectionService';
 import { Observable } from 'rxjs';
-import { CollectionCard } from '../collection-card/collection-card.component';
+import { CollectionCardComponent } from '../collection-card/collection-card.component';
 
 @Component({
   selector: 'app-collection-list',
-  imports: [CollectionCard],
+  imports: [CollectionCardComponent],
   templateUrl: './collection-list.component.html',
   styleUrl: './collection-list.component.css'
 })
-export class CollectionList {
+export class CollectionListComponent {
 
   collection!: Collection | any;
   list: Collection[] = [];

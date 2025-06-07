@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollectionFormComponent} from './collection-form.component';
+import { CollectionFormComponent } from './collection-form.component';
 
-describe('CollectionForm', () => {
+describe('CollectionFormComponent', () => {
   let component: CollectionFormComponent;
   let fixture: ComponentFixture<CollectionFormComponent>;
 
@@ -10,7 +10,7 @@ describe('CollectionForm', () => {
     await TestBed.configureTestingModule({
       imports: [CollectionFormComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CollectionFormComponent);
     component = fixture.componentInstance;
