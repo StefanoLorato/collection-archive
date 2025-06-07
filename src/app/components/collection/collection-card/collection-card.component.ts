@@ -1,10 +1,10 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Collection } from '../../../models/collection';
 
 @Component({
   selector: 'app-collection-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './collection-card.component.html',
   styleUrl: './collection-card.component.css'
 })
@@ -24,6 +24,10 @@ export class CollectionCardComponent {
 
   onUpdate() {
     this._router.navigate(['/edit-Collection-form', this.collection.collectionId]);
+  }
+
+  viewItems(){
+
   }
 
 }

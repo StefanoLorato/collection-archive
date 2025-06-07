@@ -3,15 +3,17 @@
   <p>Name: {{ collection.collectionName }}</p>
   <p>Description: {{ collection.description }}</p>
   <p>Completed: {{ collection.completed }}</p>
-  <p>Creation Date: {{ collection.createAt }}</p>
-  <p>Collection Date: {{ collection.collectionDate }}</p>
+  <p>Creation Date: {{ collection.createdAt.split("T")[0] }}</p>
+  @if(collection.collectionDate != null){<p>Collection Date: {{ collection.collectionDate }}</p>}
   <p>Category ID: {{ collection.categoryId }}</p>
   <p>User ID: {{ collection.userId }}</p>
   <p>Visibility: {{ collection.visibility }}</p>
   <p>Visibility Status: {{ collection.visibilityStatus }}</p>
   <p>For Sale: {{ collection.forSale }}</p>
-  <p>Sale Price: {{ collection.salePrice }} €</p>
+  @if(collection.salePrice != null){<p>Sale Price: {{ collection.salePrice }} €</p>}
 
+  <button [routerLink] = "['/collection-detail', collection.collectionId]">Vedi dettagli</button>
   <button (click)="onDelete()">Delete Collection</button>
   <button (click)="onUpdate()">Update Collection</button>
 </div>
+

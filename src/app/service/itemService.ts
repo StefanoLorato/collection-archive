@@ -24,7 +24,6 @@ export class ItemService {
       return this._http.get<Item>(`${this._url}/${id}`);
   }
 
-
   addItem(item: Partial<Item>): Observable<Item> {
       return this._http.post<Item>(this._url, item);
   }
@@ -33,4 +32,7 @@ export class ItemService {
       return this._http.put<void>(`${this._url}/${item.itemId}`, item);
   }
 
+  getItemsByCollectionId(collectionId: number): Observable<Item[]> {
+    return this._http.get<Item[]>(`${this._url}/collection/${collectionId}`);
+  }
 }

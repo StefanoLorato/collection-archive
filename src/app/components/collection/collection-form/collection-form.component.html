@@ -35,7 +35,7 @@
     @if (categoryId?.invalid && categoryId?.touched) {
       <p>Inserisci la categoria</p>
     }
- 
+
   </div>
 
   <!-- In vendita -->
@@ -60,9 +60,12 @@
     </label>
   </div>
 
-  <!-- Stato visibilità -->
+  <!-- visibilità -->
   <div>
-    <input formControlName="visibilityStatus" type="number" id="visibilityStatus" placeholder="Stato visibilità (es. 0)">
+    <select formControlName="visibility" id="visibility">
+      <option value="visible">Pubblica</option>
+      <option value="hidden">Privata</option>
+    </select>
   </div>
 
   <button type="submit" [disabled]="collectionForm.invalid">Aggiungi Collezione</button>
