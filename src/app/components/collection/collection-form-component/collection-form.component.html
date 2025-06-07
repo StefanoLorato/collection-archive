@@ -1,0 +1,69 @@
+<form [formGroup]="collectionForm" (ngSubmit)="onSubmit()">
+
+  <!-- Nome Collezione -->
+  <div>
+    <input formControlName="collectionName" type="text" id="collectionName" placeholder="Nome collezione">
+    @if (collectionName?.invalid && collectionName?.touched) {
+      <p>Inserisci il nome della collezione</p>
+    }
+  </div>
+
+  <!-- Descrizione -->
+  <div>
+    <input formControlName="description" type="text" id="description" placeholder="Descrizione">
+    @if (description?.invalid && description?.touched) {
+      <p>Inserisci la descrizione</p>
+    }
+  </div>
+
+  <!-- Data della collezione -->
+  <div>
+    <input formControlName="collectionDate" type="date" id="collectionDate">
+    @if (collectionDate?.invalid && collectionDate?.touched) {
+      <p>Inserisci una data valida</p>
+    }
+  </div>
+
+  <!-- Categoria -->
+  <div>
+    <select formControlName="categoryId" id="category">
+      <option value="" disabled>-- Scegli categoria --</option>
+      <option value="1">Arte</option>
+      <option value="2">Musica</option>
+      <option value="3">Libri</option>
+    </select>
+    @if (categoryId?.invalid && categoryId?.touched) {
+      <p>Inserisci la categoria</p>
+    }
+ 
+  </div>
+
+  <!-- In vendita -->
+  <div>
+    <label>
+      <input type="checkbox" formControlName="forSale"> In vendita
+    </label>
+  </div>
+
+  <!-- Prezzo -->
+  <div>
+    <input formControlName="salePrice" type="number" id="salePrice" placeholder="Prezzo (€)">
+    @if (salePrice?.invalid && salePrice?.touched) {
+      <p>Inserisci un prezzo valido</p>
+    }
+  </div>
+
+  <!-- Completata -->
+  <div>
+    <label>
+      <input type="checkbox" formControlName="completed"> Completata
+    </label>
+  </div>
+
+  <!-- Stato visibilità -->
+  <div>
+    <input formControlName="visibilityStatus" type="number" id="visibilityStatus" placeholder="Stato visibilità (es. 0)">
+  </div>
+
+  <button type="submit" [disabled]="collectionForm.invalid">Aggiungi Collezione</button>
+</form>

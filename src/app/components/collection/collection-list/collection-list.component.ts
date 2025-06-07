@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { Collection } from '../../../models/collection';
 import { CollectionService } from '../../../service/collectionService';
 import { Observable } from 'rxjs';
-import { CollectionCard } from '../collection-card/collection-card';
+import { CollectionCard } from '../collection-card/collection-card.component';
 
 @Component({
   selector: 'app-collection-list',
   imports: [CollectionCard],
-  templateUrl: './collection-list.html',
-  styleUrl: './collection-list.css'
+  templateUrl: './collection-list.component.html',
+  styleUrl: './collection-list.component.css'
 })
 export class CollectionList {
 
@@ -35,7 +35,7 @@ export class CollectionList {
   }
 
 
-  loadCollection() { 
+  loadCollection() {
     const toDoObservable: Observable<Collection[]> = this._service.getCollections();
     toDoObservable.subscribe({
       next: collections => this.list = collections,
@@ -43,13 +43,13 @@ export class CollectionList {
     });
   }
 
-findCollectionById(id: number): Collection | any {
-  this._service.getCollectionById(id).subscribe({
-    next: c => {
-      this.collection = c;
-      return this.collection;
-    },
-    error: () => alert("Errore nella ricerca del Collection id")
-  });
-}
+  findCollectionById(id: number) {
+    this._service.getCollectionById(id).subscribe({
+      next: c => {
+        console.log(c);
+        this.collection = c;
+      },
+      error: () => alert("Errore nella ricerca del Collection id")
+    });
+  }
 }

@@ -17,7 +17,7 @@ export class CollectionService {
     }
 
     deleteCollection(id:number): Observable<void>{
-        return this._http.get<void>(`${this._url}/${id}`);
+        return this._http.delete<void>(`${this._url}/${id}`);
     }
 
     getCollectionById(id:number): Observable<void>{

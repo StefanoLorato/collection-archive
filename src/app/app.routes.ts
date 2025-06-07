@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home-component';
 import { CollectionList } from './components/collection/collection-list/collection-list';
-import { CollectionForm } from './components/collection/collection-form/collection-form';
+import { CollectionForm } from './components/collection/collection-form-component/collection-form';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'collection-list', pathMatch: 'full' },
