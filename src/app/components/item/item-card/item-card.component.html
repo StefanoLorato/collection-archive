@@ -1,1 +1,17 @@
-<p>item-card works!</p>
+<div  class="item-detail">
+    <h2>id: {{ item.itemId }}</h2>
+    <p>collection: {{ item.collectionId }}</p>
+    <p>name: {{ item.itemName }}</p>
+    <p>description: {{ item.itemDescription }}</p>
+    <p>photo: {{ item.itemPhoto }}</p>
+    @if(item.condition != null){<p>condition: {{ item.condition }}</p>}
+    @if(item.purchaseDate != null){ <p>purchase Date : {{item.purchaseDate }}</p>}
+    @if(item.releaseDate != null){ <p>release Date : {{item.releaseDate }}</p>}
+    @if(item.purchasePrice != null){<p>purchase Price: {{ item.purchasePrice }}</p>}
+    @if(item.salePrice != null){<p>sale Price: {{ item.salePrice }}</p>}
+    @if(item.itemVersion != null){<p>Version: {{ item.itemVersion }}</p>}
+    @if(item.itemEdition != null){<p>Edition: {{ item.itemEdition }}</p>}
+    <p>for sale: {{ item.forSale }}</p>
+    <button (click) = "onDelete()"> Delete To Do </button>
+    <button (click) = "onUpdate()"> Update Your To Do</button>
+</div>

@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { CollectionService } from '../../../service/collectionService'; // supponiamo esista
 
 @Component({
   selector: 'app-collection-form',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './collection-form.component.html',
   styleUrls: ['./collection-form.component.css']
 })
@@ -14,7 +13,6 @@ export class CollectionFormComponent {
   private _service = inject(CollectionService);
   private _router = inject(Router);
   formBuilder = inject(FormBuilder);
-
   collectionForm: FormGroup;
 
   constructor() {
@@ -22,19 +20,19 @@ export class CollectionFormComponent {
       collectionName: ['', Validators.required],
       completed: [false],
       categoryId: ['', Validators.required],
-      userId: ['', Validators.required],
-      visibility: [''],
-      description: ['', Validators],
-      collectionDate: ['', Validators],
+      visibility: ['', Validators.required],
+      description: [''],
+      collectionDate: [''],
       forSale: [false],
-      salePrice: [0],
+      salePrice: [''],
+      userId:[3],
     });
   }
 
   onSubmit() {
     if (this.collectionForm.invalid) return;
 
-    this._service.createCollection(this.collectionForm.value).subscribe({
+    return this._service.createCollection(this.collectionForm.value).subscribe({
       next: () => {
         alert("Collezione aggiunta!");
         this._router.navigate(['/collection-list']);

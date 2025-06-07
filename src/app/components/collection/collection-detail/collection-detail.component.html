@@ -1,0 +1,10 @@
+@if(collection != null){
+    <h2>Id: {{ collection.collectionId }}</h2>
+    <p>Name: {{ collection.collectionName }}</p>
+    @for (i of list; track i.itemId) {
+      <app-item-card [item] = 'i'></app-item-card>
+    }
+    <button (click)="navigateToEdit()">Update Data</button>
+} @else {
+    <h2>Caricando la collection...</h2>
+}

@@ -1,5 +1,5 @@
 export interface Collection {
-    
+
     collectionId: number;
     collectionName: string;
     completed: boolean;
@@ -8,7 +8,7 @@ export interface Collection {
     visibility: string;
     description: string;
     collectionDate: string;
-    createAt:string;
+    createdAt:string;
     forSale: boolean;
     salePrice: number;
     visibilityStatus: number;

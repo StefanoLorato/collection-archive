@@ -9,7 +9,7 @@ import { Collection } from "../models/collection";
 
 export class CollectionService {
     list: Collection[] = [];
-    private _url: string = "http://localhost:8080/api/collection"
+    private _url: string = "http://localhost:8080/api/collections"
     private _http = inject(HttpClient)
 
     getCollections(): Observable<Collection[]>{
@@ -20,8 +20,8 @@ export class CollectionService {
         return this._http.delete<void>(`${this._url}/${id}`);
     }
 
-    getCollectionById(id:number): Observable<void>{
-        return this._http.get<void>(`${this._url}/${id}`);
+    getCollectionById(id:number): Observable<Collection>{
+        return this._http.get<Collection>(`${this._url}/${id}`);
     }
 
     createCollection(collection: Partial<Collection>): Observable<Collection> {
@@ -33,4 +33,4 @@ export class CollectionService {
     }
 
 }
-    
+

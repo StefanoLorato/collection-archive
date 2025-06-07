@@ -34,12 +34,11 @@ export class CollectionListComponent {
     })
   }
 
-
   loadCollection() {
     const toDoObservable: Observable<Collection[]> = this._service.getCollections();
     toDoObservable.subscribe({
       next: collections => this.list = collections,
-      error: e => alert("Errore di caricamento dei To Do " + e)
+      error: e => alert("Errore di caricamento della collection " + e)
     });
   }
 
