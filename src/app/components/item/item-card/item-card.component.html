@@ -4,14 +4,14 @@
     <p>Name: {{ item.itemName }}</p>
     <p>Description: {{ item.itemDescription }}</p>
     <p>Photo: {{ item.itemPhoto }}</p>
-    @if(item.condition != null){<p>condition: {{ item.condition }}</p>}
+    @if(item.condition != null){<p>Condition: {{ item.condition }}</p>}
     @if(item.purchaseDate != null){ <p>purchase Date : {{item.purchaseDate }}</p>}
-    @if(item.releaseDate != null){ <p>release Date : {{item.releaseDate }}</p>}
-    @if(item.purchasePrice != null){<p>purchase Price: {{ item.purchasePrice }}</p>}
-    @if(item.salePrice != null){<p>sale Price: {{ item.salePrice }}</p>}
+    @if(item.releaseDate != null){ <p>Release Date : {{item.releaseDate }}</p>}
+    @if(item.purchasePrice != null){<p>Purchase Price: {{ item.purchasePrice }}</p>}
+    @if(item.salePrice != null){<p>Sale Price: {{ item.salePrice }}</p>}
     @if(item.itemVersion != null){<p>Version: {{ item.itemVersion }}</p>}
     @if(item.itemEdition != null){<p>Edition: {{ item.itemEdition }}</p>}
-    <p>for sale: {{ item.forSale }}</p>
+    <p>For sale: {{ item.forSale }}</p>
     <button (click) = "onDelete()"> Delete Item</button>
     <button (click) = "onUpdate()"> Update Item</button>
 </div>

@@ -19,6 +19,7 @@ export class ItemAddComponent implements OnInit {
     itemPhoto: '',
     forSale: false,
     visibilityStatus: '',
+    salePrice: ''
 
   };
 
