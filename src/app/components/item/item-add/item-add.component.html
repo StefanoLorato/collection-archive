@@ -1,0 +1,20 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <label>Nome:</label>
+  <input name="itemName" [(ngModel)]="item.itemName" required>
+
+  <label>Descrizione:</label>
+  <input name="itemDescription" [(ngModel)]="item.itemDescription">
+
+  <label>Visibilità:</label>
+  <select name="visibilityStatus" [(ngModel)]="item.visibilityStatus">
+    <option value="visible">Visibile</option>
+    <option value="sold">Sold</option>
+    <option value="deleted">Deleted</option>
+    <option value="archived">Archived</option>
+  </select>
+
+  <label>In vendita:</label>
+  <input type="checkbox" name="forSale" [(ngModel)]="item.forSale">
+
+  <button type="submit">Save</button>
+</form>

@@ -23,7 +23,7 @@ export class CollectionCardComponent {
 
 
   onUpdate() {
-    this._router.navigate(['/edit-Collection-form', this.collection.collectionId]);
+    this._router.navigate(['/edit-collection-form', this.collection.collectionId]);
   }
 
   viewItems(){

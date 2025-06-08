@@ -1,0 +1,18 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="item">
+  <label>Nome</label>
+  <input name="itemName" [(ngModel)]="item.itemName" required />
+
+  <label>Descrizione</label>
+  <textarea name="itemDescription" [(ngModel)]="item.itemDescription"></textarea>
+
+  <label>Visibilità</label>
+  <select name="visibilityStatus" [(ngModel)]="item.visibilityStatus" required>
+    <option value="visible">Visible</option>
+    <option value="hidden">Hidden</option>
+  </select>
+
+  <label>In vendita</label>
+  <input type="checkbox" name="forSale" [(ngModel)]="item.forSale" />
+
+  <button type="submit">Update Item</button>
+</form>

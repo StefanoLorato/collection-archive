@@ -1,9 +1,9 @@
 <div  class="item-detail">
     <h2>id: {{ item.itemId }}</h2>
-    <p>collection: {{ item.collectionId }}</p>
-    <p>name: {{ item.itemName }}</p>
-    <p>description: {{ item.itemDescription }}</p>
-    <p>photo: {{ item.itemPhoto }}</p>
+    <p>Collection Id: {{ item.collection }}</p>
+    <p>Name: {{ item.itemName }}</p>
+    <p>Description: {{ item.itemDescription }}</p>
+    <p>Photo: {{ item.itemPhoto }}</p>
     @if(item.condition != null){<p>condition: {{ item.condition }}</p>}
     @if(item.purchaseDate != null){ <p>purchase Date : {{item.purchaseDate }}</p>}
     @if(item.releaseDate != null){ <p>release Date : {{item.releaseDate }}</p>}
@@ -13,5 +13,5 @@
     @if(item.itemEdition != null){<p>Edition: {{ item.itemEdition }}</p>}
     <p>for sale: {{ item.forSale }}</p>
     <button (click) = "onDelete()"> Delete Item</button>
-    <button (click) = "onUpdate()"> Update Ttem</button>
+    <button (click) = "onUpdate()"> Update Item</button>
 </div>

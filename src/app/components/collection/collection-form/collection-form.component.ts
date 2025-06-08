@@ -41,7 +41,6 @@ export class CollectionFormComponent {
     });
   }
 
-  // Getter per i campi del form (facilita il binding nel template)
   get collectionName() { return this.collectionForm.get('collectionName'); }
   get description() { return this.collectionForm.get('description'); }
   get collectionDate() { return this.collectionForm.get('collectionDate'); }

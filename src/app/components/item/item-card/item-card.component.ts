@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Item } from '../../../models/item';
 
 @Component({
@@ -19,7 +19,7 @@ export class ItemCardComponent {
   }
 
   onUpdate() {
-    this._router.navigate(['/edit-item-form', this.item.itemId]);
+    this._router.navigate(['/item-edit', this.item.itemId]);
   }
 
 }

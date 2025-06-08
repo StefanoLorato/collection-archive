@@ -2,17 +2,17 @@
 
   <!-- Nome Collezione -->
   <div>
-    <input formControlName="collectionName" type="text" id="collectionName" placeholder="Nome collezione">
+    <input formControlName="collectionName" type="text" id="collectionName" placeholder="Name Collection">
     @if (collectionName?.invalid && collectionName?.touched) {
-      <p>Inserisci il nome della collezione</p>
+      <p>Insert name collection</p>
     }
   </div>
 
   <!-- Descrizione -->
   <div>
-    <input formControlName="description" type="text" id="description" placeholder="Descrizione">
+    <input formControlName="description" type="text" id="description" placeholder="Description">
     @if (description?.invalid && description?.touched) {
-      <p>Inserisci la descrizione</p>
+      <p>Insert collection's description</p>
     }
   </div>
 
@@ -20,20 +20,20 @@
   <div>
     <input formControlName="collectionDate" type="date" id="collectionDate">
     @if (collectionDate?.invalid && collectionDate?.touched) {
-      <p>Inserisci una data valida</p>
+      <p>Insert collection's date</p>
     }
   </div>
 
   <!-- Categoria -->
   <div>
     <select formControlName="categoryId" id="category">
-      <option value="" disabled>-- Scegli categoria --</option>
+      <option value="" disabled>-- Choose category --</option>
       <option value="1">Arte</option>
       <option value="2">Musica</option>
       <option value="3">Libri</option>
     </select>
     @if (categoryId?.invalid && categoryId?.touched) {
-      <p>Inserisci la categoria</p>
+      <p>Insert category</p>
     }
 
   </div>
@@ -47,9 +47,9 @@
 
   <!-- Prezzo -->
   <div>
-    <input formControlName="salePrice" type="number" id="salePrice" placeholder="Prezzo (€)">
+    <input formControlName="salePrice" type="number" id="salePrice" placeholder="Price (€)">
     @if (salePrice?.invalid && salePrice?.touched) {
-      <p>Inserisci un prezzo valido</p>
+      <p>Insert valid price</p>
     }
   </div>
 
@@ -68,5 +68,5 @@
     </select>
   </div>
 
-  <button type="submit" [disabled]="collectionForm.invalid">Aggiungi Collezione</button>
+  <button type="submit" [disabled]="collectionForm.invalid">Add new collection</button>
 </form>
