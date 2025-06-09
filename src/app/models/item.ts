@@ -1,4 +1,4 @@
-export interface Item{
+export interface Item {
   itemId: number;
   collection: number;
   user: number;

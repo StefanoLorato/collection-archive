@@ -6,13 +6,14 @@ import { ItemListComponent } from './components/item/item-list/item-list.compone
 
 import { ItemAddComponent } from './components/item/item-add/item-add.component';
 import { ItemEditComponent } from './components/item/item-edit/item-edit.component';
+import { CollectionDetailComponent } from './components/collection/collection-detail/collection-detail.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'collection-list', pathMatch: 'full' },
      { path: 'home', component: HomeComponent },
      { path: 'collection-list', component: CollectionListComponent },
      { path: 'collection-form', component: CollectionFormComponent },
-     { path: 'collection-detail/:id', component: ItemListComponent },
+     { path: 'collection-detail/:id', component: CollectionDetailComponent },
      { path: 'edit-collection-form/:id', component: CollectionFormComponent },
      { path: 'item-list', component: ItemListComponent },
      { path: 'item-edit/:id', component: ItemEditComponent },

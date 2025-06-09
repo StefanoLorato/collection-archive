@@ -28,23 +28,23 @@ export class ItemAddComponent implements OnInit {
   private _router = inject(Router);
 
   ngOnInit(): void {
-  const collectionId = this._route.snapshot.paramMap.get('collectionId');
-  const userId = this._route.snapshot.paramMap.get('userId');
+    const collectionId = this._route.snapshot.paramMap.get('collectionId');
+    const userId = this._route.snapshot.paramMap.get('userId');
 
-  if (collectionId) {
-    this.item.collection = Number(collectionId);
-  } else {
-    alert('Collection ID mancante');
-    this._router.navigate(['/collection-list']);
-  }
+    if (collectionId) {
+      this.item.collection = Number(collectionId);
+    } else {
+      alert('Miss Collection ID');
+      this._router.navigate(['/collection-list']);
+    }
 
-  if (userId) {
-    this.item.user = Number(userId);
-    console.log('UserId:', this.item.user);
-  } else {
-    alert('User ID mancante');
+    if (userId) {
+      this.item.user = Number(userId);
+      console.log('UserId:', this.item.user);
+    } else {
+      alert('Miss User Id');
+    }
   }
-}
 
 
   onSubmit(form: NgForm) {
@@ -59,7 +59,6 @@ export class ItemAddComponent implements OnInit {
       },
       error: e => {
         console.error('Errore nella creazione item:', e);
-        alert('Errore durante la creazione dell\'item');
       }
     });
   }

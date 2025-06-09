@@ -23,8 +23,13 @@ export class CollectionCardComponent {
 
 
   onUpdate() {
+  if (this.collection?.collectionId) {
     this._router.navigate(['/edit-collection-form', this.collection.collectionId]);
+  } else {
+    alert('Collection ID non valido!');
   }
+}
+
 
   viewItems(){
 

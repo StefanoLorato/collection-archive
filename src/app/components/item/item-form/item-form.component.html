@@ -1,0 +1,51 @@
+<form #f="ngForm" (submit)="onSubmit(f)">
+
+  <!-- Nome Item -->
+  <div>
+    <label for="itemName">Item Name</label>
+    <input type="text" id="itemName" name="itemName" #itemName="ngModel" [(ngModel)]="item.itemName" required>
+  </div>
+  <div *ngIf="itemName.invalid && itemName.touched">
+    <p>Insert item's name</p>
+  </div>
+
+  <!-- Descrizione Item -->
+  <div>
+    <label for="itemDescription">Description</label>
+    <input type="text" id="itemDescription" name="itemDescription" #itemDescription="ngModel" [(ngModel)]="item.itemDescription" required>
+  </div>
+  <div *ngIf="itemDescription.invalid && itemDescription.touched">
+    <p>Insert description</p>
+  </div>
+
+  <!-- URL Foto -->
+  <div>
+    <label for="itemPhoto">URL Photo</label>
+    <input type="text" id="itemPhoto" name="itemPhoto" [(ngModel)]="item.itemPhoto">
+  </div>
+
+  <!-- For Sale -->
+  <div>
+    <label>
+      <input type="checkbox" name="forSale" [(ngModel)]="item.forSale"> For Sale
+    </label>
+  </div>
+
+  <!-- Visibility Status -->
+  <div>
+    <label for="visibilityStatus">Visibility</label>
+    <select id="visibilityStatus" name="visibilityStatus" #visibilityStatus="ngModel" [(ngModel)]="item.visibilityStatus" required>
+      <option value="" disabled selected>-- Select visibility status --</option>
+      <option value="visible">Visible</option>
+      <option value="sold">Sold</option>
+      <option value="deleted">Deleted</option>
+      <option value="archived">archived</option>
+    </select>
+  </div>
+  <div *ngIf="visibilityStatus.invalid && visibilityStatus.touched">
+    <p>Seleziona lo stato di visibilità</p>
+  </div>
+
+  <button type="submit" [disabled]="f.invalid">Save</button>
+
+</form>

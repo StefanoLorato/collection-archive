@@ -28,8 +28,8 @@ export class CollectionService {
         return this._http.post<Collection>(this._url, collection);
     }
 
-    updateTodo(collection: Collection): Observable<void> {
-        return this._http.put<void>(`${this._url}/${collection.collectionId}`, collection);
+    updateCollection(updateCollection: Collection): Observable<void> {
+        return this._http.put<void>(`${this._url}/${updateCollection.collectionId}`, updateCollection);
     }
 
 }

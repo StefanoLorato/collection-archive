@@ -26,7 +26,7 @@ export class ItemEditComponent implements OnInit {
       this._service.getItemById(+id).subscribe({
         next: (data) => this.item = data,
         error: () => {
-          alert('Errore nel caricamento dell\'item');
+          alert('Error during get item Id');
           this._router.navigate(['/collection-list']);
         }
       });
@@ -41,7 +41,7 @@ export class ItemEditComponent implements OnInit {
         alert('Update Item With Success');
         this._router.navigate(['/collection-detail', this.item!.collection]);
       },
-      error: () => alert('Errore durante la modifica dell\'item')
+      error: () => alert('Error during update items')
     });
   }
 }
