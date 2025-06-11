@@ -15,11 +15,17 @@ export class ItemCardComponent {
   @Output('deleteItem') deleteItem = new EventEmitter<{id: number}>();
 
   onDelete(){
+    console.log('onDelete chiamato! itemId:', this.item.itemId);
     this.deleteItem.emit({ id: this.item.itemId });
+  
   }
 
   onUpdate() {
     this._router.navigate(['/item-edit', this.item.itemId]);
   }
+
+  test(e: any) {
+  console.log('Evento ricevuto dal figlio:', e);
+}
 
 }

@@ -9,10 +9,12 @@ import { ItemEditComponent } from './components/item/item-edit/item-edit.compone
 import { CollectionDetailComponent } from './components/collection/collection-detail/collection-detail.component';
 import { RegisterFormComponent } from './components/auth/register-form/register-form.component';
 import { LoginFormComponent } from './components/auth/login-form/login-form.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
      { path: 'home', component: HomeComponent },
+     { path: 'dashboard', component: DashboardComponent },
      { path: 'collection-list', component: CollectionListComponent },
      { path: 'collection-form', component: CollectionFormComponent },
      { path: 'collection-detail/:id', component: CollectionDetailComponent },

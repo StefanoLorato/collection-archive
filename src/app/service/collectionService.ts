@@ -12,15 +12,19 @@ export class CollectionService {
     private _url: string = "http://localhost:8080/api/collections"
     private _http = inject(HttpClient)
 
-    getCollections(): Observable<Collection[]>{
+    getCollections(): Observable<Collection[]> {
         return this._http.get<Collection[]>(this._url);
     }
 
-    deleteCollection(id:number): Observable<void>{
+    getLoggedUserCollections(): Observable<Collection[]> {
+        return this._http.get<Collection[]>("http://localhost:8080/api/collections/loggedUser");
+    }
+
+    deleteCollection(id: number): Observable<void> {
         return this._http.delete<void>(`${this._url}/${id}`);
     }
 
-    getCollectionById(id:number): Observable<Collection>{
+    getCollectionById(id: number): Observable<Collection> {
         return this._http.get<Collection>(`${this._url}/${id}`);
     }
 

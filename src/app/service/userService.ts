@@ -22,8 +22,16 @@ export class UserService {
 
     }
 
-    getUSerById(id: number): Observable<Item> {
+    getUserById(id: number): Observable<Item> {
         return this._http.get<Item>(`${this._url}/${id}`);
+    }
+
+    getUserInfo(): Observable<User> {
+        return this._http.get<User>(`${this._url}/userInfo`);
+    }
+
+    getUserByEmail(email: string): Observable<User> {
+        return this._http.get<User>(`${this._url}/email/${email}`);
     }
 
 
@@ -31,11 +39,8 @@ export class UserService {
         return this._http.put<void>(`${this._url}/${user.userId}`, user);
     }
 
-    getUserInfo(): Observable<User> {
-        return this._http.get<User>(`${this._url}/userInfo`);
-    }
-
     updatePassword(dto: PasswordUpdate): Observable<void> {
         return this._http.put<void>(`${this._url}/password`, dto);
     }
+
 }

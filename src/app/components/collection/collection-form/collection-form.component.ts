@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollectionService } from '../../../service/collectionService'; // supponiamo esista
 import { Collection } from '../../../models/collection';
+import { DataService } from '../../../service/dataService';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-collection-form',
@@ -18,6 +20,9 @@ export class CollectionFormComponent {
   collectionForm: FormGroup;
   collectionId!: Collection;
   private _isUpdate = false;
+  private _dataService = inject(DataService);
+  user: User | null = null;
+  
 
   constructor() {
     this.collectionForm = this.formBuilder.group({
@@ -30,11 +35,13 @@ export class CollectionFormComponent {
       collectionDate: [''],
       forSale: [false],
       salePrice: [''],
-      userId: [1],
+      userId: [this.user?.userId],
     });
   }
 
    ngOnInit(): void {
+   this._dataService.selectedUserObservable.subscribe(user => this.user = user);
+   console.log("userid" + this.user?.userId);
     const id = this._route.snapshot.paramMap.get("id");
     if (id != null && id != undefined) {
       this._isUpdate = true;
@@ -82,7 +89,7 @@ findCollection(id: number) {
         collectionDate: data.collectionDate,
         forSale: data.forSale,
         salePrice: data.salePrice,
-        userId: data.userId || 1,
+        userId: data.userId ,
       });
     },
     error: () => {

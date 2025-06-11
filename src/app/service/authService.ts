@@ -41,6 +41,18 @@ export class AuthService {
     return localStorage.getItem('jwt');
   }
 
+
+  getUserIdFromToken(): number | null {
+  const token = this.getToken();
+  if (!token) return null;
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.userId || null; 
+  } catch {
+    return null;
+  }
+}
+
   logout(): void {
     localStorage.removeItem('jwt');
   }
