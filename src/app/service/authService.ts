@@ -23,17 +23,17 @@ export class AuthService {
   private _url: string = "http://localhost:8080/api/auth"
   private _http = inject(HttpClient);
 
-login(credentials: {email: string; password: string}): Observable<LoginResponse> {
-  return this._http.post<LoginResponse>(`${this._url}/login`, credentials).pipe(
-    tap((res) => this.saveToken(res.token))
-  );
-}
-
+  login(credentials: {email: string; password: string}): Observable<LoginResponse> {
+    return this._http.post<LoginResponse>(`${this._url}/login`, credentials).pipe(
+      tap((res) => this.saveToken(res.token))
+    );
+  }
 
   register(name: string, lastname: string, email: string, password: string, country: string): Observable<void> {
     return this._http.post<void>(`${this._url}/register`, { name: name, lastname: lastname, email: email, password: password, country: country });
   }
-    saveToken(token: string): void {
+
+  saveToken(token: string): void {
     localStorage.setItem('jwt', token);
   }
 
@@ -44,7 +44,4 @@ login(credentials: {email: string; password: string}): Observable<LoginResponse>
   logout(): void {
     localStorage.removeItem('jwt');
   }
-
-
-
 }

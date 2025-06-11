@@ -23,21 +23,21 @@ export class LoginFormComponent {
     });
   }
 
-onSubmit() {
-  if (this.loginForm.invalid) return;
+  onSubmit() {
+    if (this.loginForm.invalid) return;
 
-  const email = this.loginForm.get('email')?.value;
-  const password = this.loginForm.get('password')?.value;
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
 
-  this._authService.login({ email, password }).subscribe({
-    next: (res) => {
-      
-      alert("Login with success!");
-      this._router.navigate(['/home']);    
-    },
-    error: err => alert("Errore durante login")
-  });
-}
+    this._authService.login({ email, password }).subscribe({
+      next: (res) => {
+
+        alert("Login with success!");
+        this._router.navigate(['/home']);
+      },
+      error: err => alert("Errore durante login")
+    });
+  }
 
 
 }

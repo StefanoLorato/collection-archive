@@ -20,7 +20,7 @@ export const routes: Routes = [
      { path: 'item-list', component: ItemListComponent },
      { path: 'item-edit/:id', component: ItemEditComponent },
      { path: 'item-add/:collectionId/:userId', component: ItemAddComponent },
-     {path: 'register', component: RegisterFormComponent},
+     { path: 'register', component: RegisterFormComponent },
      { path: 'login', component: LoginFormComponent },
 
 ];

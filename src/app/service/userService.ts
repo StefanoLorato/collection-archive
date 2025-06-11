@@ -35,7 +35,6 @@ export class UserService {
         return this._http.get<User>(`${this._url}/userInfo`);
     }
 
-    // 2. Aggiorna la password
     updatePassword(dto: PasswordUpdate): Observable<void> {
         return this._http.put<void>(`${this._url}/password`, dto);
     }
