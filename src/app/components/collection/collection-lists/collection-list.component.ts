@@ -35,6 +35,7 @@ export class CollectionListComponent {
   }
 
   loadCollection() {
+    console.log('loadCollection chiamato');
     const toDoObservable: Observable<Collection[]> = this._service.getCollections();
     toDoObservable.subscribe({
       next: collections => this.list = collections,

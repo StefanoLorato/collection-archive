@@ -1,0 +1,18 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()"><!--ngSubmit serve per far si che il form venga inviato quando si clicca il pulsante submit-->
+    <label>Name</label>
+    <input formControlName="name" type="text">
+
+    <label>Lastname</label>
+    <input formControlName="lastname" type="text">
+
+    <label>Email</label>
+    <input formControlName="email" type="email">
+
+    <label>Password</label>
+    <input formControlName="password" type="password">
+
+    <label>Country</label>
+    <input formControlName="country" type="text">
+
+    <button type="submit">Register</button>
+</form>
