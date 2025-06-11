@@ -40,7 +40,7 @@ export class CollectionFormComponent {
   }
 
    ngOnInit(): void {
-   this._dataService.selectedUserObservable.subscribe(user => {
+    this._dataService.selectedUserObservable.subscribe(user => {
     this.user = user
     if (this.user) {
       this.collectionForm.patchValue({

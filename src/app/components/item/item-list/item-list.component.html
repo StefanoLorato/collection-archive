@@ -1,6 +1,5 @@
 @for(i of list; track i.itemId){
  <app-item-card
-  *ngFor="let i of list"
   [item]="i"
   (deleteItem)="handleDelete($event)">
 </app-item-card>

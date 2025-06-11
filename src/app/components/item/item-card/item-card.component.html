@@ -12,6 +12,8 @@
     @if(item.itemVersion != null){<p>Version: {{ item.itemVersion }}</p>}
     @if(item.itemEdition != null){<p>Edition: {{ item.itemEdition }}</p>}
     <p>For sale: {{ item.forSale }}</p>
-    <button (click) = "onDelete()"> Delete Item</button>
-    <button (click) = "onUpdate()"> Update Item</button>
+    @if(item.user == currentUser.userId){
+      <button (click)="onDelete()"> Delete Item</button>
+      <button (click)="onUpdate()"> Update Item</button>
+    }
 </div>

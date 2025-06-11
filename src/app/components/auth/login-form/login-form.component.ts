@@ -51,6 +51,7 @@ export class LoginFormComponent {
       next:  (user) => {
         this.user = user;
         this._dataService.selectedUser(user);
+        localStorage.setItem('loggedUser', JSON.stringify(user));
       },
       error: err => alert("Errore durante login")
     })

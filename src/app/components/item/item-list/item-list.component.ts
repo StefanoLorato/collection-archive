@@ -31,6 +31,8 @@ ngOnInit(): void {
 
   handleDelete(obj:{ id: number }) {
     console.log(obj.id)
+    console.log("ciao");
+
     this._service.deleteItem(obj.id).subscribe({
       next: () => {
         this.list = this.list.filter((i) => i.itemId != obj.id);

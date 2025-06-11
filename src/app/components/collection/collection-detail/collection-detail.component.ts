@@ -6,6 +6,8 @@ import { ItemCardComponent } from '../../item/item-card/item-card.component';
 import { Item } from '../../../models/item';
 import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
+import { DataService } from '../../../service/dataService';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-collection-detail',
@@ -21,9 +23,16 @@ export class CollectionDetailComponent implements OnInit {
   item!: Item;
   list: Item[] = [];
   private _itemService = inject(ItemService);
+  private _dataService = inject(DataService);
+  currentUser!: User;
 
 
   ngOnInit(): void {
+    this._dataService.selectedUserObservable.subscribe(user => {
+      if(user != null){
+        this.currentUser = user;
+      }
+    });
     const id = this._route.snapshot.paramMap.get("id");
     if (id != null) {
       const collectionId = +id; //potevo fare anche Number(id) per rendere la string un number
