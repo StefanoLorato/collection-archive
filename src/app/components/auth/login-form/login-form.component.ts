@@ -31,18 +31,14 @@ export class LoginFormComponent {
 
   onSubmit() {
     if (this.loginForm.invalid) return;
-    this.getUserByEmail(this.loginForm.get('email')?.value);
-    if(this.user != null){
-      this._dataService.selectedUser(this.user);
-    }
-  
+
     console.log(this.loginForm.value);
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
     this._authService.login({ email, password }).subscribe({
       next: (res) => {
-
+        this.getUserByEmail(email);
         alert("Login with success!");
         this._router.navigate(['/home']);
       },
@@ -52,7 +48,10 @@ export class LoginFormComponent {
 
   getUserByEmail(email: string) {
     return this._userService.getUserByEmail(email).subscribe({
-      next:  user => this.user = user,
+      next:  (user) => {
+        this.user = user;
+        this._dataService.selectedUser(user);
+      },
       error: err => alert("Errore durante login")
     })
   }

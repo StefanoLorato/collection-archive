@@ -22,7 +22,7 @@ export class CollectionFormComponent {
   private _isUpdate = false;
   private _dataService = inject(DataService);
   user: User | null = null;
-  
+
 
   constructor() {
     this.collectionForm = this.formBuilder.group({
@@ -40,8 +40,19 @@ export class CollectionFormComponent {
   }
 
    ngOnInit(): void {
-   this._dataService.selectedUserObservable.subscribe(user => this.user = user);
-   console.log("userid" + this.user?.userId);
+   this._dataService.selectedUserObservable.subscribe(user => {
+    this.user = user
+    if (this.user) {
+      this.collectionForm.patchValue({
+        userId: this.user.userId
+      });
+      console.log("Utente caricato:", this.user);
+    } else {
+      console.warn("Nessun utente disponibile nel DataService.");
+    }
+    });
+
+    console.log("userid" + this.user?.userId);
     const id = this._route.snapshot.paramMap.get("id");
     if (id != null && id != undefined) {
       this._isUpdate = true;
