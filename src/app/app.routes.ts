@@ -17,6 +17,7 @@ export const routes: Routes = [
      { path: 'home', component: HomeComponent },
      { path: 'dashboard', component: DashboardComponent },
      { path: 'collection-list', component: CollectionListComponent },
+     { path: 'collection-list/:categoryId', component: CollectionListComponent },
      { path: 'collection-form', component: CollectionFormComponent },
      { path: 'collection-detail/:id', component: CollectionDetailComponent },
      { path: 'edit-collection-form/:id', component: CollectionFormComponent },
