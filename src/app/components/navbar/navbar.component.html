@@ -7,7 +7,7 @@
     <button class="dropbtn">Categories ▼</button>
     <div class="dropdown-content">
       @for(c of list; track c.categoryId){
-        <a [routerLink] = "['/collection-list', c.categoryId]">{{c.categoryName}}</a>
+        <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">{{c.categoryName}}</a>
       }
     </div>
   </div>
@@ -33,7 +33,9 @@
   <ul class="nav-links">
     <li><a routerLink="/home">HOME</a></li>
     <li><a routerLink="/dashboard">Dashboard</a></li>
+    @if (currentUser != null) {
     <li><a routerLink="/collection-list">My Collection List</a></li>
     <li><a routerLink="/collection-form">Add New Collection</a></li>
+    }
   </ul>
 </nav>

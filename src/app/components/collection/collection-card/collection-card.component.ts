@@ -3,6 +3,9 @@ import { Router, RouterLink } from '@angular/router';
 import { Collection } from '../../../models/collection';
 import { User } from '../../../models/user';
 import { DataService } from '../../../service/dataService';
+import { CategoryService } from '../../../service/categoryService';
+import { Category } from '../../../models/category';
+import { UserService } from '../../../service/userService';
 
 @Component({
   selector: 'app-collection-card',
@@ -14,6 +17,10 @@ export class CollectionCardComponent {
   currentUser!: User;
   private _dataService = inject(DataService);
   private _router = inject(Router);
+  private _catService = inject(CategoryService);
+  private _userService = inject(UserService);
+  category!: Category;
+  owner!: User;
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
@@ -24,6 +31,9 @@ export class CollectionCardComponent {
         this.currentUser = user;
       }
     });
+    this.findCategoryById(this.collection.categoryId);
+    this.findUserById(this.collection.userId);
+    console.log(this.owner.name);
   }
 
   onDelete() {
@@ -39,8 +49,18 @@ export class CollectionCardComponent {
     }
   }
 
-  viewItems(){
+  findCategoryById(id: number){
+    this._catService.getCategoryById(id).subscribe({
+      next: category => this.category = category,
+      error: err => alert("categoria non trovata" + err)
+    })
+  }
 
+  findUserById(id: number){
+    this._userService.getUserById(id).subscribe({
+      next: user => this.owner = user,
+      error: err => alert("user non trovato" + err)
+    })
   }
 
 }

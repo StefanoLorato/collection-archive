@@ -5,14 +5,11 @@
   <label>Description</label>
   <textarea name="itemDescription" [(ngModel)]="item.itemDescription"></textarea>
 
-  <label>Visibility</label>
-  <select name="visibilityStatus" [(ngModel)]="item.visibilityStatus" required>
-    <option value="visible">Visible</option>
-    <option value="hidden">Hidden</option>
-  </select>
-
   <label>For Sale</label>
   <input type="checkbox" name="forSale" [(ngModel)]="item.forSale" />
+
+  <label>Sale Price</label>
+  <input name="itemSalePrice" [(ngModel)]="item.salePrice">
 
   <button type="submit">Update Item</button>
 </form>

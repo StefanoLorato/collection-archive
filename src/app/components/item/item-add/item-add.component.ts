@@ -17,9 +17,8 @@ export class ItemAddComponent implements OnInit {
     itemName: '',
     itemDescription: '',
     itemPhoto: '',
-    forSale: false,
-    visibilityStatus: '',
-    salePrice: ''
+    salePrice: '',
+    forSale: false
   };
 
   private _service = inject(ItemService);
