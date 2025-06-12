@@ -3,29 +3,31 @@
     <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
   </div>
 
-  <div class="categories-dropdown">
-    <button class="dropbtn">Categories ▼</button>
-    <div class="dropdown-content">
-      @for(c of list; track c.categoryId){
+  <div>
+    <div class="categories-dropdown">
+      <button class="dropbtn">Categories ▼</button>
+      <div class="dropdown-content">
+        @for(c of list; track c.categoryId){
         <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">{{c.categoryName}}</a>
-      }
+        }
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Cerca per nome..." />
+      <button type="submit">🔍</button>
     </div>
   </div>
 
-  <div class="search-bar">
-    <input type="text" placeholder="Cerca..." />
-    <button type="submit">🔍</button>
+  <div class="auth-links">
+    @if (currentUser == null) {
+    <a routerLink="/login">Login</a>
+
+    <a routerLink="/register">Register</a>
+    } @else {
+    <button (click)="logout()">Logout</button>
+    }
   </div>
-
- <div class="auth-links">
-      @if (currentUser == null) {
-        <a routerLink="/login">Login</a>
-
-        <a routerLink="/register">Register</a>
-      } @else {
-        <button (click)="logout()">Logout</button>
-      }
-    </div>
 </nav>
 
 <!-- La nav bar  inferiore  -->
@@ -40,12 +42,12 @@
   </ul>
 </nav>
 
-
+<!-- Scroll Container Category -->
 <div style="position: relative;">
   <div class="scroll-left" (mouseenter)="startScroll(-1)" (mouseleave)="stopScroll()"></div>
-  
-  
-  <div class="scroll-container"  #scrollContainer>
+
+
+  <div class="scroll-container" #scrollContainer>
     <div class="category" *ngFor="let c of list">
       <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">
         <i class="bi" [ngClass]="iconMap[c.categoryId]"></i>

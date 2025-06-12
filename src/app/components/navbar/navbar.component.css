@@ -6,10 +6,10 @@
   justify-content: space-between;
   gap: 20px;
   padding: 0 30px;
-  background-color: #f8f8f8;
+  background-color: #fbfbfb;
   height: 100px;
   font-family: 'Roboto', sans-serif;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid #e7e4e4;
 }
 
 /* Logo */
@@ -105,9 +105,8 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  /* Questo è il posto giusto! */
   margin-left: auto;
-  /* facoltativo per spingere tutto a destra */
+
 }
 
 .auth-links a,
