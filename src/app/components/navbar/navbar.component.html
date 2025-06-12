@@ -1,45 +1,3 @@
-<!--  NAVBAR SUPERIORE -->
-<nav class="top-navbar">
-  <div class="logo">
-    <a routerLink="/home">
-      <img src="logo.png" alt="Logo" height="50" />
-    </a>
-  </div>
-
-  <!-- Categorie dropdown -->
-  <div class="categories-dropdown">
-    <button class="dropbtn">Categorie ▼</button>
-    <div class="dropdown-content">
-      <a routerLink="/category/1">Archeologia</a>
-      <a routerLink="/category/2">Arte</a>
-      <a routerLink="/category/3">Automobili</a>
-    </div>
-  </div>
-
-  <!--  Barra di ricerca -->
-  <div class="search-bar">
-    <input type="text" placeholder="Cerca un prodotto..." />
-    <button type="submit">🔍</button>
-  </div>
-
-  <!-- Autenticazione dinamica -->
-  <div class="auth-links">
-    @if (currentUser == null) {
-      <a routerLink="/login">Login</a>
-      <a routerLink="/register">Register</a>
-    } @else {
-      <button (click)="logout()">Logout</button>
-    }
-  </div>
-</nav>
-
-<!-- NAVBAR INFERIORE -->
-<nav class="navbar">
-  <ul class="nav-links">
-    <li><a routerLink="/home"> HOME</a></li>
-    <li><a routerLink="/dashboard"> Dashboard</a></li>
-    <li><a routerLink="/collection-list"> My Collection</a></li>
-    <li><a routerLink="/collection-form"> Add Collection</a></li>    
 <nav class="top-navbar">
   <div class="logo">
     <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
@@ -81,3 +39,19 @@
     }
   </ul>
 </nav>
+<!-- 
+<div class="scroll-container">
+  <div class="category">
+        <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: 1 }"> <img src="monete.png" alt="Monete"> </a>
+      
+    <span>Archaeology & History</span>
+  </div>
+  <div class="category">
+    <img src="fumetti.png" alt="Fumetti">
+    <span>Fumetti</span>
+  </div>
+  <div class="category">
+    <img src="auto.png" alt="Auto e Moto">
+    <span>Auto e Moto</span>
+  </div>
+   Aggiungi altre categorie -->>
