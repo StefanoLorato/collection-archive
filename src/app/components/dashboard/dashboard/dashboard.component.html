@@ -1,0 +1,18 @@
+<div class="dashboard-container">
+  <h1>Tutte le Collection</h1>
+
+  <div *ngIf="list.length === 0">
+    <p>Nessuna collection disponibile.</p>
+  </div>
+
+  <div *ngFor="let collection of list" class="collection-card">
+    <h2>{{ collection.collectionName }}</h2>
+    <p><strong>ID:</strong> {{ collection.collectionId }}</p>
+    <p><strong>Descrizione:</strong> {{ collection.description }}</p>
+    <p><strong>User Id:</strong> <a  [routerLink]="['/user-profile', collection.userId]">{{ collection.userId }}</a></p>
+
+    <button [routerLink]="['/collection-detail', collection.collectionId]">
+      Vedi Item
+    </button>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { ItemCardComponent } from '../item-card/item-card.component';
 
 @Component({
   selector: 'app-item-list',
+  standalone: true,
   imports: [ItemCardComponent],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.css'
@@ -30,6 +31,8 @@ ngOnInit(): void {
 
   handleDelete(obj:{ id: number }) {
     console.log(obj.id)
+    console.log("ciao");
+
     this._service.deleteItem(obj.id).subscribe({
       next: () => {
         this.list = this.list.filter((i) => i.itemId != obj.id);
@@ -44,6 +47,7 @@ ngOnInit(): void {
 
   handleUpdate(obj: { id: number}) {
     const item = this.findItemById(obj.id);
+    console.log('handleDelete chiamato con id:',obj.id);
     if(item != null){
       this._service.updateItem(item).subscribe({
         next: ()=> {

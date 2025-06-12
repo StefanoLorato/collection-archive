@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
 import { User } from "../models/user";
 import { Token } from "@angular/compiler";
+import { DataService } from "./dataService";
 
 interface LoginRequest {
   email: string;
@@ -19,6 +20,7 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
+  private _dataService = inject(DataService);
   list: Item[] = [];
   private _url: string = "http://localhost:8080/api/auth"
   private _http = inject(HttpClient);
@@ -41,7 +43,20 @@ export class AuthService {
     return localStorage.getItem('jwt');
   }
 
+  getUserIdFromToken(): number | null {
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.userId || null;
+    } catch {
+      return null;
+    }
+  }
+
   logout(): void {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('loggedUser');
+    this._dataService.unselectUser();
   }
 }

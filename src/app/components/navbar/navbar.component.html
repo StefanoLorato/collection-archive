@@ -1,10 +1,39 @@
-<nav>
-    <ul>
-        <li><a routerLink="home"> HOME </a></li>
-        <li><a routerLink="collection-list"> Collection List</a></li>
-        <li><a routerLink="collection-form"> Add New Collection</a></li>
-        <li><button routerLink="login">Login</button></li>
-        <li><button routerLink="register">Register</button></li>
-    </ul>
+<nav class="top-navbar">
+  <div class="logo">
+    <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
+  </div>
+
+  <div class="categories-dropdown">
+    <button class="dropbtn">Categories ▼</button>
+    <div class="dropdown-content">
+      @for(c of list; track c.categoryId){
+        <a [routerLink] = "['/collection-list', c.categoryId]">{{c.categoryName}}</a>
+      }
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Cerca..." />
+    <button type="submit">🔍</button>
+  </div>
+
+ <div class="auth-links">
+      @if (currentUser == null) {
+        <a routerLink="/login">Login</a>
+
+        <a routerLink="/register">Register</a>
+      } @else {
+        <button (click)="logout()">Logout</button>
+      }
+    </div>
 </nav>
 
+<!-- La nav bar  inferiore  -->
+<nav class="navbar">
+  <ul class="nav-links">
+    <li><a routerLink="/home">HOME</a></li>
+    <li><a routerLink="/dashboard">Dashboard</a></li>
+    <li><a routerLink="/collection-list">My Collection List</a></li>
+    <li><a routerLink="/collection-form">Add New Collection</a></li>
+  </ul>
+</nav>

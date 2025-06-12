@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Collection } from "../models/collection";
 
@@ -12,15 +12,37 @@ export class CollectionService {
     private _url: string = "http://localhost:8080/api/collections"
     private _http = inject(HttpClient)
 
-    getCollections(): Observable<Collection[]>{
-        return this._http.get<Collection[]>(this._url);
+    getCollections(filters?: {
+        collectionName?: string;
+        categoryId?: number;
+        userId?: number;
+        salePrice?: number;
+        priceComparation?: string;
+      }): Observable<Collection[]> {
+        let params = new HttpParams();
+        if (filters) {
+          Object.entries(filters).forEach(([key, value]) => {
+            if (value !== null && value !== undefined) {
+              params = params.set(key, value.toString());
+          }
+        });
+      }
+        return this._http.get<Collection[]>(this._url, {params});
     }
 
-    deleteCollection(id:number): Observable<void>{
+    getCollectionsByUserId(userId: number): Observable<Collection[]> {
+      return this.getCollections({ userId });
+    }
+
+    getLoggedUserCollections(): Observable<Collection[]> {
+        return this._http.get<Collection[]>(this._url + "/loggedUser");
+    }
+
+    deleteCollection(id: number): Observable<void> {
         return this._http.delete<void>(`${this._url}/${id}`);
     }
 
-    getCollectionById(id:number): Observable<Collection>{
+    getCollectionById(id: number): Observable<Collection> {
         return this._http.get<Collection>(`${this._url}/${id}`);
     }
 
