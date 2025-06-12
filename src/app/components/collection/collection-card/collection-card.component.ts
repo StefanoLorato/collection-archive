@@ -33,7 +33,6 @@ export class CollectionCardComponent {
     });
     this.findCategoryById(this.collection.categoryId);
     this.findUserById(this.collection.userId);
-    console.log(this.owner.name);
   }
 
   onDelete() {
