@@ -1,7 +1,7 @@
 export interface Item {
   itemId: number;
-  collection: number;
-  user: number;
+  collectionId: number;
+  userId: number;
   itemName: string;
   itemDescription: string;
   itemPhoto: string;

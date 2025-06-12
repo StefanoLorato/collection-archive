@@ -29,21 +29,7 @@ ngOnInit(): void {
     });
   }
 
-  handleDelete(obj:{ id: number }) {
-    console.log(obj.id)
-    console.log("ciao");
 
-    this._service.deleteItem(obj.id).subscribe({
-      next: () => {
-        this.list = this.list.filter((i) => i.itemId != obj.id);
-        alert("l'item è stato eliminato con successo");
-      },
-      error: e => {
-        alert("Errore nell cancellazione");
-        this.loadItem();
-      }
-    })
-  }
 
   handleUpdate(obj: { id: number}) {
     const item = this.findItemById(obj.id);

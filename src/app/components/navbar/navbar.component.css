@@ -1,0 +1,166 @@
+/* Nav BAr superiore */
+.top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 30px;
+  background-color: #f8f8f8;
+  height: 70px;
+  font-family: 'Roboto', sans-serif;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Logo */
+.logo img {
+  height: 100px;
+  width: 100px;
+}
+
+/* Categorie dropdown */
+.categories-dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: #1a73e8;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.dropbtn:hover {
+  background-color: #f1f3f4;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.categories-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #1e232a;
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #e8f0fe;
+}
+
+/* SEARCH BAR */
+.search-bar {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 500px;
+  margin: 0 400px;
+  background-color: #f1f3f4;
+  border-radius: 3px;
+  padding: 6px 70px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input[type="text"] {
+  flex: 1;
+  justify-content: end;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  padding: 10px;
+  outline: none;
+}
+
+.search-bar button {
+  display: NONE; /* nascondiamo il bottone, oppure puoi usare un'icona leggera */
+}
+
+/* AUTH LINKS */
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Questo è il posto giusto! */
+  margin-left: auto; /* facoltativo per spingere tutto a destra */
+}
+
+.auth-links a,
+.auth-links button {
+  background-color: #1a73e8; /* Blu cobalto */
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.auth-links a:hover,
+.auth-links button:hover {
+  background-color: #1669c1; /* tono leggermente più scuro */
+}
+
+
+  /*Nav bar inferiore*/
+  .navbar {
+    background-color: #fff;
+    border-bottom: 3px solid #1a73e8;
+    padding: 0 20px;
+    font-family: 'Roboto', sans-serif;
+    height: 64px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .nav-links li,
+  .auth-links li {
+    margin-left: 16px;
+  }
+  
+  .nav-links a,
+  .nav-links button {
+    background: none;
+    border: none;
+    font-size: 15px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #1a73e8;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover,
+  .nav-links button:hover {
+    background-color: #f1f3f4;
+  }
+  
+  .auth-links {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+  }

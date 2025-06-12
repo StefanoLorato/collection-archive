@@ -53,6 +53,9 @@ export class CollectionDetailComponent implements OnInit {
     });
   }
 
+
+  
+
   findCollection(id: number) {
     this._service.getCollectionById(id).subscribe({
       next: c => this.collection = c,

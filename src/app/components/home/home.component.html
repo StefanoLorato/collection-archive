@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      background: linear-gradient(135deg, #1a73e8 0%, #1a73e8 100%);
       color: #fff;
       margin: 0;
       height: 100vh;
@@ -69,8 +69,9 @@
 <body>
   <div class="container" role="main" aria-label="Messaggio di benvenuto">
     <div class="emoji" aria-hidden="true">🎉</div>
-    <h1>Grazie per essere con noi </h1>
+    <h1>Grazie per essere con noi {{user.email.split('@')[0]}} </h1>
     <p>
+      
       Siamo felici di averti su <strong>Collection Archive</strong>.<br />
       Qui puoi organizzare, collezionare e scoprire tesori unici in modo semplice e veloce.
     </p>

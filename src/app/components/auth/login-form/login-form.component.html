@@ -1,9 +1,15 @@
-<form [formGroup]=" loginForm" (ngSubmit)="onSubmit()"><!--ngSubmit serve per far si che il form venga inviato quando si clicca il pulsante submit-->
-    <label>Emaill</label>
-    <input formControlName="email" type="text">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+  <h2>Accedi</h2>
 
-    <label>Password</label>
-    <input formControlName="password" type="password">   
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="text" required>
+  </div>
 
-    <button type="submit">Login</button>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" formControlName="password" type="password" required>
+  </div>
+
+  <button type="submit">Login</button>
 </form>

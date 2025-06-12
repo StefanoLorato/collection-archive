@@ -32,15 +32,15 @@ export class ItemAddComponent implements OnInit {
     const userId = this._route.snapshot.paramMap.get('userId');
 
     if (collectionId) {
-      this.item.collection = Number(collectionId);
+      this.item.collectionId = Number(collectionId);
     } else {
       alert('Miss Collection ID');
       this._router.navigate(['/collection-list']);
     }
 
     if (userId) {
-      this.item.user = Number(userId);
-      console.log('UserId:', this.item.user);
+      this.item.userId = Number(userId);
+      console.log('UserId:', this.item.userId);
     } else {
       alert('Miss User Id');
     }
@@ -55,7 +55,7 @@ export class ItemAddComponent implements OnInit {
     this._service.addItem(this.item).subscribe({
       next: s => {
         alert('Item creato con ID: ' + s.itemId);
-        this._router.navigate(['/collection-detail', this.item.collection]);
+        this._router.navigate(['/collection-detail', this.item.collectionId]);
       },
       error: e => {
         console.error('Errore nella creazione item:', e);
