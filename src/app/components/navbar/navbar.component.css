@@ -1,9 +1,9 @@
 
 /* Nav BAr superiore */
 .top-navbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: 20px;
   padding: 0 30px;
   background-color: #fbfbfb;
@@ -18,9 +18,19 @@
   width: 130px;
 }
 
+/* ricerche */
+.search-containers{
+  display: flex;
+  margin: 0 50px;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
 /* Categorie dropdown */
 .categories-dropdown {
   position: relative;
+  margin-top:6px;
 }
 
 .dropbtn {
@@ -68,11 +78,13 @@
   align-items: center;
   flex: 1;
   max-width: 500px;
-  margin: 0 400px;
+  margin: 0 20px;
+  margin-bottom: 30px;
   background-color: #f1f3f4;
   border-radius: 3px;
-  padding: 6px 70px;
+  padding: 6px 20px;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+
 }
 
 .search-bar input[type="text"] {
@@ -86,12 +98,10 @@
 }
 
 .search-bar button {
-  background: #1a73e8;
-  color: white;
+  color: #1a73e8;
   border: none;
   border-radius: 30px;
   padding: 10px 15px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
 }
 
@@ -105,8 +115,8 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-left: auto;
-
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .auth-links a,
@@ -117,7 +127,7 @@
   padding: 8px 16px;
   border: none;
   border-radius: 3px;
-  font-size: 20px;
+  font-size: 17px;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
@@ -187,11 +197,11 @@
   gap: 15px;
   padding: 10px 0;
   position: relative;
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
 
 .scroll-container::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 .scroll-container :hover{
@@ -265,12 +275,12 @@
 }
 
 .category :hover {
-  
+
   transform: scale(1.1);
   border-bottom: none;
   text-decoration: none;
   text-underline-offset: 2px;
-  
+
 }
 
 

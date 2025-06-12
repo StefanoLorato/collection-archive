@@ -3,7 +3,7 @@
     <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
   </div>
 
-  <div>
+  <div class="search-containers">
     <div class="categories-dropdown">
       <button class="dropbtn">Categories ▼</button>
       <div class="dropdown-content">
@@ -14,8 +14,8 @@
     </div>
 
     <div class="search-bar">
-      <input type="text" placeholder="Cerca per nome..." />
-      <button type="submit">🔍</button>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca..." />
+      <button (click)="search()"><i class="bi bi-search"></i></button>
     </div>
   </div>
 
