@@ -9,7 +9,7 @@
     <h2>{{ collection.collectionName }}</h2>
     <p><strong>ID:</strong> {{ collection.collectionId }}</p>
     <p><strong>Descrizione:</strong> {{ collection.description }}</p>
-    <p><strong>User Id:</strong> {{ collection.userId }}</p>
+    <p><strong>User Id:</strong> <a  [routerLink]="['/user-profile', collection.userId]">{{ collection.userId }}</a></p>
 
     <button [routerLink]="['/collection-detail', collection.collectionId]">
       Vedi Item

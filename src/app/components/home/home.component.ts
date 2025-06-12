@@ -1,6 +1,11 @@
 import { Component, inject } from '@angular/core';
+<<<<<<< HEAD
 import { DataService } from '../../service/dataService';
 import { User } from '../../models/user';
+=======
+import { User } from '../../models/user';
+import { DataService } from '../../service/dataService';
+>>>>>>> master
 
 @Component({
   selector: 'app-home',

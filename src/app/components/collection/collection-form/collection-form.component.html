@@ -28,9 +28,9 @@
   <div>
     <select formControlName="categoryId" id="category">
       <option value="" disabled>-- Choose category --</option>
-      <option value="1">Arte</option>
-      <option value="2">Musica</option>
-      <option value="3">Libri</option>
+      @for(c of list; track c.categoryId){
+        <option value="{{c.categoryId}}">{{c.categoryName}}</option>
+      }
     </select>
     @if (categoryId?.invalid && categoryId?.touched) {
       <p>Insert category</p>

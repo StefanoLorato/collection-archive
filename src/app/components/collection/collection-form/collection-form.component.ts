@@ -5,6 +5,8 @@ import { CollectionService } from '../../../service/collectionService'; // suppo
 import { Collection } from '../../../models/collection';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { Category } from '../../../models/category';
+import { CategoryService } from '../../../service/categoryService';
 
 @Component({
   selector: 'app-collection-form',
@@ -22,6 +24,8 @@ export class CollectionFormComponent {
   private _isUpdate = false;
   private _dataService = inject(DataService);
   user: User | null = null;
+  list: Category[] = [];
+  private _catService = inject(CategoryService);
 
 
   constructor() {
@@ -39,17 +43,17 @@ export class CollectionFormComponent {
     });
   }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
-    this.user = user
-    if (this.user) {
-      this.collectionForm.patchValue({
-        userId: this.user.userId
-      });
-      console.log("Utente caricato:", this.user);
-    } else {
-      console.warn("Nessun utente disponibile nel DataService.");
-    }
+      this.user = user
+      if (this.user) {
+        this.collectionForm.patchValue({
+          userId: this.user.userId
+        });
+        console.log("Utente caricato:", this.user);
+      } else {
+        console.warn("Nessun utente disponibile nel DataService.");
+      }
     });
 
     console.log("userid" + this.user?.userId);
@@ -63,10 +67,13 @@ export class CollectionFormComponent {
         alert("Mi devi dare un numero maggiore di 0")
       }
     }
+    this.loadCategories();
   }
 
   onSubmit() {
     console.log(this.collectionForm.value);
+    
+
     if (this.collectionForm.invalid) return;
     if (!this._isUpdate) {
       return this._service.createCollection(this.collectionForm.value).subscribe({
@@ -78,7 +85,7 @@ export class CollectionFormComponent {
       });
     } else {
      return this._service.updateCollection(this.collectionForm.value).subscribe({
-        next: () => {
+       next: () => {
           alert("Collezione aggiornata!");
           this._router.navigate(['/collection-list']);
         },
@@ -87,29 +94,35 @@ export class CollectionFormComponent {
     }
   }
 
-findCollection(id: number) {
-  this._service.getCollectionById(id).subscribe({
-    next: data => {
-      this.collectionForm.patchValue({
-        collectionId: data.collectionId,
-        collectionName: data.collectionName,
-        completed: data.completed,
-        categoryId: data.categoryId,
-        visibility: data.visibility,
-        description: data.description,
-        collectionDate: data.collectionDate,
-        forSale: data.forSale,
-        salePrice: data.salePrice,
-        userId: data.userId ,
-      });
-    },
-    error: () => {
-      alert('Errore nel recupero dei dati');
-      this._router.navigate(['/collection-list']);
-    }
-  });
-}
+  findCollection(id: number) {
+    this._service.getCollectionById(id).subscribe({
+      next: data => {
+        this.collectionForm.patchValue({
+          collectionId: data.collectionId,
+          collectionName: data.collectionName,
+          completed: data.completed,
+          categoryId: data.categoryId,
+          visibility: data.visibility,
+          description: data.description,
+          collectionDate: data.collectionDate,
+          forSale: data.forSale,
+          salePrice: data.salePrice,
+          userId: data.userId ,
+        });
+      },
+      error: () => {
+        alert('Errore nel recupero dei dati');
+        this._router.navigate(['/collection-list']);
+      }
+    });
+  }
 
+  loadCategories(){
+    this._catService.getCategories().subscribe({
+      next: categories => this.list = categories,
+      error: err => alert("Errore nella ricerca delle categorie" + err)
+    })
+  }
   get collectionName() { return this.collectionForm.get('collectionName'); }
   get description() { return this.collectionForm.get('description'); }
   get collectionDate() { return this.collectionForm.get('collectionDate'); }

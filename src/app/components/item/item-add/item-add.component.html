@@ -5,19 +5,11 @@
   <label>Descrizione:</label>
   <input name="itemDescription" [(ngModel)]="item.itemDescription">
 
-  <label>Visibilità:</label>
-  <select name="visibilityStatus" [(ngModel)]="item.visibilityStatus">
-    <option value="visible">Visibile</option>
-    <option value="sold">Sold</option>
-    <option value="deleted">Deleted</option>
-    <option value="archived">Archived</option>
-  </select>
-
-    <label>Sale Price</label>
-  <input name="itemSalePrice" [(ngModel)]="item.salePrice">
-
   <label>In vendita:</label>
   <input type="checkbox" name="forSale" [(ngModel)]="item.forSale">
 
+  <label>Sale Price</label>
+  <input name="itemSalePrice" [(ngModel)]="item.salePrice">
+  
   <button type="submit">Save</button>
 </form>

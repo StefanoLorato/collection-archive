@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* 🌟 Contenitore Registrazione */
+=======
+/*  Contenitore Registrazione */
+>>>>>>> master
 .register-container {
   max-width: 400px;
   margin: 80px auto;
@@ -10,7 +14,11 @@
   text-align: center;
 }
 
+<<<<<<< HEAD
 /* 📝 Testo interattivo */
+=======
+/*  Testo interattivo */
+>>>>>>> master
 .register-message a {
   color: #1a73e8;
   font-weight: bold;
@@ -24,7 +32,11 @@
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /* ✨ Animazione del testo */
+=======
+/*  Animazione del testo */
+>>>>>>> master
 @keyframes fadeInText {
   0% { opacity: 0; transform: translateY(-10px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -45,7 +57,11 @@
     align-items: flex-start;
     margin-bottom: 18px;
     padding-right: 24px;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> master
 }
 
 .form-group label {
@@ -72,7 +88,11 @@
   box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
 }
 
+<<<<<<< HEAD
 /* 🔵 Pulsante Register con effetti */
+=======
+/*  Pulsante Register con effetti */
+>>>>>>> master
 button[type="submit"] {
   width: 100%;
   padding: 12px;

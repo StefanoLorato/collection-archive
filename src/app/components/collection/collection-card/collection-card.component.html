@@ -1,3 +1,4 @@
+@if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
 <div class="collection-detail">
   <h2>Collection Number Id: {{ collection.collectionId }}</h2>
   <p>Name Collection: {{ collection.collectionName }}</p>
@@ -5,16 +6,16 @@
   <p>Completed: {{ collection.completed }}</p>
   <p>Creation Date: {{ collection.createdAt.split("T")[0] }}</p>
   @if(collection.collectionDate != null){<p>Collection Date: {{ collection.collectionDate }}</p>}
-  <p>Category: {{ collection.categoryId }}</p>
-  <p>User: {{ collection.userId }}</p>
-  <p>Visibility: {{ collection.visibility }}</p>
+  <p>Category: {{ category.categoryName }}</p>
+  <p>User: {{ owner.name }}</p>
   <p>Visibility Status: {{ collection.visibilityStatus }}</p>
   <p>For Sale: {{ collection.forSale }}</p>
   @if(collection.salePrice != null){<p>Sale Price: {{ collection.salePrice }} €</p>}
 
   <button [routerLink] = "['/collection-detail', collection.collectionId]">View Detail</button>
-  <button (click)="onDelete()">Delete Collection</button>
-  <button (click)="onUpdate()">Update Collection</button>
- 
+  @if(currentUser != null && collection.userId == currentUser.userId){
+    <button (click)="onDelete()">Delete Collection</button>
+    <button (click)="onUpdate()">Update Collection</button>
+  }
 </div>
-
+}
