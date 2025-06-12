@@ -56,5 +56,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('loggedUser');
+    this._dataService.unselectUser();
   }
 }

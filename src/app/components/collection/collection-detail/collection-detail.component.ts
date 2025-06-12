@@ -8,6 +8,7 @@ import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { ItemListComponent } from '../../item/item-list/item-list.component';
 
 @Component({
   selector: 'app-collection-detail',
@@ -25,6 +26,7 @@ export class CollectionDetailComponent implements OnInit {
   private _itemService = inject(ItemService);
   private _dataService = inject(DataService);
   currentUser!: User;
+  private _collectionId!: number;
 
 
   ngOnInit(): void {
@@ -35,10 +37,10 @@ export class CollectionDetailComponent implements OnInit {
     });
     const id = this._route.snapshot.paramMap.get("id");
     if (id != null) {
-      const collectionId = +id; //potevo fare anche Number(id) per rendere la string un number
-      if (collectionId != 0 && !isNaN(collectionId)) {
-        this.findCollection(collectionId);
-        this.loadItem(collectionId)
+      this._collectionId = +id; //potevo fare anche Number(id) per rendere la string un number
+      if (this._collectionId != 0 && !isNaN(this._collectionId)) {
+        this.findCollection(this._collectionId);
+        this.loadItem(this._collectionId)
       } else {
         alert("id non valido");
       }
@@ -63,8 +65,24 @@ export class CollectionDetailComponent implements OnInit {
     });
   }
 
+  handleDelete(obj:{ id: number }) {
+    console.log(obj.id)
+    console.log("ciao");
+
+    this._itemService.deleteItem(obj.id).subscribe({
+      next: () => {
+        this.list = this.list.filter((i) => i.itemId != obj.id);
+        alert("l'item è stato eliminato con successo");
+      },
+      error: e => {
+        alert("Errore nell cancellazione");
+        this.loadItem(this._collectionId);
+      }
+    })
+  }
+
   navigateToEdit() {
-    this._router.navigate(['/collection-form', this.collection.collectionId])
+    this._router.navigate(['/edit-collection-form/', this.collection.collectionId])
   }
 
 }

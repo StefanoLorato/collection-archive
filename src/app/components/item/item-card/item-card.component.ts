@@ -29,6 +29,8 @@ export class ItemCardComponent implements OnInit{
   onDelete(){
     console.log('onDelete chiamato! itemId:', this.item.itemId);
     this.deleteItem.emit({ id: this.item.itemId });
+    console.log("componente interna invia l'evento");
+
   }
 
   onUpdate() {

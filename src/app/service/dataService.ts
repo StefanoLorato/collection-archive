@@ -36,8 +36,8 @@ export class DataService {
     this._selectedUserBehavior.next(user);
   }
 
-  clearUsers() {
+  unselectUser(){
     this._selectedUserBehavior.next(null);
-    localStorage.removeItem('loggedUser'); // importante: cancella anche qui
   }
+
 }
