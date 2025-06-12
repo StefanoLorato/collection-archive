@@ -42,7 +42,7 @@ export class LoginFormComponent {
         alert("Login with success!");
         this._router.navigate(['/home']);
       },
-      error: err => alert("Errore durante login")
+      error: err => alert("Errore durante login" + err)
     });
   }
 
@@ -53,7 +53,7 @@ export class LoginFormComponent {
         this._dataService.selectedUser(user);
         localStorage.setItem('loggedUser', JSON.stringify(user));
       },
-      error: err => alert("Errore durante login")
+      error: err => alert("Errore durante login" + err)
     })
   }
 
