@@ -7,15 +7,15 @@
   gap: 20px;
   padding: 0 30px;
   background-color: #f8f8f8;
-  height: 70px;
+  height: 100px;
   font-family: 'Roboto', sans-serif;
   border-bottom: 2px solid #e0e0e0;
 }
 
 /* Logo */
 .logo img {
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
 }
 
 /* Categorie dropdown */
@@ -137,7 +137,7 @@
   border-bottom: 3px solid #1a73e8;
   padding: 0 20px;
   font-family: 'Roboto', sans-serif;
-  height: 64px;
+  height: 100px;
   display: flex;
   align-items: center;
 }
@@ -181,30 +181,109 @@
   align-items: center;
 }
 
-
-
 .scroll-container {
   display: flex;
-  overflow-x: auto; /* Abilita la barra di scorrimento */
-  white-space: nowrap;
-  padding: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
   gap: 15px;
-  scrollbar-width: thin; /* Per ridurre la grandezza della scrollbar */
+  padding: 10px 0;
+  position: relative;
+  scrollbar-width: none; 
 }
+
+.scroll-container::-webkit-scrollbar {
+  display: none; 
+}
+
+.scroll-container :hover{
+  border-bottom: 3px solid #1a73e8;
+
+}
+
+/* Bottoni invisibili a sinistra e destra */
+.scroll-left,
+.scroll-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  cursor: pointer;
+  z-index: 20;
+  background: rgba(207, 215, 222, 0.1);
+  transition: 0.9s, opacity 0.3s;
+}
+
+.scroll-left:hover,
+.scroll-right:hover {
+  background: rgba(54, 77, 102, 0.2);
+}
+
+.scroll-left {
+  left: 0;
+}
+
+.scroll-right {
+  right: 0;
+}
+
 
 .category {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 120px;
   padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  min-width: 120px; /* Larghezza minima per ogni categoria */
+  background: #f4efef;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
   text-align: center;
+  transition: background-color 0.3s;
 }
 
-.category img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
+.category.active {
+  background: #8a8add;
 }
+
+.category span {
+  font-size: 16px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.category a {
+  font-size: 28px;
+  color: #444;
+  text-decoration: none;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.category a:hover {
+  color: #007bff;
+  transform: scale(1.1);
+}
+
+.category :hover {
+  
+  transform: scale(1.1);
+  border-bottom: none;
+  text-decoration: none;
+  text-underline-offset: 2px;
+  
+}
+
+
+
+.category .underline {
+  height: 3px;
+  background-color: #dfe3e7;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0px;
+}
+
+

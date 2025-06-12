@@ -39,19 +39,20 @@
     }
   </ul>
 </nav>
-<!-- 
-<div class="scroll-container">
-  <div class="category">
-        <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: 1 }"> <img src="monete.png" alt="Monete"> </a>
-      
-    <span>Archaeology & History</span>
+
+
+<div style="position: relative;">
+  <div class="scroll-left" (mouseenter)="startScroll(-1)" (mouseleave)="stopScroll()"></div>
+  
+  
+  <div class="scroll-container"  #scrollContainer>
+    <div class="category" *ngFor="let c of list">
+      <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">
+        <i class="bi" [ngClass]="iconMap[c.categoryId]"></i>
+      </a>
+      <span>{{ c.categoryName }}</span>
+    </div>
   </div>
-  <div class="category">
-    <img src="fumetti.png" alt="Fumetti">
-    <span>Fumetti</span>
-  </div>
-  <div class="category">
-    <img src="auto.png" alt="Auto e Moto">
-    <span>Auto e Moto</span>
-  </div>
-   Aggiungi altre categorie -->>
+
+  <div class="scroll-right" (mouseenter)="startScroll(1)" (mouseleave)="stopScroll()"></div>
+</div>

@@ -8,7 +8,7 @@ import { ItemCardComponent } from '../item-card/item-card.component';
 @Component({
   selector: 'app-item-list',
   standalone: true,
-  imports: [ItemCardComponent],
+  imports: [],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.css'
 })
