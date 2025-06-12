@@ -1,18 +1,36 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()"><!--ngSubmit serve per far si che il form venga inviato quando si clicca il pulsante submit-->
-    <label>Name</label>
-    <input formControlName="name" type="text">
+<div class="register-container">
+  <h2>Registrati</h2>
 
-    <label>Lastname</label>
-    <input formControlName="lastname" type="text">
+  <p class="register-message">
+    <a routerLink="/login">Sei già registrato? Accedi da qui.</a>
+  </p>
 
-    <label>Email</label>
-    <input formControlName="email" type="email">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input id="name" formControlName="name" type="text" required>
+    </div>
 
-    <label>Password</label>
-    <input formControlName="password" type="password">
+    <div class="form-group">
+      <label for="lastname">Cognome</label>
+      <input id="lastname" formControlName="lastname" type="text" required>
+    </div>
 
-    <label>Country</label>
-    <input formControlName="country" type="text">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" required>
+    </div>
 
-    <button type="submit">Register</button>
-</form>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" formControlName="password" type="password" required>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Paese</label>
+      <input id="country" formControlName="country" type="text" required>
+    </div>
+
+    <button type="submit">Registrati</button>
+  </form>
+</div>
