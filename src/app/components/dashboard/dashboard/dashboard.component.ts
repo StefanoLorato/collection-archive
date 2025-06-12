@@ -9,8 +9,8 @@ import { UserService } from '../../../service/userService';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true, // <-- NECESSARIO
-  imports: [CommonModule, RouterLink], // <-- CommonModule per *ngFor / *ngIf
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

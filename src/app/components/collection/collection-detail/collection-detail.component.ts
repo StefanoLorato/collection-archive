@@ -8,7 +8,6 @@ import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
-import { ItemListComponent } from '../../item/item-list/item-list.component';
 
 @Component({
   selector: 'app-collection-detail',

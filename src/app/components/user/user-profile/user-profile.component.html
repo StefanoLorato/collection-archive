@@ -1,1 +1,12 @@
-<p>user-profile works!</p>
+@if(user != null){
+  <h2>User id: {{ user.userId }}</h2>
+  <p>Name: {{ user.name }}</p>
+  <p>Lastname: {{ user.lastname}}</p>
+  <p>Email: {{ user.email}}</p>
+  <p>{{user.name}}'s collections:</p>
+  @for (c of list; track c.collectionId) {
+    <app-collection-card [collection]='c' (deleteCollection)="handleDelete($event)"></app-collection-card>
+  }
+} @else {
+  <h2>Caricando la collection...</h2>
+}

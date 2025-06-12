@@ -2,13 +2,13 @@
   <h2>Number Collection: {{ collection.collectionId }}</h2>
   <p>Name Collection: {{ collection.collectionName }}</p>
   <p>Description Collection: {{ collection.description}}</p>
-    @if(collection.userId == currentUser.userId){
+    @if(currentUser != null && collection.userId == currentUser.userId){
       <button [routerLink]="['/item-add', collection.collectionId, collection.userId]">Add New Item </button>
     }
   @for (i of list; track i.itemId) {
     <app-item-card [item]='i' (deleteItem)="handleDelete($event)"></app-item-card>
   }
-  @if(collection.userId == currentUser.userId){
+  @if(currentUser != null && collection.userId == currentUser.userId){
     <button (click)="navigateToEdit()">Update Data</button>
   }
 } @else {

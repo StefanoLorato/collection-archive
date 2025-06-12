@@ -11,7 +11,6 @@ import { CollectionCardComponent } from '../collection-card/collection-card.comp
   styleUrl: './collection-list.component.css'
 })
 export class CollectionListComponent {
-
   collection!: Collection | any;
   list: Collection[] = [];
   private _service = inject(CollectionService);
