@@ -1,38 +1,54 @@
-.login-form {
+/*  Contenitore Login */
+.login-container {
   max-width: 400px;
   margin: 80px auto;
   padding: 32px;
-  border-radius:3px;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: 'Roboto', sans-serif;
-  background-color: #fff;
+  background: white;
+  text-align: center;
 }
 
-.login-form h2 {
-  text-align: center;
-  margin-bottom: 24px;
-  font-weight: 500;
-  color: #202124;
+.login-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a73e8;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInText 2s ease-in-out forwards;
+}
+
+/* Animazione del testo */
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+   align-items: flex-start;
+    margin-bottom: 18px;
+    padding-right: 24px;
 }
 
 .form-group label {
   margin-bottom: 6px;
   color: #5f6368;
-  font-size: 14px;
+ font-size: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
 }
 
 .form-group input {
   padding: 12px;
   border: 1px solid #dadce0;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 16px;
   transition: border 0.2s;
+  width: 100%;
 }
 
 .form-group input:focus {
@@ -41,19 +57,34 @@
   box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
 }
 
+/* Pulsante Login con effetti */
 button[type="submit"] {
   width: 100%;
   padding: 12px;
-  background-color: #1a73e8;
+  background: #1a73e8;
   border: none;
   color: white;
   font-size: 16px;
-  font-weight: 500;
-  border-radius: 3px;
+  font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease-in-out;
 }
 
 button[type="submit"]:hover {
-  background-color: #1558c0;
+  background: #1558c0;
+  transform: scale(1.05);
+}
+
+.login-message a {
+    color: #1a73e8;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.login-message a:hover {
+    color: #1558c0;
+    transform: scale(1.05);
+    text-decoration: underline;
 }
