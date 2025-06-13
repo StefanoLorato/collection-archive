@@ -1,3 +1,4 @@
+<!-- Nav bar Superiore -->
 <nav class="top-navbar">
   <div class="logo">
     <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
@@ -16,7 +17,8 @@
 
         <div class="dropdown-grid">
           @for(c of list; track c.categoryId){
-          <a class="category-card" [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }" (click)="showModal = false">
+          <a class="category-card" [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }"
+            (click)="showModal = false">
             <div class="category-text">{{ c.categoryName }}</div>
             <div class="category-image">
               <img [src]="c.photo" [alt]="c.categoryName" />
@@ -47,9 +49,12 @@
   <div class="auth-links">
     @if (currentUser == null) {
     <a routerLink="/login">Login</a>
-
     <a routerLink="/register">Register</a>
     } @else {
+   <a class="profile" [routerLink]="['/user-profile', currentUser.userId]">
+   <i class="bi bi-person-circle"></i>
+   <span class="profile-name">{{ currentUser.name || 'My Profile' }}</span>
+   </a>
     <button (click)="logout()">Logout</button>
     }
   </div>
@@ -61,7 +66,6 @@
     <li><a routerLink="/home">HOME</a></li>
     <li><a routerLink="/dashboard">Dashboard</a></li>
     @if (currentUser != null) {
-    <li><a [routerLink]="['/user-profile', currentUser.userId]">My Profile</a></li>
     <li><a routerLink="/collection-form">Add New Collection</a></li>
     }
   </ul>

@@ -25,7 +25,7 @@ export class NavbarComponent {
   icon!: string;
   private scrollInterval: any;
   showModal = false;
-
+  username!: User;
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 
 startScroll(direction: number) {
