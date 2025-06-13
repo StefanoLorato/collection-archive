@@ -1,9 +1,9 @@
-@if(user != null){
-  <h2>User id: {{ user.userId }}</h2>
-  <p>Name: {{ user.name }}</p>
-  <p>Lastname: {{ user.lastname}}</p>
-  <p>Email: {{ user.email}}</p>
-  <p>{{user.name}}'s collections:</p>
+@if(owner != null){
+  <h2>User id: {{ owner.userId }}</h2>
+  <p>Name: {{ owner.name }}</p>
+  <p>Lastname: {{ owner.lastname}}</p>
+  <p>Email: {{ owner.email}}</p>
+  <p>{{owner.name}}'s collections:</p>
   @for (c of list; track c.collectionId) {
     <app-collection-card [collection]='c' (deleteCollection)="handleDelete($event)"></app-collection-card>
   }

@@ -4,13 +4,10 @@
     <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
   </div>
 
-
-  <!-- finestra Modal per le categories -->
-  <div>
+  <div class="search-containers">
     <!-- Bottone per aprire la finestra -->
     <button class="open-modal-btn" (click)="showModal = true">Categorie ▼</button>
 
-    <!-- Finestra Modal -->
     <div class="category-modal" *ngIf="showModal">
       <div class="modal-overlay" (click)="showModal = false"></div>
 
@@ -30,14 +27,23 @@
         </div>
       </div>
     </div>
-    <!-- Search BAR -->
+    <!-- <div class="categories-dropdown">
+      <button class="dropbtn">Categories ▼</button>
+      <div class="dropdown-content">
+        @for(c of list; track c.categoryId){
+        <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">{{c.categoryName}}</a>
+        }
+      </div>
+    </div> -->
+
     <div class="search-bar">
-      <input type="text" placeholder="Cerca per nome..." />
-      <button type="submit">🔍</button>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca..." />
+      <button (click)="search()"><i class="bi bi-search"></i></button>
     </div>
+
   </div>
 
-<!-- Login e logout -->
+  <!-- Login e logout -->
 
   <div class="auth-links">
     @if (currentUser == null) {
@@ -56,7 +62,7 @@
     <li><a routerLink="/home">HOME</a></li>
     <li><a routerLink="/dashboard">Dashboard</a></li>
     @if (currentUser != null) {
-    <li><a routerLink="/collection-list">My Collection List</a></li>
+    <li><a [routerLink]="['/user-profile', currentUser.userId]">My Profile</a></li>
     <li><a routerLink="/collection-form">Add New Collection</a></li>
     }
   </ul>
@@ -71,8 +77,8 @@
     <div class="category-scroll" *ngFor="let c of list">
       <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">
         <i class="bi" [ngClass]="iconMap[c.categoryId]"></i>
+        <div>{{ c.categoryName }}</div>
       </a>
-      <span>{{ c.categoryName }}</span>
     </div>
   </div>
 

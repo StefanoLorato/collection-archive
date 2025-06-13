@@ -1,21 +1,39 @@
+<div class="collection-container"></div>
 @if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
-<div class="collection-detail">
-  <h2>Collection Number Id: {{ collection.collectionId }}</h2>
-  <p>Name Collection: {{ collection.collectionName }}</p>
-  <p>Description: {{ collection.description }}</p>
-  <p>Completed: {{ collection.completed }}</p>
-  <p>Creation Date: {{ collection.createdAt.split("T")[0] }}</p>
-  @if(collection.collectionDate != null){<p>Collection Date: {{ collection.collectionDate }}</p>}
-  <p>Category: {{ category?.categoryName }}</p>
-  <p>User: {{ owner?.name }}</p>
-  <p>Visibility Status: {{ collection.visibilityStatus }}</p>
-  <p>For Sale: {{ collection.forSale }}</p>
-  @if(collection.salePrice != null){<p>Sale Price: {{ collection.salePrice }} €</p>}
-
-  <button [routerLink] = "['/collection-detail', collection.collectionId]">View Detail</button>
-  @if(currentUser != null && collection.userId == currentUser.userId){
-    <button (click)="onDelete()">Delete Collection</button>
-    <button (click)="onUpdate()">Update Collection</button>
-  }
+  <div class="collection-card">
+    <div class="card-header">
+      <h3>{{ owner?.name }}</h3>
+      <p>{{ collection.createdAt.split("T")[0] }}</p>
+    </div>
+    <div class="card-body">
+    @if(currentUser != null && collection.userId == currentUser.userId){
+      <div class="owner-actions">
+        <button id="delete" (click)="onDelete()"><i class="bi bi-trash"></i></button>
+        <button id="update" (click)="onUpdate()"><i class="bi bi-pencil"></i></button>
+        <button id="wishlist"><i class="bi bi-card-list"></i></button>
+      </div>
+    }
+    <p>Collection Name: {{ collection.collectionName }}</p>
+    <p>Description: {{ collection.description }}</p>
+    <p>Completed: {{ collection.completed }}</p>
+    @if(collection.collectionDate != null){<p>Collection Date: {{ collection.collectionDate }}</p>}
+    <p>Category: {{ category?.categoryName }}</p>
+    <p>Visibility Status: {{ collection.visibilityStatus }}</p>
+    <p>For Sale: {{ collection.forSale }}</p>
+    @if(collection.salePrice != null){<p>Sale Price: {{ collection.salePrice }} €</p>}
+  </div>
+  <div class="card-footer">
+    <button [routerLink] = "['/collection-detail', collection.collectionId]">View Detail</button>
+    @if(currentUser == null || collection.userId != currentUser.userId) {
+      <div class="interact">
+        <button id="like" (click)="like()"><i class="bi bi-heart"></i></button>
+        <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
+        <button id="bookmark" (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
+        @if(collection.forSale == true){
+          <button id="buy" [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]"><i class="bi bi-cart"></i></button>
+        }
+      </div>
+    }
+  </div>
 </div>
 }

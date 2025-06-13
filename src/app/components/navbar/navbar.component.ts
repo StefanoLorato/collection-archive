@@ -6,16 +6,16 @@ import { AuthService } from '../../service/authService';
 import { CategoryService } from '../../service/categoryService';
 import { Category } from '../../models/category';
 import { CommonModule } from '@angular/common';
-
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterModule, RouterLink, CommonModule],
+  imports: [RouterModule, RouterLink, CommonModule, FormsModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  searchTerm: String = '';
   private _dataService = inject(DataService);
   currentUser: User | null = null;
   private _authService = inject(AuthService);
@@ -62,6 +62,10 @@ startScroll(direction: number) {
     this._authService.logout();
     alert("You succesfully logged out. Thank you for your visit");
     this._router.navigate(['/login']);
+  }
+
+  search(){
+    this._router.navigate(['/collection-list'], {queryParams: {collectionName : this.searchTerm}});
   }
 
   iconMap: { [key: number]: string } = {

@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../service/authService';
 import { UserService } from '../../../service/userService';
+import { DataService } from '../../../service/dataService';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,17 +19,24 @@ import { UserService } from '../../../service/userService';
 export class DashboardComponent {
   collection!: Collection | any;
   list: Collection[] = [];
-  private _service = inject(CollectionService);
-  private _authService = inject(UserService);
+  private _collectionService = inject(CollectionService);
+  private _userService = inject(UserService);
+  private _dataService = inject(DataService);
   currentUserId!: number;
+  currentUser!: User;
 
   ngOnInit(): void {
+    this._dataService.selectedUserObservable.subscribe( user => {
+        if(user!= null){
+          this.currentUser = user
+        }
+      });
     this.loadAllCollection();
   }
 
   handleDelete(obj: { id: number }) {
     console.log(obj.id);
-    this._service.deleteCollection(obj.id).subscribe({
+    this._collectionService.deleteCollection(obj.id).subscribe({
       next: () => {
         this.list = this.list.filter((c) => c.collectionId != obj.id);
         alert("La collection è stata eliminata con successo");
@@ -40,10 +49,17 @@ export class DashboardComponent {
   }
 
   loadAllCollection() {
-    const toDoObservable: Observable<Collection[]> = this._service.getCollections();
+    const toDoObservable: Observable<Collection[]> = this._collectionService.getCollections();
     toDoObservable.subscribe({
       next: collections => this.list = collections,
       error: e => alert("Errore di caricamento della collection " + e)
     });
+  }
+
+  like(){
+  }
+  comment(){
+  }
+  bookmark(){
   }
 }
