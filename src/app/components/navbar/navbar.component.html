@@ -34,7 +34,7 @@
     <li><a routerLink="/home">HOME</a></li>
     <li><a routerLink="/dashboard">Dashboard</a></li>
     @if (currentUser != null) {
-    <li><a routerLink="/collection-list">My Collection List</a></li>
+    <li><a [routerLink]="['/user-profile', currentUser.userId]">My Profile</a></li>
     <li><a routerLink="/collection-form">Add New Collection</a></li>
     }
   </ul>

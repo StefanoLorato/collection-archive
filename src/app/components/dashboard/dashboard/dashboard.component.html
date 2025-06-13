@@ -7,10 +7,18 @@
 
   <div *ngFor="let collection of list" class="collection-card">
     <h2>{{ collection.collectionName }}</h2>
-    <p><strong>ID:</strong> {{ collection.collectionId }}</p>
-    <p><strong>Descrizione:</strong> {{ collection.description }}</p>
-    <p><strong>User Id:</strong> <a  [routerLink]="['/user-profile', collection.userId]">{{ collection.userId }}</a></p>
-
+    <h3><strong>Owner: </strong> <a  [routerLink]="['/user-profile', collection.userId]">{{ currentUser.name}} {{ currentUser.lastname }}</a></h3>
+    <p><strong>Descrizione: </strong> {{ collection.description }}</p>
+    <p>{{collection.collectionDate}}</p>
+    @if(collection.forSale == true){
+      <p>Price: {{collection.salePrice}}€</p>
+      <button [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]">Buy</button>
+    }
+    <div class="interact">
+      <button (click)="like()"><i class="bi bi-heart"></i></button>
+      <button (click)="comment()"><i class="bi bi-chat"></i></button>
+      <button (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
+    </div>
     <button [routerLink]="['/collection-detail', collection.collectionId]">
       Vedi Item
     </button>
