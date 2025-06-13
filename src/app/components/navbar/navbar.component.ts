@@ -21,11 +21,11 @@ export class NavbarComponent {
   private _authService = inject(AuthService);
   private _router = inject(Router);
   private _catService = inject(CategoryService);
-  list: Category[] = [];
+  list: Category[] = [ 
+  ];
   icon!: string;
   private scrollInterval: any;
-
-
+  showModal = false;
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 
 startScroll(direction: number) {
