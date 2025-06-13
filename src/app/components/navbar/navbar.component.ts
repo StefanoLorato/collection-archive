@@ -24,7 +24,7 @@ export class NavbarComponent {
   list: Category[] = [];
   icon!: string;
   private scrollInterval: any;
-
+  showModal = false;
 
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 
