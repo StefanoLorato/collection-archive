@@ -22,6 +22,10 @@ export class CollectionCardComponent {
   category!: Category | null;
   owner!: User | null;
 
+  get isOwner(): boolean {
+    return this.currentUser?.userId === this.collection.userId;
+  }
+
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
 

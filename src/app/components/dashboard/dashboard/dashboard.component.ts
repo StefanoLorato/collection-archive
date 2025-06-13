@@ -8,11 +8,12 @@ import { AuthService } from '../../../service/authService';
 import { UserService } from '../../../service/userService';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { CollectionCardComponent } from "../../collection/collection-card/collection-card.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, CollectionCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

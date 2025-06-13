@@ -4,7 +4,7 @@
     <p>Owner: {{ owner?.name }}</p>
     <p>Name: {{ item.itemName }}</p>
     <p>Description: {{ item.itemDescription }}</p>
-    <p>Photo: {{ item.itemPhoto }}</p>
+    <p><img src="{{ item.itemPhoto }}"></p>
     @if(item.condition != null){<p>Condition: {{ item.condition }}</p>}
     @if(item.purchaseDate != null){ <p>purchase Date : {{item.purchaseDate }}</p>}
     @if(item.releaseDate != null){ <p>Release Date : {{item.releaseDate }}</p>}

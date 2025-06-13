@@ -5,15 +5,16 @@
     <p>Nessuna collection disponibile.</p>
   </div>
 </div>
-<div class="dashboard-container">
+<!-- <div class="dashboard-container">
 
   <div *ngFor="let collection of list" class="collection-card">
+    <app-collection-card [collection]= 'collection'></app-collection-card>
     <div class="card-header">
       <h3><a [routerLink]="['/user-profile', collection.userId]">{{ currentUser.name}} {{ currentUser.lastname }}</a></h3>
       <p>{{collection.collectionDate}}</p>
     </div>
     <div class="card-images">
-
+      <img src="" alt="">
     </div>
     <div class="card-body">
       <h2>{{ collection.collectionName }}</h2>
@@ -38,4 +39,11 @@
         </button>
     </div>
   </div>
+</div> -->
+
+<div class="dashboard-container">
+  <app-collection-card
+    *ngFor="let collection of list"
+    [collection]="collection"
+  ></app-collection-card>
 </div>

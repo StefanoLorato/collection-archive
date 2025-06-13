@@ -5,11 +5,14 @@
   <label>Descrizione:</label>
   <input name="itemDescription" [(ngModel)]="item.itemDescription">
 
+  <label>Foto:</label>
+  <input name="itemPhoto" [(ngModel)]="item.itemPhoto">
+
   <label>In vendita:</label>
   <input type="checkbox" name="forSale" [(ngModel)]="item.forSale">
 
   <label>Sale Price</label>
   <input name="itemSalePrice" [(ngModel)]="item.salePrice">
-  
+
   <button type="submit">Save</button>
 </form>
