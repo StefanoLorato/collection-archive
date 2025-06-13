@@ -6,11 +6,11 @@ import { CollectionCardComponent } from '../collection-card/collection-card.comp
 import { ActivatedRoute } from '@angular/router';
 
 type Filters = {
-collectionName?: string;
-categoryId?: number;
-userId?: number;
-salePrice?: number;
-priceComparation?: string;
+  collectionName?: string;
+  categoryId?: number;
+  userId?: number;
+  salePrice?: number;
+  priceComparation?: string;
 };
 
 @Component({
@@ -20,7 +20,7 @@ priceComparation?: string;
   styleUrl: './collection-list.component.css'
 })
 export class CollectionListComponent {
-  collection!: Collection | any;
+  collection!: Collection;
   list: Collection[] = [];
   private _service = inject(CollectionService);
   private _route = inject(ActivatedRoute);

@@ -6,8 +6,8 @@
   <p>Completed: {{ collection.completed }}</p>
   <p>Creation Date: {{ collection.createdAt.split("T")[0] }}</p>
   @if(collection.collectionDate != null){<p>Collection Date: {{ collection.collectionDate }}</p>}
-  <p>Category: {{ category.categoryName }}</p>
-  <p>User: {{ owner.name }}</p>
+  <p>Category: {{ category?.categoryName }}</p>
+  <p>User: {{ owner?.name }}</p>
   <p>Visibility Status: {{ collection.visibilityStatus }}</p>
   <p>For Sale: {{ collection.forSale }}</p>
   @if(collection.salePrice != null){<p>Sale Price: {{ collection.salePrice }} €</p>}
