@@ -1,26 +1,41 @@
-<div class="dashboard-container">
+<div class="dashboard">
   <h1>Tutte le Collection</h1>
 
   <div *ngIf="list.length === 0">
     <p>Nessuna collection disponibile.</p>
   </div>
+</div>
+<div class="dashboard-container">
 
   <div *ngFor="let collection of list" class="collection-card">
-    <h2>{{ collection.collectionName }}</h2>
-    <h3><strong>Owner: </strong> <a  [routerLink]="['/user-profile', collection.userId]">{{ currentUser.name}} {{ currentUser.lastname }}</a></h3>
-    <p><strong>Descrizione: </strong> {{ collection.description }}</p>
-    <p>{{collection.collectionDate}}</p>
-    @if(collection.forSale == true){
-      <p>Price: {{collection.salePrice}}€</p>
-      <button [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]">Buy</button>
-    }
-    <div class="interact">
-      <button (click)="like()"><i class="bi bi-heart"></i></button>
-      <button (click)="comment()"><i class="bi bi-chat"></i></button>
-      <button (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
+    <div class="card-header">
+      <h3><a [routerLink]="['/user-profile', collection.userId]">{{ currentUser.name}} {{ currentUser.lastname }}</a></h3>
+      <p>{{collection.collectionDate}}</p>
     </div>
-    <button [routerLink]="['/collection-detail', collection.collectionId]">
-      Vedi Item
-    </button>
+    <div class="card-images">
+
+    </div>
+    <div class="card-body">
+      <h2>{{ collection.collectionName }}</h2>
+      <p>{{ collection.description }}</p>
+      <div class="action">
+        @if(collection.forSale == true){
+          <p>Price: {{collection.salePrice}}€</p>
+        }
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="interact">
+        <button id="like" (click)="like()"><i class="bi bi-heart"></i></button>
+        <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
+        <button id="bookmark" (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
+        @if(collection.forSale == true){
+          <button id="buy" [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]"><i class="bi bi-cart"></i></button>
+        }
+      </div>
+        <button id="view" [routerLink]="['/collection-detail', collection.collectionId]">
+          View Itmes
+        </button>
+    </div>
   </div>
 </div>

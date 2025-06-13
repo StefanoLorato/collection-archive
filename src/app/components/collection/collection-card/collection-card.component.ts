@@ -62,4 +62,11 @@ export class CollectionCardComponent {
     })
   }
 
+  like(){
+  }
+  comment(){
+  }
+  bookmark(){
+  }
+
 }
