@@ -27,51 +27,6 @@
   width: 100%;
 }
 
-/* Categorie dropdown */
-/* .categories-dropdown {
-  position: relative;
-  margin-top:6px;
-}
-
-.dropbtn {
-  background-color: transparent;
-  color: #1a73e8;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 10px 16px;
-  border-radius: 6px;
-  transition: background-color 0.2s;
-}
-
-.dropbtn:hover {
-  background-color: #f1f3f4;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  z-index: 1;
-}
-
-.categories-dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown-content a {
-  color: #1e232a;
-  padding: 12px 20px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #e8f0fe;
-} */
-
 /* SEARCH BAR */
 .search-bar {
   display: flex;
@@ -122,7 +77,6 @@
 .auth-links a,
 .auth-links button {
   background-color: #1a73e8;
-  /* Blu cobalto */
   color: white;
   padding: 8px 16px;
   border: none;
@@ -137,6 +91,37 @@
 .auth-links button:hover {
   background-color: #1669c1;
   /* tono leggermente più scuro */
+}
+ /* AUTH_LINK DEL USER PROFILE */
+.auth-links .profile {
+  color: #000 !important;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+}
+
+.auth-links .profile:hover,
+.auth-links .profile:focus,
+.auth-links .profile:active {
+  color: #000 !important;           
+  background-color: transparent !important; 
+  text-decoration: none !important;  
+  outline: none !important;
+}
+.auth-links .profile i {
+  color: #0d6efd;
+  font-size: 24px;
+  pointer-events: none;
+}
+
+.auth-links .profile-name {
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 
@@ -189,6 +174,9 @@
   margin-left: auto;
   align-items: center;
 }
+
+
+
  /* Scroll orizzontale per le catgories */
 .scroll-container {
   display: flex;
@@ -234,8 +222,6 @@
 .scroll-right {
   right: 0;
 }
-
-
 
 .category-scroll {
   display: flex;
@@ -543,3 +529,5 @@
   font-weight: 800;
   margin-bottom: 40px;
 }
+
+
