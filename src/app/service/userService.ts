@@ -9,6 +9,9 @@ import { PasswordUpdate } from "../models/passwordUpdate";
     providedIn: 'root'
 })
 export class UserService {
+    getCurrentUserId(): number {
+      throw new Error('Method not implemented.');
+    }
     list: User[] = [];
     private _url: string = "http://localhost:8080/api/users"
     private _http = inject(HttpClient)

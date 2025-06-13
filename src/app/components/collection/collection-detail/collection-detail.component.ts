@@ -80,5 +80,9 @@ export class CollectionDetailComponent implements OnInit {
   navigateToEdit() {
     this._router.navigate(['/edit-collection-form/', this.collection.collectionId])
   }
+  
+  navigateToWishlist() {
+  this._router.navigate(['/wishlist', this._collectionId]); // Passiamo l'ID collection alla route
+}
 
 }
