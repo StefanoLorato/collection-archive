@@ -4,7 +4,7 @@
   <p>Description Collection: {{ collection.description}}</p>
     @if(currentUser != null && collection.userId == currentUser.userId){
       <button [routerLink]="['/item-add', collection.collectionId, collection.userId]">Add New Item </button>
-       <button [routerLink]="['/wishlist', collection.collectionId]">Visualizza Wishlist</button>
+      <button [routerLink]="['/wishlist', collection.collectionId]">Visualizza Wishlist</button>
     }
   @for (i of list; track i.itemId) {
     <app-item-card [item]='i' (deleteItem)="handleDelete($event)"></app-item-card>

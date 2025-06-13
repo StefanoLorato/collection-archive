@@ -19,8 +19,8 @@ export class ItemCardComponent implements OnInit{
   currentUser!: User;
   private _userService = inject(UserService);
   private _collectionService = inject(CollectionService);
-  owner!: User;
-  collection!: Collection;
+  owner!: User| null;
+  collection!: Collection | null;
 
   @Input('item') item!: Item;
   @Output('deleteItem') deleteItem = new EventEmitter<{id: number}>();

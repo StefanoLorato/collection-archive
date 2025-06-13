@@ -82,7 +82,7 @@ export class CollectionDetailComponent implements OnInit {
   }
   
   navigateToWishlist() {
-  this._router.navigate(['/wishlist', this._collectionId]); // Passiamo l'ID collection alla route
+  this._router.navigate(['/wishlist', this.collection.collectionId]); // Passiamo l'ID collection alla route
 }
 
 }
