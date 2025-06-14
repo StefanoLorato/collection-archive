@@ -19,7 +19,7 @@ export class ItemCardComponent implements OnInit{
   currentUser!: User;
   private _userService = inject(UserService);
   private _collectionService = inject(CollectionService);
-  owner!: User | null;
+  owner!: User| null;
   collection!: Collection | null;
 
   @Input('item') item!: Item;

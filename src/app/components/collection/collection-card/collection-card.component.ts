@@ -19,7 +19,7 @@ export class CollectionCardComponent {
   private _router = inject(Router);
   private _catService = inject(CategoryService);
   private _userService = inject(UserService);
-  category!: Category | null;
+  category!: Category |null;
   owner!: User | null;
 
   @Input('collection') collection!: Collection;

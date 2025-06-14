@@ -11,7 +11,6 @@ import { RegisterFormComponent } from './components/auth/register-form/register-
 import { LoginFormComponent } from './components/auth/login-form/login-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
-import { PurchaseComponent } from './components/order/purchase/purchase.component';
 import { WishListComponent } from './components/wishlist/wish-list/wish-list.component';
 
 export const routes: Routes = [
@@ -28,7 +27,6 @@ export const routes: Routes = [
      { path: 'item-add/:collectionId/:userId', component: ItemAddComponent },
      { path: 'register', component: RegisterFormComponent },
      { path: 'login', component: LoginFormComponent },
-     { path: 'user-profile/:id', component: UserProfileComponent},
-     { path: 'purchase/:buyerId/:sellerId/:collectionId', component: PurchaseComponent},
+     { path: 'user-profile/:id', component: UserProfileComponent },
      { path: 'wishlist/:id', component: WishListComponent },
 ];
