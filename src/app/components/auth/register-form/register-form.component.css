@@ -45,7 +45,6 @@
     align-items: flex-start;
     margin-bottom: 18px;
     padding-right: 24px;
-
 }
 
 .form-group label {
@@ -90,3 +89,13 @@ button[type="submit"]:hover {
   background: #1558c0;
   transform: scale(1.05);
 }
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+  gap: 15px;
+  scrollbar-width: thin; /* Riduce la barra di scorrimento */
+}
+

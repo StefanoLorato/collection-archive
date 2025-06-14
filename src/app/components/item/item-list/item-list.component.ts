@@ -8,7 +8,7 @@ import { ItemCardComponent } from '../item-card/item-card.component';
 @Component({
   selector: 'app-item-list',
   standalone: true,
-  imports: [ItemCardComponent],
+  imports: [],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.css'
 })
@@ -29,21 +29,7 @@ ngOnInit(): void {
     });
   }
 
-  handleDelete(obj:{ id: number }) {
-    console.log(obj.id)
-    console.log("ciao");
 
-    this._service.deleteItem(obj.id).subscribe({
-      next: () => {
-        this.list = this.list.filter((i) => i.itemId != obj.id);
-        alert("l'item è stato eliminato con successo");
-      },
-      error: e => {
-        alert("Errore nell cancellazione");
-        this.loadItem();
-      }
-    })
-  }
 
   handleUpdate(obj: { id: number}) {
     const item = this.findItemById(obj.id);

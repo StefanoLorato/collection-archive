@@ -19,8 +19,8 @@ export class CollectionCardComponent {
   private _router = inject(Router);
   private _catService = inject(CategoryService);
   private _userService = inject(UserService);
-  category!: Category;
-  owner!: User;
+  category!: Category | null;
+  owner!: User | null;
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
@@ -60,6 +60,13 @@ export class CollectionCardComponent {
       next: user => this.owner = user,
       error: err => alert("user non trovato" + err)
     })
+  }
+
+  like(){
+  }
+  comment(){
+  }
+  bookmark(){
   }
 
 }

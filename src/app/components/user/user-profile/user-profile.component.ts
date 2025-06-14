@@ -6,6 +6,7 @@ import { CollectionCardComponent } from '../../collection/collection-card/collec
 import { CollectionService } from '../../../service/collectionService';
 import { Collection } from '../../../models/collection';
 import { CollectionListComponent } from '../../collection/collection-lists/collection-list.component';
+import { DataService } from '../../../service/dataService';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,10 +15,12 @@ import { CollectionListComponent } from '../../collection/collection-lists/colle
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent implements OnInit{
-  user!: User;
+  owner!: User;
+  currentUser!: User;
   private _userService = inject(UserService);
   private _collectionService = inject(CollectionService)
   private _route = inject(ActivatedRoute);
+  private _dataService = inject(DataService);
   private _userId!: number;
   list: Collection[] = [];
 
@@ -27,7 +30,15 @@ export class UserProfileComponent implements OnInit{
       this._userId = +id; //potevo fare anche Number(id) per rendere la string un number
       if (this._userId != 0 && !isNaN(this._userId)) {
         this.findUser(this._userId);
-        this.loadCollections(this._userId)
+        this._dataService.selectedUserObservable.subscribe(loggedUser => {
+          if (loggedUser != null) {
+            if (loggedUser.userId === this._userId) {
+              this.loadMyCollections();
+            } else {
+              this.loadCollections(this._userId);
+            }
+          }
+        });
       } else {
         alert("id non valido");
       }
@@ -43,15 +54,15 @@ export class UserProfileComponent implements OnInit{
       },
       error: e => {
         alert("Errore nell cancellazione della colleciton");
-        this.loadCollections(obj.id);
+        this.loadMyCollections();
       }
     })
   }
 
   findUser(id: number){
     this._userService.getUserById(id).subscribe({
-      next: u => this.user = u,
-      error: e => alert("errore nel caricamento della collection: " + e)
+      next: u => this.owner = u,
+      error: e => alert("errore nel caricamento dell'user: " + e)
     })
   }
 
@@ -62,4 +73,10 @@ export class UserProfileComponent implements OnInit{
     });
   }
 
+  loadMyCollections() {
+    this._collectionService.getLoggedUserCollections().subscribe({
+      next: collections => this.list = collections,
+      error: e => alert("Errore di caricamento delle collections " + e)
+    });
+  }
 }

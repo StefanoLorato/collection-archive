@@ -1,17 +1,16 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { DataService } from '../../service/dataService';
 import { User } from '../../models/user';
 import { AuthService } from '../../service/authService';
 import { CategoryService } from '../../service/categoryService';
 import { Category } from '../../models/category';
-import { CommonModule, ɵnormalizeQueryParams } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, RouterLink, CommonModule, FormsModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -22,7 +21,28 @@ export class NavbarComponent {
   private _authService = inject(AuthService);
   private _router = inject(Router);
   private _catService = inject(CategoryService);
-  list: Category[] = [];
+  list: Category[] = [ ];
+  icon!: string;
+  private scrollInterval: any;
+  showModal = false;
+  username!: User;
+  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+
+startScroll(direction: number) {
+  if (!this.scrollContainer) return; // evita errori
+  this.stopScroll();
+
+  this.scrollInterval = setInterval(() => {
+    this.scrollContainer.nativeElement.scrollBy({ left: 10 * direction, behavior: 'smooth' });
+  }, 45);
+}
+
+  stopScroll() {
+    if (this.scrollInterval) {
+      clearInterval(this.scrollInterval);
+      this.scrollInterval = null;
+    }
+  }
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(
@@ -47,4 +67,23 @@ export class NavbarComponent {
   search(){
     this._router.navigate(['/collection-list'], {queryParams: {collectionName : this.searchTerm}});
   }
+
+  iconMap: { [key: number]: string } = {
+  1: 'bi-globe-americas',
+  2: 'bi-brush',
+  3: 'bi-truck',
+  4: 'bi-collection',
+  5: 'bi-house',
+  6: 'bi-lightbulb',
+  7: 'bi-book',
+  8: 'bi-controller',
+  9: 'bi-gem',
+  10: 'bi-journal-bookmark',
+  11: 'bi-person-bounding-box',
+  12: 'bi-currency-bitcoin',
+  13: 'bi-music-note-beamed',
+  14: 'bi-film',
+  15: 'bi-camera',
+  16: 'bi-watch'
+};
 }

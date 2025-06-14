@@ -38,28 +38,6 @@ export class CollectionListComponent {
     });
   }
 
-  // handleDelete(obj: { id: number }) {
-  //   console.log(obj.id)
-  //   this._service.deleteCollection(obj.id).subscribe({
-  //     next: () => {
-  //       this.list = this.list.filter((c) => c.collectionId != obj.id);
-  //       alert("La collection è stata eliminata con successo");
-  //     },
-  //     error: e => {
-  //       alert("Errore nell cancellazione della colleciton");
-  //       this.loadMyCollection();
-  //     }
-  //   })
-  // }
-
-  // loadMyCollection() {
-  //   const collectionObservable: Observable<Collection[]> = this._service.getLoggedUserCollections();
-  //   collectionObservable.subscribe({
-  //     next: collections => this.list = collections,
-  //     error: e => alert("Errore di caricamento della collection " + e)
-  //   });
-  // }
-
   findCollectionById(id: number) {
     this._service.getCollectionById(id).subscribe({
       next: c => {

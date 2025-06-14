@@ -1,31 +1,63 @@
+<!-- Nav bar Superiore -->
 <nav class="top-navbar">
   <div class="logo">
     <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
   </div>
 
-  <div class="categories-dropdown">
-    <button class="dropbtn">Categories ▼</button>
-    <div class="dropdown-content">
-      @for(c of list; track c.categoryId){
+  <div class="search-containers">
+    <!-- Bottone per aprire la finestra -->
+    <button class="open-modal-btn" (click)="showModal = true">Categorie ▼</button>
+
+    <div class="category-modal" *ngIf="showModal">
+      <div class="modal-overlay" (click)="showModal = false"></div>
+
+      <div class="modal-content">
+        <button class="close-btn" (click)="showModal = false">✕</button>
+        <h2>Categorie</h2>
+
+        <div class="dropdown-grid">
+          @for(c of list; track c.categoryId){
+          <a class="category-card" [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }"
+            (click)="showModal = false">
+            <div class="category-text">{{ c.categoryName }}</div>
+            <div class="category-image">
+              <img [src]="c.photo" [alt]="c.categoryName" />
+            </div>
+          </a>
+          }
+        </div>
+      </div>
+    </div>
+    <!-- <div class="categories-dropdown">
+      <button class="dropbtn">Categories ▼</button>
+      <div class="dropdown-content">
+        @for(c of list; track c.categoryId){
         <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">{{c.categoryName}}</a>
-      }
+        }
+      </div>
+    </div> -->
+
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca..." />
+      <button (click)="search()"><i class="bi bi-search"></i></button>
     </div>
+
   </div>
 
-  <div class="search-bar">
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca..." />
-    <button (click)="search()">🔍</button>
+  <!-- Login e logout -->
+
+  <div class="auth-links">
+    @if (currentUser == null) {
+    <a routerLink="/login">Login</a>
+    <a routerLink="/register">Register</a>
+    } @else {
+   <a class="profile" [routerLink]="['/user-profile', currentUser.userId]">
+   <i class="bi bi-person-circle"></i>
+   <span class="profile-name">{{ currentUser.name || 'My Profile' }}</span>
+   </a>
+    <button (click)="logout()">Logout</button>
+    }
   </div>
-
- <div class="auth-links">
-      @if (currentUser == null) {
-        <a routerLink="/login">Login</a>
-
-        <a routerLink="/register">Register</a>
-      } @else {
-        <button (click)="logout()">Logout</button>
-      }
-    </div>
 </nav>
 
 <!-- La nav bar  inferiore  -->
@@ -34,8 +66,24 @@
     <li><a routerLink="/home">HOME</a></li>
     <li><a routerLink="/dashboard">Dashboard</a></li>
     @if (currentUser != null) {
-    <li><a routerLink="/collection-list">My Collection List</a></li>
     <li><a routerLink="/collection-form">Add New Collection</a></li>
     }
   </ul>
 </nav>
+
+<!-- Scroll Container Category -->
+<div style="position: relative;">
+  <div class="scroll-left" (mouseenter)="startScroll(-1)" (mouseleave)="stopScroll()"></div>
+
+
+  <div class="scroll-container" #scrollContainer>
+    <div class="category-scroll" *ngFor="let c of list">
+      <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">
+        <i class="bi" [ngClass]="iconMap[c.categoryId]"></i>
+        <div>{{ c.categoryName }}</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-right" (mouseenter)="startScroll(1)" (mouseleave)="stopScroll()"></div>
+</div>
