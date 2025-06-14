@@ -7,16 +7,33 @@
   gap: 20px;
   padding: 0 30px;
   background-color: #fbfbfb;
-  height: 100px;
+  height: 125px;
   font-family: 'Roboto', sans-serif;
   border-bottom: 2px solid #e7e4e4;
 }
 
 /* Logo */
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.brand-name {
+  color: #0d47a1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-left: 12px;
+  margin-top: -2px;
+  padding-bottom: 10px;/* meno consigliato ma funziona */
+}
+
 .logo img {
   height: 130px;
   width: 130px;
 }
+
 
 /* ricerche */
 .search-containers{
@@ -27,51 +44,6 @@
   width: 100%;
 }
 
-/* Categorie dropdown */
-/* .categories-dropdown {
-  position: relative;
-  margin-top:6px;
-}
-
-.dropbtn {
-  background-color: transparent;
-  color: #1a73e8;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 10px 16px;
-  border-radius: 6px;
-  transition: background-color 0.2s;
-}
-
-.dropbtn:hover {
-  background-color: #f1f3f4;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  z-index: 1;
-}
-
-.categories-dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown-content a {
-  color: #1e232a;
-  padding: 12px 20px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #e8f0fe;
-} */
-
 /* SEARCH BAR */
 .search-bar {
   display: flex;
@@ -80,7 +52,7 @@
   max-width: 500px;
   margin: 0 20px;
   margin-bottom: 30px;
-  background-color: #f1f3f4;
+  background-color: #fbfbfb;
   border-radius: 3px;
   padding: 6px 20px;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
@@ -139,6 +111,55 @@
   /* tono leggermente più scuro */
 }
 
+ /* AUTH_LINK DEL USER PROFILE */
+.auth-links .profile {
+  color: #000 !important;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+}
+
+.auth-links .profile:hover,
+.auth-links .profile:focus,
+.auth-links .profile:active {
+  color: #000 !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+.auth-links .profile i {
+  color: #0d6efd;
+  font-size: 24px;
+  pointer-events: none;
+}
+
+.auth-links .profile-name {
+  color: #000;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+
+ /* Bottoni dinamici per autlink */
+.button-dynamic {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1);
+}
+
+.button-dynamic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-dynamic:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
 
 /*Nav bar inferiore*/
 .navbar {
@@ -146,13 +167,15 @@
   border-bottom: 3px solid #1a73e8;
   padding: 0 20px;
   font-family: 'Roboto', sans-serif;
-  height: 100px;
+  height: 80px;
   display: flex;
   align-items: center;
 }
 
 .nav-links {
   list-style: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
   display: flex;
   align-items: center;
   flex: 1;
@@ -298,15 +321,38 @@
 
 
 .open-modal-btn {
-  padding:10px 16px;
-  height: 30px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 20px;
+  font-weight: 300;
   cursor: pointer;
-  background-color: #fbfbfb;
-  color: #1a73e8;
+  background: none;
+  color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 30px;
 }
+
+.open-modal-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Freccia */
+.open-modal-btn .arrow {
+  display: inline-block;
+  color: #1a73e8;
+  transition: transform 0.3s ease;
+}
+
+/* Se vuoi ruotare la freccia di 180° quando la modale è aperta */
+.open-modal-btn.open .arrow {
+  transform: rotate(180deg);
+}
+
 
 .category-modal {
   position: fixed;

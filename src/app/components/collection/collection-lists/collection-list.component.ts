@@ -4,8 +4,8 @@ import { CollectionService } from '../../../service/collectionService';
 import { Observable } from 'rxjs';
 import { CollectionCardComponent } from '../collection-card/collection-card.component';
 import { ActivatedRoute } from '@angular/router';
-import { Category } from '../../../models/category';
 import { CategoryService } from '../../../service/categoryService';
+import { Category } from '../../../models/category';
 
 type Filters = {
   collectionName?: string;

@@ -1,0 +1,14 @@
+@if(wishList != null) {
+  <h2>Wishlist per la Collection {{ collectionId }}</h2>
+
+  @if(wishList.length > 0) {
+    @for (wishListitem of wishList; track wishListitem.itemId) {
+      <app-wishlist-item-card [wishlistItem]='wishListitem' (deleteWishListItem)="removeItemFromWishList($event)"></app-wishlist-item-card>
+    }
+  } @else {
+    <p>La wishlist è vuota.</p>
+  }
+
+} @else {
+  <h2>Caricando la wishlist...</h2>
+}

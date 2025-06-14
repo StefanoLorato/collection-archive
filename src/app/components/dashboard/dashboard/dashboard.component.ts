@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { UserService } from '../../../service/userService';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
-import { CollectionCardComponent } from "../../collection/collection-card/collection-card.component";
+import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,13 +16,14 @@ import { CollectionCardComponent } from "../../collection/collection-card/collec
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  collection!: Collection | any;
+  collection!: Collection;
   list: Collection[] = [];
   private _collectionService = inject(CollectionService);
   private _userService = inject(UserService);
   private _dataService = inject(DataService);
   currentUserId!: number;
   currentUser!: User;
+  ownerUser!: User;
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe( user => {
@@ -60,5 +61,12 @@ export class DashboardComponent {
   comment(){
   }
   bookmark(){
+  }
+
+  findUserById(id: number){
+    this._userService.getUserById(id).subscribe({
+      next: u => this.ownerUser = u,
+      error: e => alert("errore nel caricamento dell'user: " + e)
+    })
   }
 }

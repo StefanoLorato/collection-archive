@@ -21,6 +21,21 @@
   }
 }
 
+@media screen and (min-width: 1280px) {
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    /*
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: space-between; */
+  }
+}
+
 
 app-collection-card {
   display: block;
@@ -29,4 +44,3 @@ app-collection-card {
   max-width: 460px;
   min-width: 0;
 }
-

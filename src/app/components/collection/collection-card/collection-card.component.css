@@ -1,3 +1,4 @@
+
  .collection-card {
   font-family: 'Roboto', sans-serif;
   background: #fff;
@@ -211,5 +212,3 @@
 .interact button:hover {
   transform: translateY(-2px);
 }
-
-

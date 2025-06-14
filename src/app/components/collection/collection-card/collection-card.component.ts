@@ -6,8 +6,8 @@ import { DataService } from '../../../service/dataService';
 import { CategoryService } from '../../../service/categoryService';
 import { Category } from '../../../models/category';
 import { UserService } from '../../../service/userService';
-import { Item } from '../../../models/item';
 import { ItemService } from '../../../service/itemService';
+import { Item } from '../../../models/item';
 
 @Component({
   selector: 'app-collection-card',
@@ -29,9 +29,6 @@ export class CollectionCardComponent {
   isLongDescription = false;
   hasTags = false;
 
-  get isOwner(): boolean {
-    return this.currentUser?.userId === this.collection.userId;
-  }
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
@@ -82,7 +79,7 @@ export class CollectionCardComponent {
   bookmark(){
   }
 
-  loadItem(id: number) {
+    loadItem(id: number) {
     this._itemService.getItemsByCollectionId(id).subscribe({
       next: items => this.list = items,
       error: e => alert("Errore nel caricamento dell'item " + e)
@@ -92,5 +89,4 @@ export class CollectionCardComponent {
   toggleDescription() {
     this.showFullDescription = !this.showFullDescription;
   }
-
 }
