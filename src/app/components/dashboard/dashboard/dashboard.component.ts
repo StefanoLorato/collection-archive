@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Collection } from '../../../models/collection';
 import { CollectionService } from '../../../service/collectionService';
 import { Observable } from 'rxjs';
-import { RouterLink } from '@angular/router';
-import { AuthService } from '../../../service/authService';
 import { UserService } from '../../../service/userService';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
@@ -13,7 +11,7 @@ import { CollectionCardComponent } from "../../collection/collection-card/collec
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink, CollectionCardComponent],
+  imports: [CommonModule, CollectionCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

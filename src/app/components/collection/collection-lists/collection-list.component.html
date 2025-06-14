@@ -1,4 +1,8 @@
-
-@for(c of list; track c.collectionId){
-    <app-collection-card [collection]= 'c'></app-collection-card>
-}
+<div class="category-name">
+  Category: {{ category.categoryName }}
+</div>
+<div class="dashboard-container">
+  @for(c of list; track c.collectionId){
+      <app-collection-card [collection]= 'c' (deleteCollection)="handleDelete($event)"></app-collection-card>
+  }
+</div>

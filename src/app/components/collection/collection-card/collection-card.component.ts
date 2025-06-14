@@ -6,6 +6,8 @@ import { DataService } from '../../../service/dataService';
 import { CategoryService } from '../../../service/categoryService';
 import { Category } from '../../../models/category';
 import { UserService } from '../../../service/userService';
+import { Item } from '../../../models/item';
+import { ItemService } from '../../../service/itemService';
 
 @Component({
   selector: 'app-collection-card',
@@ -14,13 +16,18 @@ import { UserService } from '../../../service/userService';
   styleUrl: './collection-card.component.css'
 })
 export class CollectionCardComponent {
-  currentUser!: User;
   private _dataService = inject(DataService);
   private _router = inject(Router);
   private _catService = inject(CategoryService);
   private _userService = inject(UserService);
+  private _itemService = inject(ItemService);
+  currentUser!: User;
   category!: Category | null;
   owner!: User | null;
+  list: Item[] = [];
+  showFullDescription = false;
+  isLongDescription = false;
+  hasTags = false;
 
   get isOwner(): boolean {
     return this.currentUser?.userId === this.collection.userId;
@@ -37,6 +44,8 @@ export class CollectionCardComponent {
     });
     this.findCategoryById(this.collection.categoryId);
     this.findUserById(this.collection.userId);
+    this.loadItem(this.collection.collectionId);
+    this.isLongDescription = this.collection.description.length > 120;
   }
 
   onDelete() {
@@ -71,6 +80,17 @@ export class CollectionCardComponent {
   comment(){
   }
   bookmark(){
+  }
+
+  loadItem(id: number) {
+    this._itemService.getItemsByCollectionId(id).subscribe({
+      next: items => this.list = items,
+      error: e => alert("Errore nel caricamento dell'item " + e)
+    });
+  }
+
+  toggleDescription() {
+    this.showFullDescription = !this.showFullDescription;
   }
 
 }
