@@ -13,7 +13,7 @@ import { CollectionCardComponent } from '../../collection/collection-card/collec
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink, CollectionCardComponent],
+  imports: [CommonModule, CollectionCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

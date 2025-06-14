@@ -1,39 +1,78 @@
-<div class="collection-container"></div>
 @if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
-  <div class="collection-card">
-    <div class="card-header">
-      <h3>{{ owner?.name }}</h3>
-      <p>{{ collection.createdAt.split("T")[0] }}</p>
-    </div>
-    <div class="card-body">
-    @if(currentUser != null && collection.userId == currentUser.userId){
-      <div class="owner-actions">
-        <button id="delete" (click)="onDelete()"><i class="bi bi-trash"></i></button>
-        <button id="update" (click)="onUpdate()"><i class="bi bi-pencil"></i></button>
-        <button id="wishlist"><i class="bi bi-card-list"></i></button>
-      </div>
-    }
-    <p>Collection Name: {{ collection.collectionName }}</p>
-    <p>Description: {{ collection.description }}</p>
-    <p>Completed: {{ collection.completed }}</p>
-    @if(collection.collectionDate != null){<p>Collection Date: {{ collection.collectionDate }}</p>}
-    <p>Category: {{ category?.categoryName }}</p>
-    <p>Visibility Status: {{ collection.visibilityStatus }}</p>
-    <p>For Sale: {{ collection.forSale }}</p>
-    @if(collection.salePrice != null){<p>Sale Price: {{ collection.salePrice }} €</p>}
+<div class="collection-card">
+  <div class="card-header">
+    <h3>
+      <a [routerLink]="['/user-profile', collection.userId]">{{ owner?.name }}</a>
+    </h3>
+    <p>{{ collection.createdAt.split('T')[0] }}</p>
   </div>
-  <div class="card-footer">
-    <button [routerLink] = "['/collection-detail', collection.collectionId]">View Detail</button>
-    @if(currentUser == null || collection.userId != currentUser.userId) {
-      <div class="interact">
-        <button id="like" (click)="like()"><i class="bi bi-heart"></i></button>
-        <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
-        <button id="bookmark" (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
-        @if(collection.forSale == true){
-          <button id="buy" [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]"><i class="bi bi-cart"></i></button>
+
+  <div class="card-body">
+    @if(list!= null){
+      <div class="collection-img {{ list.length === 1 ? 'one-item' : list.length === 2 ? 'two-items' : list.length === 3 ? 'three-items' : '' }}" [routerLink]="['/collection-detail', collection.collectionId]">
+        @for(item of list.slice(0, 3); track item.itemId){
+          <div class="item-photo">
+            <img src="{{item.itemPhoto}}" alt="">
+          </div>
+        }
+        @if(list != null && (list.length - 3) > 0){
+          <div class="item-photo item-count">
+            +{{ list.length - 3 }}
+          </div>
         }
       </div>
     }
+    <div class="title">
+      <h2>{{ collection.collectionName }}</h2>
+      @if((currentUser != null && collection.userId == currentUser.userId)){
+        <div class="current-user-actions">
+          <button id="update" (click)="onUpdate()"><i class="bi bi-pencil"></i></button>
+          <button id="delete" (click)="onDelete()"><i class="bi bi-trash"></i></button>
+          <button id="wishlist"><i class="bi bi-card-list"></i></button>
+        </div>
+      }
+    </div>
+    <div class="description-box" [class.expanded]="showFullDescription">
+      <div class="description" [class.collapsed]="!showFullDescription" [class.expanded]="showFullDescription">
+        {{ collection.description }}
+        @if(hasTags){
+          <p class="tags">
+          </p>
+        }
+      </div>
+      @if(isLongDescription){
+        <button (click)="toggleDescription()" class="toggle-description">
+          {{ showFullDescription ? 'Show less' : 'Show more' }}
+        </button>
+      }
+    </div>
+    @if(collection.forSale){
+      <p class="sale">For Sale: {{ collection.salePrice }} €</p>
+    }
+    <!-- <div class="collection-meta">
+      @if(collection.completed){
+        <p>Completed</p>
+      }
+      @if(collection.collectionDate != null){
+        <p>{{ collection.collectionDate }}</p>
+      }
+      <p>Category: {{ category?.categoryName }}</p>
+    </div> -->
+
+  </div>
+  <div class="card-footer">
+    <button id="view" [routerLink]="['/collection-detail', collection.collectionId]">View Details</button>
+
+    <div class="interact">
+      @if(collection.forSale == true){
+        <button id="buy" [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]">
+          <i class="bi bi-cart"></i>
+        </button>
+      }
+      <button id="like" (click)="like()"><i class="bi bi-heart"></i></button>
+      <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
+      <button id="bookmark" (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
+    </div>
   </div>
 </div>
 }
