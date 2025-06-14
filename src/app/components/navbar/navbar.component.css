@@ -25,13 +25,15 @@
   font-weight: 600;
   font-size: 1.5rem;
   margin-left: 12px;
-  margin-top: -2px; 
+  margin-top: -2px;
   padding-bottom: 10px;/* meno consigliato ma funziona */
 }
+
 .logo img {
   height: 130px;
   width: 130px;
 }
+
 
 /* ricerche */
 .search-containers{
@@ -141,6 +143,55 @@
   font-size: 20px;
   font-weight: 300;
 }
+
+ /* Bottoni dinamici per autlink */
+.button-dynamic {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1);
+}
+
+.button-dynamic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-dynamic:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+ /* AUTH_LINK DEL USER PROFILE */
+.auth-links .profile {
+  color: #000 !important;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+}
+
+.auth-links .profile:hover,
+.auth-links .profile:focus,
+.auth-links .profile:active {
+  color: #000 !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+.auth-links .profile i {
+  color: #0d6efd;
+  font-size: 24px;
+  pointer-events: none;
+}
+
+.auth-links .profile-name {
+  color: #000;
+  font-size: 20px;
+  font-weight: 300;
+}
+
 
  /* Bottoni dinamici per autlink */
 .button-dynamic {
@@ -351,7 +402,6 @@
 .open-modal-btn.open .arrow {
   transform: rotate(180deg);
 }
-
 
 
 .category-modal {
