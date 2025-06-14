@@ -1,20 +1,29 @@
-<div  class="item-detail">
-    <h2>id: {{ item.itemId }}</h2>
-    <p>Collection: {{ collection?.collectionName }}</p>
-    <p>Owner: {{ owner?.name }}</p>
-    <p>Name: {{ item.itemName }}</p>
-    <p>Description: {{ item.itemDescription }}</p>
-    <p>Photo: {{ item.itemPhoto }}</p>
-    @if(item.condition != null){<p>Condition: {{ item.condition }}</p>}
-    @if(item.purchaseDate != null){ <p>purchase Date : {{item.purchaseDate }}</p>}
-    @if(item.releaseDate != null){ <p>Release Date : {{item.releaseDate }}</p>}
-    @if(item.purchasePrice != null){<p>Purchase Price: {{ item.purchasePrice }}</p>}
-    @if(item.salePrice != null){<p>Sale Price: {{ item.salePrice }}</p>}
-    @if(item.itemVersion != null){<p>Version: {{ item.itemVersion }}</p>}
-    @if(item.itemEdition != null){<p>Edition: {{ item.itemEdition }}</p>}
-    <p>For sale: {{ item.forSale }}</p>
-    @if(item.userId == currentUser.userId){
-      <button (click)="onDelete()"> Delete Item</button>
-      <button (click)="onUpdate()"> Update Item</button>
+
+<div class="item-grid">
+<div class="item-card">
+  <div class="image-container">
+    <img [src]="item.itemPhoto" alt="{{ item.itemName }}" />
+    <div class="like-badge">
+      <i class="bi bi-heart"></i> 
+    </div>
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">{{ item.itemName }}</h3>
+    <p class="item-description">{{ item.itemDescription }}</p>
+
+    @if(item.salePrice != null) {
+      <div class="price-row">
+        <span class="label">Offerta attuale</span>
+        <span class="price">{{ item.salePrice }} €</span>
+      </div>
     }
+    
+    @if(item.userId == currentUser.userId){
+      <div class="owner-buttons">
+        <button (click)="onDelete()">Elimina</button>
+        <button (click)="onUpdate()">Modifica</button>
+      </div>
+    }
+  </div>
 </div>
+

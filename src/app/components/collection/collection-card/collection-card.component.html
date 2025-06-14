@@ -1,27 +1,21 @@
 @if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
 <div class="collection-card">
-  <div class="card-header">
-    <h3>
-      <a [routerLink]="['/user-profile', collection.userId]">{{ owner?.name }}</a>
-    </h3>
-    <p>{{ collection.createdAt.split('T')[0] }}</p>
-  </div>
-
+  
+  @if(list!= null){
+    <div class="collection-img {{ list.length === 1 ? 'one-item' : list.length === 2 ? 'two-items' : list.length === 3 ? 'three-items' : '' }}" [routerLink]="['/collection-detail', collection.collectionId]">
+      @for(item of list.slice(0, 3); track item.itemId){
+        <div class="item-photo">
+          <img src="{{item.itemPhoto}}" alt="">
+        </div>
+      }
+      @if(list != null && (list.length - 3) > 0){
+        <div class="item-photo item-count">
+          +{{ list.length - 3 }}
+        </div>
+      }
+    </div>
+  }
   <div class="card-body">
-    @if(list!= null){
-      <div class="collection-img {{ list.length === 1 ? 'one-item' : list.length === 2 ? 'two-items' : list.length === 3 ? 'three-items' : '' }}" [routerLink]="['/collection-detail', collection.collectionId]">
-        @for(item of list.slice(0, 3); track item.itemId){
-          <div class="item-photo">
-            <img src="{{item.itemPhoto}}" alt="">
-          </div>
-        }
-        @if(list != null && (list.length - 3) > 0){
-          <div class="item-photo item-count">
-            +{{ list.length - 3 }}
-          </div>
-        }
-      </div>
-    }
     <div class="title">
       <h2>{{ collection.collectionName }}</h2>
       @if((currentUser != null && collection.userId == currentUser.userId)){
@@ -32,6 +26,12 @@
         </div>
       }
     </div>
+    <div class="card-header">
+      <h3>
+        <a [routerLink]="['/user-profile', collection.userId]">{{ owner?.name }}</a>
+      </h3>
+      <p>{{ collection.createdAt.split('T')[0] }}</p>
+    </div>
     <div class="description-box" [class.expanded]="showFullDescription">
       <div class="description" [class.collapsed]="!showFullDescription" [class.expanded]="showFullDescription">
         {{ collection.description }}
@@ -39,12 +39,12 @@
           <p class="tags">
           </p>
         }
+        @if(isLongDescription){
+          <button (click)="toggleDescription()" class="toggle-description">
+            {{ showFullDescription ? 'Show less' : 'Show more' }}
+          </button>
+        }
       </div>
-      @if(isLongDescription){
-        <button (click)="toggleDescription()" class="toggle-description">
-          {{ showFullDescription ? 'Show less' : 'Show more' }}
-        </button>
-      }
     </div>
     @if(collection.forSale){
       <p class="sale">For Sale: {{ collection.salePrice }} €</p>

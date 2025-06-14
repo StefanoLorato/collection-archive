@@ -18,19 +18,20 @@ export class CollectionFormComponent {
   private _service = inject(CollectionService);
   private _router = inject(Router);
   private _route = inject(ActivatedRoute);
+  private _isUpdate = false;
+  private _dataService = inject(DataService);
+  private _catService = inject(CategoryService);
+
   formBuilder = inject(FormBuilder);
   collectionForm: FormGroup;
   collectionId!: Collection;
-  private _isUpdate = false;
-  private _dataService = inject(DataService);
   user: User | null = null;
   list: Category[] = [];
-  private _catService = inject(CategoryService);
 
 
   constructor() {
     this.collectionForm = this.formBuilder.group({
-      collectionId : [],
+      collectionId: [],
       collectionName: ['', Validators.required],
       completed: [false],
       categoryId: ['', Validators.required],
@@ -72,22 +73,26 @@ export class CollectionFormComponent {
 
   onSubmit() {
     console.log(this.collectionForm.value);
-    
+
 
     if (this.collectionForm.invalid) return;
     if (!this._isUpdate) {
       return this._service.createCollection(this.collectionForm.value).subscribe({
         next: () => {
           alert("Collezione aggiunta!");
-          this._router.navigate(['/collection-list']);
+          if (this.user != null) {
+            this._router.navigate(['/user-profile', this.user.userId]);
+          }
         },
         error: err => alert("Errore durante il salvataggio")
       });
     } else {
-     return this._service.updateCollection(this.collectionForm.value).subscribe({
-       next: () => {
+      return this._service.updateCollection(this.collectionForm.value).subscribe({
+        next: () => {
           alert("Collezione aggiornata!");
-          this._router.navigate(['/collection-list']);
+          if (this.user != null) {
+            this._router.navigate(['/user-profile', this.user.userId]);
+          }
         },
         error: err => alert("Error during update's collection")
       });
@@ -107,7 +112,7 @@ export class CollectionFormComponent {
           collectionDate: data.collectionDate,
           forSale: data.forSale,
           salePrice: data.salePrice,
-          userId: data.userId ,
+          userId: data.userId,
         });
       },
       error: () => {
@@ -117,12 +122,13 @@ export class CollectionFormComponent {
     });
   }
 
-  loadCategories(){
+  loadCategories() {
     this._catService.getCategories().subscribe({
       next: categories => this.list = categories,
       error: err => alert("Errore nella ricerca delle categorie" + err)
     })
   }
+  
   get collectionName() { return this.collectionForm.get('collectionName'); }
   get description() { return this.collectionForm.get('description'); }
   get collectionDate() { return this.collectionForm.get('collectionDate'); }

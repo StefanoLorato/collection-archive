@@ -1,0 +1,52 @@
+.item-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.collection-details {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.collection-details p {
+  display: -webkit-box;        
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+
+.collection-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.collection-actions button {
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #0078D4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.collection-actions button:hover {
+  background-color: #005ea2;
+}

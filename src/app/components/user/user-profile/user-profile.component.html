@@ -1,9 +1,9 @@
 @if(owner != null){
-  <h2>User id: {{ owner.userId }}</h2>
   <p>Name: {{ owner.name }}</p>
   <p>Lastname: {{ owner.lastname}}</p>
   <p>Email: {{ owner.email}}</p>
   <p>{{owner.name}}'s collections:</p>
+  <h2>User id: {{ owner.userId }}</h2>
   <div class="dashboard-container">
     @for (c of list; track c.collectionId) {
       <app-collection-card [collection]='c' (deleteCollection)="handleDelete($event)"></app-collection-card>
