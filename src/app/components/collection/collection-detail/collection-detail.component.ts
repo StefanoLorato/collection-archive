@@ -27,7 +27,6 @@ export class CollectionDetailComponent implements OnInit {
   currentUser!: User;
   private _collectionId!: number;
 
-
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
       if(user != null){
@@ -39,7 +38,7 @@ export class CollectionDetailComponent implements OnInit {
       this._collectionId = +id; //potevo fare anche Number(id) per rendere la string un number
       if (this._collectionId != 0 && !isNaN(this._collectionId)) {
         this.findCollection(this._collectionId);
-        this.loadItem(this._collectionId)
+        this.loadItem(this._collectionId);
       } else {
         alert("id non valido");
       }
@@ -53,9 +52,6 @@ export class CollectionDetailComponent implements OnInit {
       error: e => alert("Errore nel caricamento dell'item " + e)
     });
   }
-
-
-  
 
   findCollection(id: number) {
     this._service.getCollectionById(id).subscribe({

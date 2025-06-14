@@ -1,5 +1,4 @@
 export interface Collection {
-
     collectionId: number;
     collectionName: string;
     completed: boolean;

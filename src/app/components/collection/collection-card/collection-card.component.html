@@ -62,10 +62,9 @@
   </div>
   <div class="card-footer">
     <button id="view" [routerLink]="['/collection-detail', collection.collectionId]">View Details</button>
-
     <div class="interact">
       @if(collection.forSale == true){
-        <button id="buy" [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]">
+        <button id="buy" [routerLink]="['/purchase/collection', collection.collectionId]">
           <i class="bi bi-cart"></i>
         </button>
       }

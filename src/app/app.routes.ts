@@ -29,6 +29,7 @@ export const routes: Routes = [
      { path: 'register', component: RegisterFormComponent },
      { path: 'login', component: LoginFormComponent },
      { path: 'user-profile/:id', component: UserProfileComponent},
-     { path: 'purchase/:buyerId/:sellerId/:collectionId', component: PurchaseComponent},
      { path: 'wishlist/:id', component: WishListComponent },
+     { path: 'purchase/collection/:id', component: PurchaseComponent},
+     { path: 'purchase/item/:id', component: PurchaseComponent}
 ];
