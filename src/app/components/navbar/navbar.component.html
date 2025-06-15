@@ -72,7 +72,8 @@
 </nav>
 
 <!-- Scroll Container Category -->
-<div [class.sticky]="isSticky" id = "scrollLeftContainer" #scrollLeftContainer>
+ <div class="sticky-placeholder" *ngIf="isSticky" [style.height.px]="stickyHeight"></div>
+<div class="outer-scroll-container" [class.sticky]="isSticky" id="outer-scroll-container" #outerScrollContainer>
   <div class="scroll-left" (mouseenter)="startScroll(-1)" (mouseleave)="stopScroll()"></div>
 
 

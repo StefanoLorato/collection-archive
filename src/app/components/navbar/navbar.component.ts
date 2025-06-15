@@ -22,32 +22,36 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private _router = inject(Router);
   private _catService = inject(CategoryService);
   private scrollInterval: any;
-  
+
   list: Category[] = [];
   icon!: string;
   showModal = false;
   username!: User;
   isSticky = false;
   offset = 250;
+  stickyHeight: number = 0;
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
-  @ViewChild('scrollLeftContainer', { static: false }) scrollLeftContainer!: ElementRef;
-  
+  @ViewChild('outerScrollContainer', { static: false }) outerScrollContainer!: ElementRef;
+
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(
       user => this.currentUser = user
     )
     this.loadCategories();
-    
+
   }
   ngAfterViewInit(): void {
     // this.offset = this.scrollContainer.nativeElement.offsetTop;
     // console.log(this.offset);
   }
-  
+
   @HostListener('window:scroll', [])
 onWindowScroll() {
   const scrollY = window.scrollY;
   this.isSticky = scrollY > this.offset;
+  this.stickyHeight = this.outerScrollContainer.nativeElement.offsetHeight;
+  console.log(this.stickyHeight);
+
 }
 
   startScroll(direction: number) {
