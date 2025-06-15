@@ -1,0 +1,73 @@
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.address-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.address-card:hover {
+  border-color: #007bff;
+}
+
+.address-card input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+button {
+  padding: 10px 15px;
+  margin-top: 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgb(223, 223, 223);
+  color:#0056b3;
+  border: 1px solid #0056b3;
+}
+
+.address-form {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f2f2f2;
+}
+
+.address-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.address-form input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+}
+
+.address-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}

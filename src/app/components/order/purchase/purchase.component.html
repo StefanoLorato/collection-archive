@@ -1,30 +1,33 @@
 
 @if(collection != null){
   <div class="col-container">
-    <div class="item-photo horizontal-scroll">
+    <!-- <div class="item-photo horizontal-scroll">
       @for(item of list; track item.itemId){
         <img src="{{item.itemPhoto}}" alt="">
       }
-    </div>
+    </div> -->
     <div class="image-carousel">
-      <button class="nav-button" (click)="prevImage()" [disabled]="currentImageIndex === 0">&#10094;</button>
-
+      <button class="nav-button left" (click)="prevImage()" [disabled]="currentImageIndex === 0">&#10094;</button>
       <img [src]="currentImage" class="carousel-image" alt="item image" />
-
-      <button class="nav-button" (click)="nextImage()" [disabled]="currentImageIndex === list.length - 1">&#10095;</button>
+      <button class="nav-button right" (click)="nextImage()" [disabled]="currentImageIndex === list.length - 1">&#10095;</button>
     </div>
     <div class="info-container">
-      <p class="collection title">{{collection.collectionName}}</p>
-      <div class="owner-info">
-        @if(owner){<p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>}
-        <button class="chat" >Contact Seller</button>
+      <h2 class="collection title">{{collection.collectionName}}</h2>
+      <div class="owner-section">
+        @if(owner){
+          <div class="owner-info">
+            <p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>
+            <p><a href="mailto:{{owner.email}}">{{owner.email}}</a></p>
+          </div>
+          <button class="chat">Contact Seller</button>
+        }
       </div>
       <p class="description">{{collection.description}}</p>
-      <p class="date">Collection Date: {{collection.collectionDate}}</p>
-      <p class="completed">Completed: {{(collection.completed ? 'yes' : 'no')}}</p>
+      <p class="date"><strong>Collection Date: </strong>{{collection.collectionDate}}</p>
+      <p class="completed"><strong>Completed: </strong>{{(collection.completed ? 'Yes' : 'No')}}</p>
       <div class="price">Price: {{collection.salePrice}}€</div>
       <div class="actions">
-        <button>Buy Now</button>
+        <button (click)="buyNow()">Buy Now</button>
         <button>Add To Cart</button>
         <button>Save For Later</button>
       </div>

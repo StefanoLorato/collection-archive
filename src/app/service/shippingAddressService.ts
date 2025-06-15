@@ -8,7 +8,7 @@ import { ShippingAddress } from "../models/shippingAddress";
 })
 export class ShippingAddressService {
   list: ShippingAddress[] = [];
-  private _url: string = "http://localhost:8080/api/shippingAddress"
+  private _url: string = "http://localhost:8080/api/shippingAddresses"
   private _http = inject(HttpClient)
 
   getAddresses(): Observable<ShippingAddress[]> {

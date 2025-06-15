@@ -13,6 +13,9 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { PurchaseComponent } from './components/order/purchase/purchase.component';
 import { WishListComponent } from './components/wishlist/wish-list/wish-list.component';
+import { ShippingAddressFormComponent } from './components/order/shipping-address-form/shipping-address-form.component';
+import { PaymentFormComponent } from './components/order/payment-form/payment-form.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,5 +34,9 @@ export const routes: Routes = [
      { path: 'user-profile/:id', component: UserProfileComponent},
      { path: 'wishlist/:id', component: WishListComponent },
      { path: 'purchase/collection/:id', component: PurchaseComponent},
-     { path: 'purchase/item/:id', component: PurchaseComponent}
+     { path: 'purchase/item/:id', component: PurchaseComponent},
+     { path: 'shipping-address-form', component: ShippingAddressFormComponent},
+     { path: 'payment-form', component: PaymentFormComponent},
+     { path: 'order-list/:id', component: OrderListComponent}
+
 ];
