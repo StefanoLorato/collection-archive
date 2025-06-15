@@ -1,0 +1,179 @@
+form {
+  max-width: 860px;
+  margin: 80px auto;
+  padding: 64px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  padding: 20px 24px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 20px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9fafb;
+  font-weight: 500;
+}
+
+input:focus,
+select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  outline: none;
+  background-color: #ffffff;
+}
+
+label {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+p {
+  font-size: 15px;
+  color: #dc2626;
+  margin-top: 8px;
+}
+
+/* Checkbox group */
+label input[type="checkbox"] {
+  margin-right: 12px;
+  transform: scale(1.4);
+  vertical-align: middle;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  padding: 20px 28px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 18px;
+}
+
+button[type="submit"]:hover {
+  background-color: #1e40af;
+}
+
+button[type="submit"]:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Header */
+.form-header {
+  max-width: 860px;
+  margin: 40px auto 0;
+  padding: 24px 40px;
+  background: linear-gradient(90deg, #e0f2fe, #f0fdf4);
+  border-left: 8px solid #3b82f6;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  animation: fadeSlideIn 0.5s ease-out forwards;
+  text-align: center;
+}
+
+.form-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+.form-header p {
+  font-size: 18px;
+  color: #374151;
+}
+
+/* Animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  /* Tasti switch */
+
+  .toggle-switch {
+  display: flex;
+  align-items: start;
+  font-weight: 600;
+  font-size: 16px;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.switch-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 10px;
+}
+
+/* Nasconde il checkbox vero */
+.switch-label input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/* Lo slider */
+.slider {
+  position: relative;
+  width: 50px;
+  height: 28px;
+  background-color: #d1d5db;
+  border-radius: 28px;
+  transition: background-color 0.3s;
+  flex-shrink: 0;
+}
+
+/* Cerchio */
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Stato checked */
+.switch-label input:checked + .slider {
+  background-color: #2563eb; /* blu */
+}
+
+.switch-label input:checked + .slider::before {
+  transform: translateX(22px);
+}

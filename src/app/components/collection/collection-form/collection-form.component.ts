@@ -21,12 +21,13 @@ export class CollectionFormComponent {
   private _isUpdate = false;
   private _dataService = inject(DataService);
   private _catService = inject(CategoryService);
-
+  showForm: boolean = true;
   formBuilder = inject(FormBuilder);
   collectionForm: FormGroup;
   collectionId!: Collection;
   user: User | null = null;
   list: Category[] = [];
+  forSale: boolean = false;
 
 
   constructor() {
