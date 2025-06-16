@@ -15,17 +15,16 @@
   </div>
 
   <div>
-    <label for="itemPhoto">Photo URL</label>
-    <input name="itemPhoto" [(ngModel)]="item.itemPhoto" id="itemPhoto" type="file">
+    <label for="itemPhoto">Photo</label>
+    <input id="itemPhoto" type="file" (change)="onFileSelected($event)">
   </div>
-
-<div class="toggle-switch">
-  <label class="switch-label" for="forSale">
-    In vendita
-    <input type="checkbox" id="forSale" name="forSale" [(ngModel)]="item.forSale" />
-    <span class="slider"></span>
-  </label>
-</div>
+  <div class="toggle-switch">
+    <label class="switch-label" for="forSale">
+      In vendita
+      <input type="checkbox" id="forSale" name="forSale" [(ngModel)]="item.forSale" />
+      <span class="slider"></span>
+    </label>
+  </div>
 
   <div>
     <label for="itemSalePrice">Sale Price (€)</label>
