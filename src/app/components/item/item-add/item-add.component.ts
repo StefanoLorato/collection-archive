@@ -17,7 +17,7 @@ export class ItemAddComponent implements OnInit {
     itemName: '',
     itemDescription: '',
     itemPhoto: '',
-    salePrice: '',
+    salePrice: 0,
     forSale: false
   };
 

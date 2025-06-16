@@ -1,6 +1,6 @@
 @if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
 <div class="collection-card">
-  
+
   @if(list!= null){
     <div class="collection-img {{ list.length === 1 ? 'one-item' : list.length === 2 ? 'two-items' : list.length === 3 ? 'three-items' : '' }}" [routerLink]="['/collection-detail', collection.collectionId]">
       @for(item of list.slice(0, 3); track item.itemId){
@@ -65,7 +65,7 @@
 
     <div class="interact">
       @if(collection.forSale == true){
-        <button id="buy" [routerLink]="['/purchase', currentUser.userId, collection.userId, collection.collectionId]">
+        <button id="buy" [routerLink]="['/purchase/collection', collection.collectionId]">
           <i class="bi bi-cart"></i>
         </button>
       }
