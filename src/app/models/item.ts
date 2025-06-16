@@ -9,7 +9,7 @@ export interface Item {
   purchaseDate: string;
   releaseDate: string;
   purchasePrice: number;
-  salePrice: string;
+  salePrice: number;
   itemVersion: string;
   itemEdition: string;
   forSale: boolean;

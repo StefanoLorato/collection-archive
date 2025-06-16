@@ -8,7 +8,9 @@
 <body>
   <div class="container" role="main" aria-label="Messaggio di benvenuto">
     <div class="emoji" aria-hidden="true">🎉</div>
-    <h1>Grazie per essere con noi {{user.email.split('@')[0]}} </h1>
+    @if(currentUser){
+      <h1>Grazie per essere con noi {{currentUser.email.split('@')[0]}} </h1>
+    }
     <p>
       Siamo felici di averti su <strong>Rare Blue</strong>.<br />
       Qui puoi organizzare, collezionare e scoprire tesori unici in modo semplice e veloce.

@@ -12,24 +12,24 @@ export class OrderService {
   private _url: string = "http://localhost:8080/api/orders"
   private _http = inject(HttpClient)
 
-  getItems(): Observable<Order[]> {
+  getOrders(): Observable<Order[]> {
     return this._http.get<Order[]>(this._url);
   }
 
-  getItemById(id: number): Observable<Order> {
+  getOrderById(id: number): Observable<Order> {
     return this._http.get<Order>(`${this._url}/${id}`);
   }
 
-  deleteItem(id: number): Observable<void> {
+  deleteOrder(id: number): Observable<void> {
     return this._http.delete<void>(`${this._url}/${id}`);
 
   }
 
-  addItem(order: Partial<Order>): Observable<Order> {
+  addOrder(order: Partial<Order>): Observable<Order> {
     return this._http.post<Order>(this._url, order);
   }
 
-  updateItem(order: Order): Observable<void> {
+  updateOrder(order: Order): Observable<void> {
     return this._http.put<void>(`${this._url}/${order.orderId}`, order);
   }
 }

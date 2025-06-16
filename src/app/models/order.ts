@@ -1,6 +1,10 @@
+import { OrderItem } from "./orderItem";
+
 export interface Order {
-  orderId: number;
+  orderId?: number;
   buyerId: number;
-  sellerId: number;
-  orderedAt: String;
+  orderedAt?: string;
+  status?: string;
+  shippingAddressId: number;
+  orderItems: OrderItem[];
 }

@@ -1,4 +1,16 @@
+<a class="category-card">
+  <div class="category-text">
+    <h2>{{ category?.categoryName }}</h2>
+    <h3>{{ category?.description }}</h3>
+  </div>
+  <div class="category-image">
+    <img [src]="category?.photo" [alt]="category?.categoryName" />
+  </div>
+</a>
 
-@for(c of list; track c.collectionId){
-    <app-collection-card [collection]= 'c'></app-collection-card>
-}
+
+<div class="dashboard-container">
+  @for(c of list; track c.collectionId){
+  <app-collection-card [collection]='c' (deleteCollection)="handleDelete($event)"></app-collection-card>
+  }
+</div>

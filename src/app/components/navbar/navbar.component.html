@@ -1,12 +1,20 @@
 <!-- Nav bar Superiore -->
 <nav class="top-navbar">
-  <div class="logo">
-    <a routerLink="/home"><img src="logo.png" alt="Logo" height="40" /></a>
+  <div class="header">
+    <div class="logo">
+      <a routerLink="/home">
+        <img src="logo.png" alt="Logo" height="40" />
+      </a>
+    </div>
+      <span class="brand-name">RareBlu</span>
   </div>
 
   <div class="search-containers">
     <!-- Bottone per aprire la finestra -->
-    <button class="open-modal-btn" (click)="showModal = true">Categorie ▼</button>
+    <button class="open-modal-btn" (click)="showModal = true">
+      Categorie
+      <span class="arrow">▾</span>
+    </button>
 
     <div class="category-modal" *ngIf="showModal">
       <div class="modal-overlay" (click)="showModal = false"></div>
@@ -28,14 +36,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="categories-dropdown">
-      <button class="dropbtn">Categories ▼</button>
-      <div class="dropdown-content">
-        @for(c of list; track c.categoryId){
-        <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">{{c.categoryName}}</a>
-        }
-      </div>
-    </div> -->
 
     <div class="search-bar">
       <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca..." />
@@ -48,14 +48,14 @@
 
   <div class="auth-links">
     @if (currentUser == null) {
-    <a routerLink="/login">Login</a>
-    <a routerLink="/register">Register</a>
+      <a class="button-dynamic" routerLink="/login">Login</a>
+      <a class="button-dynamic" routerLink="/register">Register</a>
     } @else {
    <a class="profile" [routerLink]="['/user-profile', currentUser.userId]">
    <i class="bi bi-person-circle"></i>
    <span class="profile-name">{{ currentUser.name || 'My Profile' }}</span>
    </a>
-    <button (click)="logout()">Logout</button>
+    <button class="button-dynamic" (click)="logout()">Logout</button>
     }
   </div>
 </nav>
@@ -72,11 +72,12 @@
 </nav>
 
 <!-- Scroll Container Category -->
-<div style="position: relative;">
+ <div class="sticky-placeholder" *ngIf="isSticky" [style.height.px]="stickyHeight"></div>
+<div class="outer-scroll-container" [class.sticky]="isSticky" id="outer-scroll-container" #outerScrollContainer>
   <div class="scroll-left" (mouseenter)="startScroll(-1)" (mouseleave)="stopScroll()"></div>
 
 
-  <div class="scroll-container" #scrollContainer>
+  <div class="scroll-container"  id = "scrollContainer" #scrollContainer>
     <div class="category-scroll" *ngFor="let c of list">
       <a [routerLink]="['/collection-list']" [queryParams]="{ categoryId: c.categoryId }">
         <i class="bi" [ngClass]="iconMap[c.categoryId]"></i>

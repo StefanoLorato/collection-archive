@@ -10,13 +10,13 @@ import { DataService } from '../../service/dataService';
 })
 export class HomeComponent {
   private _dataService = inject(DataService);
-  user!: User;
+  currentUser!: User;
 
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
       if (user != null) {
-        this.user = user;
+        this.currentUser = user;
       }
     });
   }

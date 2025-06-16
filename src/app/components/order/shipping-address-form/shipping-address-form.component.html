@@ -1,1 +1,31 @@
 <p>shipping-address-form works!</p>
+<h2>Select a shipping address:</h2>
+@if(savedAddresses.length > 0){
+  <div>
+    @for(addr of savedAddresses; track addr.shippingId){
+      <div class="address-card">
+        <label>
+          <input type="radio" name="selectedAddress" [value]="addr.shippingId"
+                 (change)="selectAddress(addr.shippingId)" [checked]="selectedAddressId === addr.shippingId">
+          {{addr.address}}, {{addr.city}}, {{addr.postalCode}}, {{addr.country}}
+        </label>
+      </div>
+    }
+  </div>
+}
+<div class="buttons">
+  <button (click)="toggleNewAddressForm()">+ Add new address</button>
+
+  @if(showNewAddressForm){
+    <div class="address-form">
+      <form [formGroup]="addressForm">
+        <label>Address: <input formControlName="address" /></label><br>
+        <label>City: <input formControlName="city" /></label><br>
+        <label>Postal Code: <input formControlName="postalCode" /></label><br>
+        <label>Country: <input formControlName="country" /></label>
+      </form>
+    </div>
+  }
+
+  <button (click)="continue()">Go to Payment</button>
+</div>

@@ -4,6 +4,8 @@ import { CollectionService } from '../../../service/collectionService';
 import { Observable } from 'rxjs';
 import { CollectionCardComponent } from '../collection-card/collection-card.component';
 import { ActivatedRoute } from '@angular/router';
+import { CategoryService } from '../../../service/categoryService';
+import { Category } from '../../../models/category';
 
 type Filters = {
   collectionName?: string;
@@ -24,6 +26,8 @@ export class CollectionListComponent {
   list: Collection[] = [];
   private _service = inject(CollectionService);
   private _route = inject(ActivatedRoute);
+  private _catService = inject(CategoryService);
+  category!: Category | null;
 
   ngOnInit(): void {
     this._route.queryParamMap.subscribe(params => {
@@ -35,6 +39,9 @@ export class CollectionListComponent {
         priceComparation: params.get('priceComparation') || undefined
       };
       this.loadCollections(filters);
+      if(filters.categoryId){
+        this.findCategoryById(filters.categoryId);
+      }
     });
   }
 
@@ -53,5 +60,26 @@ export class CollectionListComponent {
        next: collections => this.list = collections,
        error: e => alert("Errore di caricamento della collection " + e)
     });
+  }
+
+  handleDelete(obj: { id: number }) {
+    console.log(obj.id);
+    this._service.deleteCollection(obj.id).subscribe({
+      next: () => {
+        this.list = this.list.filter((c) => c.collectionId != obj.id);
+        alert("La collection è stata eliminata con successo");
+      },
+      error: e => {
+        alert("Errore nella cancellazione della collection");
+        this.loadCollections();
+      }
+    });
+  }
+
+  findCategoryById(id: number){
+    this._catService.getCategoryById(id).subscribe({
+      next: c => this.category = c,
+      error: err => alert("Errore di caricamento della collection " + err)
+    })
   }
 }

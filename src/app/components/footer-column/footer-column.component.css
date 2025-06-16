@@ -1,0 +1,32 @@
+.footer-column {
+  flex: 1;
+  min-width: 190px;
+  margin-top: -50px;
+
+  h4 {
+    font-size: 1.7rem;         /* titolo più grande */
+    margin-bottom: 1.2rem;
+    color: #111827;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    color: #6b7280;            /* grigio elegante */
+    font-size: 1.3rem;         /* font più grande */
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  li:hover {
+    color: #2563eb;
+  }
+}
+
+
