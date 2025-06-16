@@ -14,18 +14,22 @@
     <input name="itemDescription" [(ngModel)]="item.itemDescription" id="itemDescription" type="text">
   </div>
 
-  <div>
-    <label for="itemPhoto">Photo URL</label>
-    <input name="itemPhoto" [(ngModel)]="item.itemPhoto" id="itemPhoto" type="url">
+  <div class="photo-upload">
+    <label for="itemPhoto">Add Photo for yout item</label>
+    <input id="itemPhoto" type="file" (change)="onFileSelected($event)">
   </div>
 
-<div class="toggle-switch">
-  <label class="switch-label" for="forSale">
-    In vendita
-    <input type="checkbox" id="forSale" name="forSale" [(ngModel)]="item.forSale" />
-    <span class="slider"></span>
-  </label>
-</div>
+  <div *ngIf="item?.itemPhoto" class="photo-preview">
+  <img [src]="item.itemPhoto" alt="Item Photo Preview">
+  </div>
+
+  <div class="toggle-switch">
+    <label class="switch-label" for="forSale">
+      In vendita
+      <input type="checkbox" id="forSale" name="forSale" [(ngModel)]="item.forSale" />
+      <span class="slider"></span>
+    </label>
+  </div>
 
   <div>
     <label for="itemSalePrice">Sale Price (€)</label>

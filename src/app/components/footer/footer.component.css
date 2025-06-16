@@ -3,24 +3,24 @@
   justify-content: space-between;
   background-color: #f6f6f6;
   padding: 5rem 2rem;
-  flex-wrap: nowrap;        
-  gap: 1.5rem;  
-  margin-top: 85px; 
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  margin-top: 85px;
   max-height: 148px;
   top: 120px;
-               
+
 }
 .social-icons {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  justify-content: flex-start; 
-  margin-top: 170px; 
+  justify-content: flex-start;
+  margin-top: 170px;
 }
 
 .social-icons a {
   font-size: 1.8rem;
-  color: #6b7280;      
+  color: #6b7280;
   transition: color 0.3s ease, transform 0.3s ease;
   display: inline-flex;
   align-items: center;
@@ -28,8 +28,8 @@
 }
 
 .social-icons a:hover {
-  color: #2563eb;      
-  transform: scale(1.1); 
+  color: #2563eb;
+  transform: scale(1.1);
 }
 
 .my-rareblu h4 {
@@ -51,6 +51,7 @@
   text-align: center;
   width: fit-content;
   transition: background-color 0.3s, color 0.3s;
+  margin: 0 5px 5px 0;
 }
 
 .button-dynamic:hover {

@@ -54,5 +54,9 @@ export class CollectionService {
         return this._http.put<void>(`${this._url}/${updateCollection.collectionId}`, updateCollection);
     }
 
+    toggleVisibility(id: number): Observable<void> {
+        return this._http.put<void>(`${this._url}/${id}/visibility`, null);
+    }
+
 }
 

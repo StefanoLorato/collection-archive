@@ -1,6 +1,5 @@
 @if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
 <div class="collection-card">
-
   @if(list!= null){
     <div class="collection-img {{ list.length === 1 ? 'one-item' : list.length === 2 ? 'two-items' : list.length === 3 ? 'three-items' : '' }}" [routerLink]="['/collection-detail', collection.collectionId]">
       @for(item of list.slice(0, 3); track item.itemId){
@@ -49,15 +48,6 @@
     @if(collection.forSale){
       <p class="sale">For Sale: {{ collection.salePrice }} €</p>
     }
-    <!-- <div class="collection-meta">
-      @if(collection.completed){
-        <p>Completed</p>
-      }
-      @if(collection.collectionDate != null){
-        <p>{{ collection.collectionDate }}</p>
-      }
-      <p>Category: {{ category?.categoryName }}</p>
-    </div> -->
 
   </div>
   <div class="card-footer">
