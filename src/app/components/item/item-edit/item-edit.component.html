@@ -16,10 +16,15 @@
     <input name="itemDescription" [(ngModel)]="item.itemDescription" id="itemDescription" type="text">
   </div>
 
-  <div>
-    <label for="itemPhoto">Photo</label>
+  <div class="photo-upload">
+    <label for="itemPhoto">Update your item photo</label>
     <input id="itemPhoto" type="file" (change)="onFileSelected($event)">
   </div>
+
+  <!-- Anteprima della foto -->
+<div *ngIf="item?.itemPhoto" class="photo-preview">
+  <img [src]="item.itemPhoto" alt="Item Photo Preview">
+</div>
 
   <div class="toggle-switch">
     <label class="switch-label" for="forSale">

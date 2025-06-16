@@ -14,10 +14,15 @@
     <input name="itemDescription" [(ngModel)]="item.itemDescription" id="itemDescription" type="text">
   </div>
 
-  <div>
-    <label for="itemPhoto">Photo</label>
+  <div class="photo-upload">
+    <label for="itemPhoto">Add Photo for yout item</label>
     <input id="itemPhoto" type="file" (change)="onFileSelected($event)">
   </div>
+
+  <div *ngIf="item?.itemPhoto" class="photo-preview">
+  <img [src]="item.itemPhoto" alt="Item Photo Preview">
+  </div>
+
   <div class="toggle-switch">
     <label class="switch-label" for="forSale">
       In vendita
