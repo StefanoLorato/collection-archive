@@ -1,3 +1,17 @@
+
+@if (showForm) {
+  <div class="form-header">
+    @if(!isUpdate) {
+      <h2>Add Your Collection</h2>
+      <p>Here you can add your fantastic collections. Let your passions take shape!</p>
+    } @else {
+      <h2>Update Your Collection</h2>
+      <p>Here you can update your fantastic collections. Let your passions take shape!</p>
+    }
+  </div>
+}
+
+
 <form [formGroup]="collectionForm" (ngSubmit)="onSubmit()">
 
   <!-- Nome Collezione -->
@@ -39,32 +53,34 @@
   </div>
 
   <!-- In vendita -->
-  <div>
-    <label>
-      <input type="checkbox" formControlName="forSale"> In vendita
-    </label>
-  </div>
+  <div class="toggle-switch">
+  <label class="switch-label">
+   For Sale    <input type="checkbox" formControlName="forSale" />
+    <span class="slider"></span>
+  </label>
+</div>
 
   <!-- Prezzo -->
   <div>
-    <input formControlName="salePrice" type="number" id="salePrice" placeholder="Price (€)">
+    <input disablesd="!forSale" formControlName="salePrice" type="number" id="salePrice" placeholder="Price (€)">
     @if (salePrice?.invalid && salePrice?.touched) {
       <p>Insert valid price</p>
     }
   </div>
 
   <!-- Completata -->
-  <div>
-    <label>
-      <input type="checkbox" formControlName="completed"> Completata
-    </label>
-  </div>
-
+<div class="toggle-switch">
+  <label class="switch-label">
+    Complete
+    <input type="checkbox" formControlName="completed" />
+    <span class="slider"></span>
+  </label>
+</div>
   <!-- visibilità -->
   <div>
     <select formControlName="visibility" id="visibility">
-      <option value="visible">Pubblica</option>
-      <option value="hidden">Privata</option>
+      <option value="visible">Pubblic</option>
+      <option value="hidden">Private</option>
     </select>
   </div>
 

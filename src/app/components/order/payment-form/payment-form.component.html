@@ -1,1 +1,38 @@
 <p>payment-form works!</p>
+<h2>Payment</h2>
+
+<form [formGroup]="paymentForm" class="payment-form">
+  <label>
+    Card Type:
+  </label>
+  <select formControlName="paymentType">
+    <option value="visa">Visa</option>
+    <option value="mastercard">Mastercard</option>
+  </select>
+
+  <label>
+    Name on the card:
+  </label>
+  <input formControlName="cardName" />
+
+  <label>
+    Card Number:
+  </label>
+  <input formControlName="cardNumber" maxlength="16" />
+
+  <label>
+    Expiration Date:
+  </label>
+  <input type="date" formControlName="expiryDate" placeholder="MM/AA" />
+
+  <label>
+    CVV:
+  </label>
+  <input formControlName="cvv" maxlength="3" />
+
+
+  <div class="actions">
+    <button type="button" (click)="goBack()">Go back</button>
+    <button type="submit" [disabled]="paymentForm.invalid" (click)="submit()">Confirm Payment</button>
+  </div>
+</form>

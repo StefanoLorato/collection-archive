@@ -9,7 +9,7 @@ import { WishlistItemCardComponent } from '../wishlist-item-card/wishlist-item-c
 
 @Component({
   selector: 'app-wish-list',
-  imports: [ItemAddComponent, WishlistItemCardComponent],
+  imports: [ WishlistItemCardComponent],
   templateUrl: './wish-list.component.html',
   styleUrl: './wish-list.component.css'
 })

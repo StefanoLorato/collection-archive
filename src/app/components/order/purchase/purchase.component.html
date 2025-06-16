@@ -1,1 +1,64 @@
-<p>purchase works!</p>
+@if(collection != null){
+  <div class="col-container">
+    <!-- <div class="item-photo horizontal-scroll">
+      @for(item of list; track item.itemId){
+        <img src="{{item.itemPhoto}}" alt="">
+      }
+    </div> -->
+    <div class="image-carousel">
+      <button class="nav-button left" (click)="prevImage()" [disabled]="currentImageIndex === 0">&#10094;</button>
+      <img [src]="currentImage" class="carousel-image" alt="item image" />
+      <button class="nav-button right" (click)="nextImage()" [disabled]="currentImageIndex === list.length - 1">&#10095;</button>
+    </div>
+    <div class="info-container">
+      <h2 class="collection title">{{collection.collectionName}}</h2>
+      <div class="owner-section">
+        @if(owner){
+          <div class="owner-info">
+            <p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>
+            <p><a href="mailto:{{owner.email}}">{{owner.email}}</a></p>
+          </div>
+          <button class="chat">Contact Seller</button>
+        }
+      </div>
+      <p class="description">{{collection.description}}</p>
+      <p class="date"><strong>Collection Date: </strong>{{collection.collectionDate}}</p>
+      <p class="completed"><strong>Completed: </strong>{{(collection.completed ? 'Yes' : 'No')}}</p>
+      <div class="price">Price: {{collection.salePrice}}€</div>
+      <div class="actions">
+        <button (click)="buyNow()">Buy Now</button>
+        <button>Add To Cart</button>
+        <button>Save For Later</button>
+      </div>
+    </div>
+  </div>
+}
+@if(item != null){
+  <div class="item-container">
+    <div class="image-carousel">
+      <img src="{{item.itemPhoto}}" class="carousel-image" alt="item image" />
+    </div>
+    <div class="info-container">
+      <h2 class="item-title">{{item.itemName}}</h2>
+      <div class="owner-section">
+        @if(owner){
+          <div class="owner-info">
+            <p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>
+            <p><a href="mailto:{{owner.email}}">{{owner.email}}</a></p>
+          </div>
+          <button class="chat">Contact Seller</button>
+        }
+      </div>
+      <p class="description">{{item.itemDescription}}</p>
+      <p class="edition"><strong>Edition: </strong>{{(item.itemEdition)}}</p>
+      <p class="version"><strong>Version: </strong>{{(item.itemVersion)}}</p>
+      <p class="date"><strong>Release Date: </strong>{{item.releaseDate}}</p>
+      <div class="price">Price: {{item.salePrice}}€</div>
+      <div class="actions">
+        <button (click)="buyNow()">Buy Now</button>
+        <button>Add To Cart</button>
+        <button>Save For Later</button>
+      </div>
+    </div>
+  </div>
+}
