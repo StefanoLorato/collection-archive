@@ -3,11 +3,11 @@ import { Router, RouterLink } from '@angular/router';
 import { Collection } from '../../../models/collection';
 import { User } from '../../../models/user';
 import { DataService } from '../../../service/dataService';
-import { CategoryService } from '../../../service/categoryService';
 import { Category } from '../../../models/category';
-import { UserService } from '../../../service/userService';
-import { ItemService } from '../../../service/itemService';
 import { Item } from '../../../models/item';
+import { CategoryService } from '../../../services/categoryService';
+import { UserService } from '../../../services/userService';
+import { ItemService } from '../../../services/itemService';
 
 @Component({
   selector: 'app-collection-card',

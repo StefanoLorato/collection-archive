@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CollectionService } from '../../../service/collectionService'; // supponiamo esista
 import { Collection } from '../../../models/collection';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { Category } from '../../../models/category';
-import { CategoryService } from '../../../service/categoryService';
+import { CollectionService } from '../../../services/collectionService';
+import { CategoryService } from '../../../services/categoryService';
+
 
 @Component({
   selector: 'app-collection-form',

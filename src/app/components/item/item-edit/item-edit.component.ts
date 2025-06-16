@@ -1,10 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ItemService } from '../../../service/itemService';
+
 import { Item } from '../../../models/item';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ItemService } from '../../../services/itemService';
 
 @Component({
   selector: 'app-item-edit',

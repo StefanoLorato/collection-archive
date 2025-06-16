@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Collection } from '../../../models/collection';
-import { CollectionService } from '../../../service/collectionService';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ItemCardComponent } from '../../item/item-card/item-card.component';
 import { Item } from '../../../models/item';
-import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { CollectionService } from '../../../services/collectionService';
+import { ItemService } from '../../../services/itemService';
 
 @Component({
   selector: 'app-collection-detail',

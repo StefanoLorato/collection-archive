@@ -28,8 +28,9 @@ import { catchError, Observable, throwError } from 'rxjs';
 
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from '../../service/authService';
+
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/authService';
 
 export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);

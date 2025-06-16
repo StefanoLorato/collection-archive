@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ItemService } from '../../../service/itemService';
 import { Item } from '../../../models/item';
 import { compileNgModule } from '@angular/compiler';
 import { CommonModule } from '@angular/common';
+import { ItemService } from '../../../services/itemService';
 
 @Component({
   selector: 'app-item-add',

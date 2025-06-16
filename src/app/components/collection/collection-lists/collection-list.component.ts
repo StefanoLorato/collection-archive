@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { Collection } from '../../../models/collection';
-import { CollectionService } from '../../../service/collectionService';
+
 import { Observable } from 'rxjs';
 import { CollectionCardComponent } from '../collection-card/collection-card.component';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from '../../../service/categoryService';
+
 import { Category } from '../../../models/category';
+import { CollectionService } from '../../../services/collectionService';
+import { CategoryService } from '../../../services/categoryService';
 
 type Filters = {
   collectionName?: string;

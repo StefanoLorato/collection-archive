@@ -1,12 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UserService } from '../../../service/userService';
+
 import { User } from '../../../models/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
-import { CollectionService } from '../../../service/collectionService';
+
 import { Collection } from '../../../models/collection';
 import { CollectionListComponent } from '../../collection/collection-lists/collection-list.component';
 import { DataService } from '../../../service/dataService';
+import { UserService } from '../../../services/userService';
+import { CollectionService } from '../../../services/collectionService';
 
 @Component({
   selector: 'app-user-profile',
