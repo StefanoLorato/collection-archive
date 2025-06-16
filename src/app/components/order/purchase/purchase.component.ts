@@ -11,14 +11,22 @@ import { CartItem } from '../../../models/cart-item';
 import { ItemService } from '../../../services/itemService';
 import { CollectionService } from '../../../services/collectionService';
 import { UserService } from '../../../services/userService';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ChatComponent } from '../../chat/chat.component';
 
 @Component({
   selector: 'app-purchase',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule, ChatComponent],
   templateUrl: './purchase.component.html',
   styleUrl: './purchase.component.css'
 })
 export class PurchaseComponent implements OnInit{
+  showChat = false;
+  toggleChat() {
+    this.showChat = !this.showChat;
+  }
   collection: Collection | null = null;
   item: Item | null = null;
   currentUser!: User;

@@ -6,19 +6,16 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-chat',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  template: `
-    <div *ngFor="let msg of messages" class="message">{{ msg }}</div>
-    <input [(ngModel)]="newMessage" placeholder="Scrivi un messaggio..." />
-    <button (click)="sendMessage()">Invia</button>
-  `
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
   messages: string[] = [];
-  newMessage = '';
+  newMessage: string = '';
 
   sendMessage() {
-    if(this.newMessage.trim()) {
-      this.messages.push(this.newMessage.trim());
+    if (this.newMessage.trim()) {
+      this.messages.push(this.newMessage);
       this.newMessage = '';
     }
   }

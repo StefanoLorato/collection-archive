@@ -18,7 +18,11 @@
             <p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>
             <p><a href="mailto:{{owner.email}}">{{owner.email}}</a></p>
           </div>
-          <button class="chat">Contact Seller</button>
+          <button class="chat" (click)="toggleChat()">Contact Seller</button>
+          <div *ngIf="showChat">
+           <app-chat></app-chat>
+            </div>
+
         }
       </div>
       <p class="description">{{collection.description}}</p>
@@ -46,7 +50,8 @@
             <p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>
             <p><a href="mailto:{{owner.email}}">{{owner.email}}</a></p>
           </div>
-          <button class="chat">Contact Seller</button>
+          <button class="chat" (click)="toggleChat()">Contact Seller</button>
+
         }
       </div>
       <p class="description">{{item.itemDescription}}</p>
