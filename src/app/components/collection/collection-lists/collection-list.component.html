@@ -1,13 +1,14 @@
-<a class="category-card">
+@if(category){
+  <a class="category-card">
   <div class="category-text">
-    <h2>{{ category?.categoryName }}</h2>
-    <h3>{{ category?.description }}</h3>
+    <h2>{{ category.categoryName }}</h2>
+    <h3>{{ category.description }}</h3>
   </div>
   <div class="category-image">
-    <img [src]="category?.photo" [alt]="category?.categoryName" />
+    <img [src]="category.photo" [alt]="category.categoryName" />
   </div>
 </a>
-
+}
 
 <div class="dashboard-container">
   @for(c of list; track c.collectionId){

@@ -56,6 +56,9 @@ export class CollectionListComponent {
   }
 
   loadCollections(filters?: Filters){
+    if (filters?.categoryId == null){
+      this.category = null;
+    }    
     this._service.getCollections(filters).subscribe({
        next: collections => this.list = collections,
        error: e => alert("Errore di caricamento della collection " + e)
