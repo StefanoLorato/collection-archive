@@ -9,7 +9,7 @@ import { CollectionService } from '../../../service/collectionService';
 
 @Component({
   selector: 'app-item-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './item-card.component.html',
   styleUrl: './item-card.component.css'
 })

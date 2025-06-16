@@ -16,5 +16,12 @@
     @if(item.userId == currentUser.userId){
       <button (click)="onDelete()"> Delete Item</button>
       <button (click)="onUpdate()"> Update Item</button>
+      @if(item.forSale){
+        <button id="buy" [routerLink]="['/purchase/item', item.itemId]">
+          <i class="bi bi-cart"></i>
+        </button>
+      }
+    }
+    @else if(item.userId == currentUser.userId){
     }
 </div>

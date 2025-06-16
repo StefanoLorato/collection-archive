@@ -12,6 +12,15 @@ p{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.item-container{
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .item-photo {
   flex: 1;
   display: flex;
@@ -166,6 +175,9 @@ p{
 
 @media (max-width: 1080px) {
   .col-container {
+    flex-direction: column;
+  }
+  .item-container{
     flex-direction: column;
   }
   .actions {

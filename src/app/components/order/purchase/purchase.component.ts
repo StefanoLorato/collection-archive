@@ -14,7 +14,7 @@ import { CartItem } from '../../../models/cart-item';
 
 @Component({
   selector: 'app-purchase',
-  imports: [ItemCardComponent],
+  imports: [],
   templateUrl: './purchase.component.html',
   styleUrl: './purchase.component.css'
 })
