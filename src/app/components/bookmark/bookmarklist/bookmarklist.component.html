@@ -1,0 +1,17 @@
+@if(bookmark != null) {
+  <h2>bookmark per User {{ userId }}</h2>
+
+  @if(bookmark.length > 0) {
+    @for (bookmarkItem of bookmark; track bookmarkItem.itemId) {
+      <app-bookmark-card-item
+        [bookmarkitem]="bookmarkItem"
+        (deleteBookmarkItem)="removeItemFromBookmark($event)">
+      </app-bookmark-card-item>
+    }
+  } @else {
+    <p>bookmark è vuota.</p>
+  }
+
+} @else {
+  <h2>Caricando la bookmark...</h2>
+}

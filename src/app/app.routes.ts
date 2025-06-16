@@ -16,6 +16,7 @@ import { ShippingAddressFormComponent } from './components/order/shipping-addres
 import { PaymentFormComponent } from './components/order/payment-form/payment-form.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { PurchaseComponent } from './components/order/purchase/purchase.component';
+import { BookmarklistComponent } from './components/bookmark/bookmarklist/bookmarklist.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,5 +38,6 @@ export const routes: Routes = [
      { path: 'purchase/item/:id', component: PurchaseComponent},
      { path: 'shipping-address-form', component: ShippingAddressFormComponent},
      { path: 'payment-form', component: PaymentFormComponent},
-     { path: 'order-list/:id', component: OrderListComponent}
+     { path: 'order-list/:id', component: OrderListComponent},
+     { path: 'bookmarkslist/:id', component: BookmarklistComponent}
 ];
