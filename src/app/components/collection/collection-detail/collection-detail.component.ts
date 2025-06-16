@@ -55,7 +55,7 @@ export class CollectionDetailComponent implements OnInit {
   }
 
 
-  
+
 
   findCollection(id: number) {
     this._service.getCollectionById(id).subscribe({
@@ -82,6 +82,16 @@ export class CollectionDetailComponent implements OnInit {
 
   navigateToEdit() {
     this._router.navigate(['/edit-collection-form/', this.collection.collectionId])
+  }
+
+  toggleVisibility(){
+    console.log(this.collection.visibility)
+    this._service.toggleVisibility(this._collectionId).subscribe({
+      next: () => {
+        alert("Changed visibility");
+        this.collection.visibility = (this.collection.visibility == "visible" ? "hidden" : "visible");
+      }
+    })
   }
 
 }

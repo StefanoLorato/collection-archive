@@ -1,18 +1,44 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="item">
-  <label>Name</label>
-  <input name="itemName" [(ngModel)]="item.itemName" required />
+<div class="form-header">
+  <h2>Update Your Item</h2>
+  <p>Fill in the details of your new update item below.</p>
+</div>
+@if(item != null){
 
-  <label>Description</label>
-  <textarea name="itemDescription" [(ngModel)]="item.itemDescription"></textarea>
+<form class="item-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div>
+    <label for="itemName">Item Name</label>
 
-  <label>Foto:</label>
-  <input name="itemPhoto" [(ngModel)]="item.itemPhoto">
+    <input name="itemName" [(ngModel)]="item.itemName" id="itemName" type="text" required>
+  </div>
 
-  <label>For Sale</label>
-  <input type="checkbox" name="forSale" [(ngModel)]="item.forSale" />
+  <div>
+    <label for="itemDescription">Description</label>
+    <input name="itemDescription" [(ngModel)]="item.itemDescription" id="itemDescription" type="text">
+  </div>
 
-  <label>Sale Price</label>
-  <input name="itemSalePrice" [(ngModel)]="item.salePrice">
+  <div class="photo-upload">
+    <label for="itemPhoto">Update your item photo</label>
+    <input id="itemPhoto" type="file" (change)="onFileSelected($event)">
+  </div>
 
-  <button type="submit">Update Item</button>
+  <!-- Anteprima della foto -->
+<div *ngIf="item?.itemPhoto" class="photo-preview">
+  <img [src]="item.itemPhoto" alt="Item Photo Preview">
+</div>
+
+  <div class="toggle-switch">
+    <label class="switch-label" for="forSale">
+      In vendita
+      <input type="checkbox" id="forSale" name="forSale" [(ngModel)]="item.forSale" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div>
+    <label for="itemSalePrice">Sale Price (€)</label>
+    <input name="itemSalePrice" [(ngModel)]="item.salePrice" id="itemSalePrice" type="number">
+  </div>
+
+  <button type="submit">Update</button>
 </form>
+}

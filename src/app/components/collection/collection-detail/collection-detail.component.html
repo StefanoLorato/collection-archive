@@ -1,25 +1,37 @@
 @if(collection != null){
-  <div class="collection-details">
-    <p>Name Collection: {{ collection.collectionName }}</p>
-    <p>Description Collection: {{ collection.description }}</p>
-    <p>Collection Date: {{ collection.collectionDate }}</p>
-    <p>visibility: {{ collection.visibility }}</p>
-    <p>salePrice: {{ collection.salePrice }}</p>
-
-    @if(currentUser != null && collection.userId == currentUser.userId){
-      <div class="collection-actions">
-        <button [routerLink]="['/item-add', collection.collectionId, collection.userId]">Add New Item</button>
-        <button (click)="navigateToEdit()">Update Data</button>
-        <button [routerLink]="['/wishlist', collection.collectionId]">Visualizza Wishlist</button>
+  @if(collection.visibility != "visible" && ((currentUser != null && collection.userId != currentUser.userId) || currentUser == null)){
+    <h2>Oh-oh! You're not supposed to see this! <a [routerLink]="['/dashboard']">Go back to Dashboard</a></h2>
+  } @else {
+    <div class="collection-details">
+      <div class="title">
+        <p>Name: {{ collection.collectionName }}</p>
+        @if(currentUser != null && currentUser.userId == collection.userId){
+          @if(collection.visibility == "visible"){
+            <button class="visibility-btn" (click)="toggleVisibility()"><i class="bi bi-eye"></i></button>
+          } @else {
+            <button class="visibility-btn" (click)="toggleVisibility()"><i class="bi bi-eye-slash"></i></button>
+          }
+        }
       </div>
-    }
-  </div>
+      <p>Description: {{ collection.description }}</p>
+      <p>Date: {{ collection.collectionDate }}</p>
+      <p>salePrice: {{ collection.salePrice }}</p>
 
-  <div class="item-container">
-    @for (i of list; track i.itemId) {
-      <app-item-card [item]="i" (deleteItem)="handleDelete($event)"></app-item-card>
-    }
-  </div>
+      @if(currentUser != null && collection.userId == currentUser.userId){
+        <div class="collection-actions">
+          <button [routerLink]="['/item-add', collection.collectionId, collection.userId]">Add New Item</button>
+          <button (click)="navigateToEdit()">Update Data</button>
+          <button [routerLink]="['/wishlist', collection.collectionId]">Visualizza Wishlist</button>
+        </div>
+      }
+    </div>
+
+    <div class="item-container">
+      @for (i of list; track i.itemId) {
+        <app-item-card [item]="i" (deleteItem)="handleDelete($event)"></app-item-card>
+      }
+    </div>
+  }
 } @else {
   <h2>Caricando la collection...</h2>
 }

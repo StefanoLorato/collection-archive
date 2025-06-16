@@ -15,7 +15,7 @@ import { ItemService } from '../../../services/itemService';
   styleUrls: ['./item-edit.component.css']
 })
 export class ItemEditComponent implements OnInit {
-  item: Item | undefined;
+  item!: Item;
 
   private _service = inject(ItemService);
   private _route = inject(ActivatedRoute);
@@ -45,4 +45,18 @@ export class ItemEditComponent implements OnInit {
       error: () => alert('Error during update items')
     });
   }
+
+  onFileSelected(event: Event) {
+  const fileInput = event.target as HTMLInputElement;
+  if (fileInput.files && fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.item.itemPhoto = reader.result as string; // salva come base64
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
 }

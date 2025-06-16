@@ -19,7 +19,7 @@ export class CollectionFormComponent {
   private _service = inject(CollectionService);
   private _router = inject(Router);
   private _route = inject(ActivatedRoute);
-  private _isUpdate = false;
+   isUpdate = false;
   private _dataService = inject(DataService);
   private _catService = inject(CategoryService);
   showForm: boolean = true;
@@ -62,7 +62,7 @@ export class CollectionFormComponent {
     console.log("userid" + this.user?.userId);
     const id = this._route.snapshot.paramMap.get("id");
     if (id != null && id != undefined) {
-      this._isUpdate = true;
+      this.isUpdate = true;
       const collectiontId = Number(id)
       if (collectiontId > 0 && !isNaN(collectiontId)) {
         this.findCollection(collectiontId);
@@ -78,7 +78,7 @@ export class CollectionFormComponent {
 
 
     if (this.collectionForm.invalid) return;
-    if (!this._isUpdate) {
+    if (!this.isUpdate) {
       return this._service.createCollection(this.collectionForm.value).subscribe({
         next: () => {
           alert("Collezione aggiunta!");
