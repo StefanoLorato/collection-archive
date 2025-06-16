@@ -15,6 +15,7 @@ import { WishListComponent } from './components/wishlist/wish-list/wish-list.com
 import { ShippingAddressFormComponent } from './components/order/shipping-address-form/shipping-address-form.component';
 import { PaymentFormComponent } from './components/order/payment-form/payment-form.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { PurchaseComponent } from './components/order/purchase/purchase.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
