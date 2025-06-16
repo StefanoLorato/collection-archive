@@ -7,7 +7,7 @@ import { OrderItem } from "../models/orderItem";
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class OrderItemService {
   list: Item[] = [];
   private _url: string = "http://localhost:8080/api/orderItems"
   private _http = inject(HttpClient)

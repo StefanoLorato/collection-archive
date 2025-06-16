@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Collection } from '../../../models/collection';
 import { Item } from '../../../models/item';
 import { DataService } from '../../../service/dataService';
-import { Cart } from '../../../models/cart';
 import { OrderService } from '../../../service/orderService';
 import { User } from '../../../models/user';
 import { Order } from '../../../models/order';
 import { OrderItem } from '../../../models/orderItem';
+import { Cart } from '../../../models/cart';
 
 @Component({
   selector: 'app-payment-form',

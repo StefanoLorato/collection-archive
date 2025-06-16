@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { ShippingAddress } from '../../../models/shippingAddress';
-import { ShippingAddressService } from '../../../service/shippingAddressService';
 import { DataService } from '../../../service/dataService';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../../models/user';
+import { ShippingAddressService } from '../../../service/shippingAddressService';
+import { ShippingAddress } from '../../../models/shippingAddress';
 
 @Component({
   selector: 'app-shipping-address-form',

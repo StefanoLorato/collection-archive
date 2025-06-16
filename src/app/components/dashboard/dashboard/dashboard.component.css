@@ -41,6 +41,6 @@ app-collection-card {
   display: block;
   margin: auto;
   width: 100%;
-  max-width: 460px;
+  max-width: 600px;
   min-width: 0;
 }

@@ -27,7 +27,7 @@ export class CollectionListComponent {
   private _service = inject(CollectionService);
   private _route = inject(ActivatedRoute);
   private _catService = inject(CategoryService);
-  category!: Category;
+  category!: Category | null;
 
   ngOnInit(): void {
     this._route.queryParamMap.subscribe(params => {

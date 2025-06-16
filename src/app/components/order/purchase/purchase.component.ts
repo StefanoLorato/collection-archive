@@ -3,13 +3,11 @@ import { Collection } from '../../../models/collection';
 import { Item } from '../../../models/item';
 import { ItemService } from '../../../service/itemService';
 import { CollectionService } from '../../../service/collectionService';
-import { ShippingAddressService } from '../../../service/shippingAddressService';
-import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ItemCardComponent } from '../../item/item-card/item-card.component';
 import { UserService } from '../../../service/userService';
+import { ShippingAddressService } from '../../../service/shippingAddressService';
 import { CartItem } from '../../../models/cart-item';
 
 @Component({
