@@ -44,3 +44,26 @@ app-collection-card {
   max-width: 600px;
   min-width: 0;
 }
+
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 20px 0 30px;
+  text-align: left;
+  position: relative;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* Effetto sottolineatura elegante */
+h1::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 4px;
+  background-color: #4a90e2;
+  border-radius: 2px;
+  margin-top: 8px;
+}
+

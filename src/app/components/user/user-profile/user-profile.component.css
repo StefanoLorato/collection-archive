@@ -31,3 +31,59 @@ app-collection-card {
     padding: 0;
   }
 }
+
+
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 40px 0 20px;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #3b82f6;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.profile-card {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f2937;
+  line-height: 1.6;
+  transition: box-shadow 0.3s ease;
+  margin-bottom: 70px;
+  margin-left:0px;
+  border-left: 6px solid #3b82f6; /* blu acceso */
+  padding-left: 20px;
+}
+
+.profile-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  
+}
+
+.profile-card p {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 12px 0;
+}
+
+.profile-card h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 24px;
+  color: #2563eb;
+}
+
