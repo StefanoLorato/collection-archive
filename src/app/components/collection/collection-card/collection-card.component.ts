@@ -8,11 +8,11 @@ import { Category } from '../../../models/category';
 import { UserService } from '../../../service/userService';
 import { ItemService } from '../../../service/itemService';
 import { Item } from '../../../models/item';
-import { UserLike } from '../../../models/userLike';
 import { UserLikeService } from '../../../service/userLikeService';
 import { CommonModule } from '@angular/common';
 import { BookmarkService } from '../../../service/bookmarkService';
 import { Bookmark } from '../../../models/bookmark';
+import { UserLike } from '../../../models/userLike';
 
 @Component({
   selector: 'app-collection-card',

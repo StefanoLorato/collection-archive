@@ -2,9 +2,9 @@
   <h2>bookmark per User {{ userId }}</h2>
 
   @if(list.length > 0) {
-    @for (bookmark of list; track bookmark.itemId) {
-      <app-collection-card [bookmark]="bookmark"
-        (deleteBookmarkItem)="removeBookmark($event)">
+    @for (collection of list; track collection.collectionId) {
+      <app-collection-card [collection]="collection"
+        (deleteBookmark)="removeCollection($event)">
       </app-collection-card>
     }
   } @else {
