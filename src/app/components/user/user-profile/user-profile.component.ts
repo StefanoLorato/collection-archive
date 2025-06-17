@@ -1,16 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../../service/userService';
 import { User } from '../../../models/user';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 import { CollectionService } from '../../../service/collectionService';
 import { Collection } from '../../../models/collection';
-import { CollectionListComponent } from '../../collection/collection-lists/collection-list.component';
 import { DataService } from '../../../service/dataService';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [CollectionCardComponent],
+  imports: [CollectionCardComponent, FormsModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
@@ -23,6 +23,7 @@ export class UserProfileComponent implements OnInit{
   private _dataService = inject(DataService);
   private _userId!: number;
   list: Collection[] = [];
+  selectedFilter = 'visible';
 
   ngOnInit(): void {
     const id = this._route.snapshot.paramMap.get("id");
@@ -32,6 +33,7 @@ export class UserProfileComponent implements OnInit{
         this.findUser(this._userId);
         this._dataService.selectedUserObservable.subscribe(loggedUser => {
           if (loggedUser != null) {
+            this.currentUser = loggedUser;
             if (loggedUser.userId === this._userId) {
               this.loadMyCollections();
             } else {
@@ -78,5 +80,10 @@ export class UserProfileComponent implements OnInit{
       next: collections => this.list = collections,
       error: e => alert("Errore di caricamento delle collections " + e)
     });
+  }
+
+  get filteredCollections() {
+    if (this.selectedFilter === 'all') return this.list;
+    return this.list.filter(c => c.visibilityStatus === this.selectedFilter);
   }
 }

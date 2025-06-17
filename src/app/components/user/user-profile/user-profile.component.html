@@ -1,12 +1,31 @@
 @if(owner != null){
-  <p>Name: {{ owner.name }}</p>
-  <p>Lastname: {{ owner.lastname}}</p>
-  <p>Email: {{ owner.email}}</p>
-  <p>{{owner.name}}'s collections:</p>
-  <h2>User id: {{ owner.userId }}</h2>
+  <div class="user-info">
+    <h2>{{ owner.name }} {{ owner.lastname }}</h2>
+    <p><strong>Email:</strong> {{ owner.email }}</p>
+    <p><strong>{{owner.name}}'s collections:</strong></p>
+  </div>
+
+  @if(currentUser != null && owner.userId == currentUser.userId){
+    <div class="collection-filter">
+      <select name="status-option" [(ngModel)]="selectedFilter" id="status-option">
+        <option value="visible">Visible</option>
+        <option value="sold">Sold</option>
+        <option value="archived">Archived</option>
+        <option value="all">All</option>
+      </select>
+    </div>
+  }
+
   <div class="dashboard-container">
-    @for (c of list; track c.collectionId) {
-      <app-collection-card [collection]='c' (deleteCollection)="handleDelete($event)"></app-collection-card>
+    @if(currentUser != null && owner.userId == currentUser.userId){
+      @for (c of filteredCollections; track c.collectionId) {
+        <app-collection-card [collection]="c" (deleteCollection)="handleDelete($event)"></app-collection-card>
+      }
+    }
+    @else {
+      @for (c of list; track c.collectionId) {
+        <app-collection-card [collection]='c'></app-collection-card>
+      }
     }
   </div>
 } @else {

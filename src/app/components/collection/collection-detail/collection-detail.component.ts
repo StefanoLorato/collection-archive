@@ -8,10 +8,11 @@ import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-collection-detail',
-  imports: [ItemCardComponent, RouterLink],
+  imports: [ItemCardComponent, RouterLink, FormsModule],
   templateUrl: './collection-detail.component.html',
   styleUrl: './collection-detail.component.css'
 })
@@ -20,12 +21,13 @@ export class CollectionDetailComponent implements OnInit {
   private _route = inject(ActivatedRoute);
   private _service = inject(CollectionService);
   private _router = inject(Router);
-  item!: Item;
-  list: Item[] = [];
   private _itemService = inject(ItemService);
   private _dataService = inject(DataService);
-  currentUser!: User;
   private _collectionId!: number;
+  item!: Item;
+  list: Item[] = [];
+  currentUser!: User;
+  selectedFilter = "visible";
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -52,8 +54,6 @@ export class CollectionDetailComponent implements OnInit {
       error: e => alert("Errore nel caricamento dell'item " + e)
     });
   }
-
-
 
 
   findCollection(id: number) {
@@ -91,6 +91,17 @@ export class CollectionDetailComponent implements OnInit {
         this.collection.visibility = (this.collection.visibility == "visible" ? "hidden" : "visible");
       }
     })
+  }
+
+  get visibleItems() {
+    return this.list.filter(
+      c => c.visibilityStatus === 'visible'
+    );
+  }
+
+  get filteredItems() {
+    if (this.selectedFilter === 'all') return this.list;
+    return this.list.filter(i => i.visibilityStatus === this.selectedFilter);
   }
 
 }

@@ -1,5 +1,4 @@
-import { CartItem } from "./cart-item";
-
+import { CartItem } from "./cartItem";
 
 export interface Cart{
   items: CartItem[];

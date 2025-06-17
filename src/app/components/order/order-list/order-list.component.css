@@ -1,0 +1,107 @@
+h2{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.order-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* più spazio tra le card */
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.order-card {
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+  margin: 10px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.order-card h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ogni orderItem ha il suo box */
+.sent-oi {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  transition: background-color 0.2s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sent-oi:hover {
+  background-color: #f1f1f1;
+}
+
+.sent-oi p {
+  margin: 4px 0;
+  font-size: 15px;
+  color: #444;
+}
+
+.order-item {
+  display: flex;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+  font-size: 15px;
+  color: #444;
+}
+
+.order-item:first-of-type {
+  border-top: none;
+}
+
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Bottoni più compatti, sulla stessa riga */
+.action-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.action-buttons button {
+  padding: 4px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.action-buttons button:first-child {
+  background-color: #4caf50;
+}
+
+.action-buttons button:last-child {
+  background-color: #f44336;
+}
+
+.action-buttons button:hover {
+  opacity: 0.85;
+}

@@ -1,1 +1,38 @@
-<p>order-list works!</p>
+<h2>My Orders</h2>
+<div class="order-serction">
+  @for(order of orders; track order.orderId){
+    <div class="order-card">
+      <h3>Order #{{order.orderId}} - {{order.orderItems.length}} articles</h3>
+      @for(orderItem of order.orderItems; track orderItem.orderItemId){
+        <div class="sent-oi">
+          <p><strong>ID: </strong>{{orderItem.itemId || orderItem.collectionId}}</p>
+          <p><strong>Seller: </strong>{{sellerMap.get(orderItem.sellerId)?.email || 'Loading...'}}</p>
+          <p><strong>Price: </strong>{{orderItem.price}}€</p>
+          <p><strong>Status: </strong>{{orderItem.status}}</p>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<h2>Received Orders:</h2>
+<div class="order-section">
+  @for(orderItem of receivedOrderItems; track orderItem.itemId){
+    <div class="order-item">
+      @if(orderItem.sellerId === currentUser.userId){
+        <div class="item-content">
+          <div class="item-info">
+            <span>{{ orderItem.itemId ? 'Item' : 'Collection' }} - €{{ orderItem.price }}</span>
+            <span>Status: {{orderItem.status}}</span>
+          </div>
+          <div class="action-buttons">
+            @if(orderItem.status == "pending" && orderItem.orderItemId){
+              <button (click)="accept(orderItem)">Accept</button>
+              <button (click)="decline(orderItem)">Reject</button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

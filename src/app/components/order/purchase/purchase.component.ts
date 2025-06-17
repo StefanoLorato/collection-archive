@@ -8,7 +8,7 @@ import { User } from '../../../models/user';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../service/userService';
 import { ShippingAddressService } from '../../../service/shippingAddressService';
-import { CartItem } from '../../../models/cart-item';
+import { CartItem } from '../../../models/cartItem';
 
 @Component({
   selector: 'app-purchase',
@@ -32,6 +32,7 @@ export class PurchaseComponent implements OnInit{
   private _dataService = inject(DataService);
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
+  isAlreadyInCart: boolean = false;
 
 
   ngOnInit(): void {
@@ -62,6 +63,7 @@ export class PurchaseComponent implements OnInit{
         }
       }
     }
+
   }
 
   findCollection(id: number) {
@@ -69,13 +71,10 @@ export class PurchaseComponent implements OnInit{
       next: c => {
         this.collection = c;
         this.findUserById(this.collection.userId);
-        const cartItem: CartItem = {
-          id: this.collection.collectionId,
-          name: this.collection.collectionName,
-          ownerId: this.collection.userId,
-          price: this.collection.salePrice
-        }
-        this._dataService.addCollection(cartItem);
+        this._dataService.shoppingCartObservable.subscribe(cart => {
+          this.isAlreadyInCart = cart.items.some(i => i.id === this.item?.itemId) ||
+                              cart.collections.some(c => c.id === this.collection?.collectionId);
+        });
       },
       error: e => alert("errore nel caricamento della collection: " + e)
     });
@@ -86,13 +85,10 @@ export class PurchaseComponent implements OnInit{
       next: (i) => {
         this.item = i;
         this.findUserById(this.item.userId);
-        const cartItem: CartItem = {
-          id: this.item.itemId,
-          name: this.item.itemName,
-          ownerId: this.item.userId,
-          price: this.item.salePrice
-        }
-        this._dataService.addItem(cartItem);
+        this._dataService.shoppingCartObservable.subscribe(cart => {
+          this.isAlreadyInCart = cart.items.some(i => i.id === this.item?.itemId) ||
+                              cart.collections.some(c => c.id === this.collection?.collectionId);
+        });
       },
       error: e => alert("errore nel caricamento del item: " + e)
     });
@@ -133,6 +129,28 @@ export class PurchaseComponent implements OnInit{
   }
 
   buyNow(){
+    if (this.isAlreadyInCart) {
+        alert("Questo oggetto è già nel tuo carrello!");
+        this._router.navigate(['/dashboard']);
+    }
+    if(this.collection){
+      const cartItem: CartItem = {
+          id: this.collection.collectionId,
+          name: this.collection.collectionName,
+          ownerId: this.collection.userId,
+          price: this.collection.salePrice
+        }
+        this._dataService.addCollection(cartItem);
+    }
+    if (this.item) {
+      const cartItem: CartItem = {
+        id: this.item.itemId,
+        name: this.item.itemName,
+        ownerId: this.item.userId,
+        price: this.item.salePrice
+      };
+      this._dataService.addItem(cartItem);
+    }
     this._router.navigate(['/shipping-address-form'], { queryParams: { itemId: this.item?.itemId, collectionId: this.collection?.collectionId } });
   }
 }

@@ -9,7 +9,7 @@
   width: 100%;
   margin: auto;
   margin-bottom: 15px;
-  
+
 }
 
 .card-header {
@@ -150,7 +150,7 @@
 }
 
 .description-box{
-  
+
   overflow: hidden;
   font-size: 0.95rem;
   line-height: 1.4;

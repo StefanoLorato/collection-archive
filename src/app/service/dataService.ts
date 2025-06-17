@@ -3,7 +3,7 @@ import { BehaviorSubject } from "rxjs";
 import { User } from "../models/user";
 import { Cart } from "../models/cart";
 import { Item } from "../models/item";
-import { CartItem } from "../models/cart-item";
+import { CartItem } from "../models/cartItem";
 
 @Injectable({
     providedIn: "root"

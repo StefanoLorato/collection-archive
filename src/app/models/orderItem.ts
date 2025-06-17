@@ -5,4 +5,5 @@ export interface OrderItem{
   itemId?: number;
   collectionId?: number;
   price: number;
+  status?: string;
 }

@@ -10,5 +10,5 @@ export interface Collection {
     createdAt:string;
     forSale: boolean;
     salePrice: number;
-    visibilityStatus: number;
+    visibilityStatus: string;
 }

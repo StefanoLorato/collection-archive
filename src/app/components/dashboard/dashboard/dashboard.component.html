@@ -7,5 +7,5 @@
 </div>
 
 <div class="dashboard-container">
-  <app-collection-card *ngFor="let collection of list" [collection]="collection" (deleteCollection)="handleDelete($event)"></app-collection-card>
+  <app-collection-card *ngFor="let collection of visibleCollections" [collection]="collection" (deleteCollection)="handleDelete($event)"></app-collection-card>
 </div>

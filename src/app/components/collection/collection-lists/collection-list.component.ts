@@ -45,6 +45,12 @@ export class CollectionListComponent {
     });
   }
 
+  get visibleCollections() {
+    return this.list.filter(
+      c => c.visibilityStatus === 'visible'
+    );
+  }
+
   findCollectionById(id: number) {
     this._service.getCollectionById(id).subscribe({
       next: c => {

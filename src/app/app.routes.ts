@@ -16,6 +16,7 @@ import { WishListComponent } from './components/wishlist/wish-list/wish-list.com
 import { ShippingAddressFormComponent } from './components/order/shipping-address-form/shipping-address-form.component';
 import { PaymentFormComponent } from './components/order/payment-form/payment-form.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { CartItemListComponent } from './components/order/cart-item-list/cart-item-list.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,5 +38,6 @@ export const routes: Routes = [
      { path: 'purchase/item/:id', component: PurchaseComponent},
      { path: 'shipping-address-form', component: ShippingAddressFormComponent},
      { path: 'payment-form', component: PaymentFormComponent},
-     { path: 'order-list/:id', component: OrderListComponent}
+     { path: 'order-list/:id', component: OrderListComponent},
+     { path: 'cart-item-list/:id', component: CartItemListComponent}
 ];

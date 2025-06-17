@@ -7,6 +7,7 @@ import { UserService } from '../../../service/userService';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
+import { Cart } from '../../../models/cart';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,7 @@ export class DashboardComponent {
   currentUserId!: number;
   currentUser!: User;
   ownerUser!: User;
+  cart!: Cart;
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe( user => {
@@ -31,7 +33,15 @@ export class DashboardComponent {
           this.currentUser = user
         }
       });
+    this._dataService.shoppingCartObservable.subscribe(cart => {
+      this.cart = cart;
+    });
     this.loadAllCollection();
+  }
+  get visibleCollections() {
+    return this.list.filter(
+      c => c.visibilityStatus === 'visible'
+    );
   }
 
   handleDelete(obj: { id: number }) {
@@ -51,7 +61,10 @@ export class DashboardComponent {
   loadAllCollection() {
     const toDoObservable: Observable<Collection[]> = this._collectionService.getCollections();
     toDoObservable.subscribe({
-      next: collections => this.list = collections,
+      next: collections => {
+        this.list = collections;
+        this.list = this.list.filter(c => !this.cart.collections.some(ci => ci.id === c.collectionId));
+      },
       error: e => alert("Errore di caricamento della collection " + e)
     });
   }
