@@ -1,4 +1,4 @@
-@if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
+@if(collection.visibility == "visible"  || (currentUser != null && collection.userId == currentUser.userId)){
 <div class="collection-card">
   @if(list!= null){
     <div class="collection-img {{ list.length === 1 ? 'one-item' : list.length === 2 ? 'two-items' : list.length === 3 ? 'three-items' : '' }}" [routerLink]="['/collection-detail', collection.collectionId]">
@@ -52,16 +52,27 @@
   </div>
   <div class="card-footer">
     <button id="view" [routerLink]="['/collection-detail', collection.collectionId]">View Details</button>
-
     <div class="interact">
-      @if(collection.forSale == true){
+      @if(collection.forSale == true && currentUser.userId != collection.userId){
         <button id="buy" [routerLink]="['/purchase/collection', collection.collectionId]">
           <i class="bi bi-cart"></i>
         </button>
       }
-      <button id="like" (click)="like()"><i class="bi bi-heart"></i></button>
+      <button id="like" (click)="like()">
+        @if(currentUser){
+          <i class="bi bi-heart"></i>
+        } @else {
+          <i class="bi bi-heart-fill"></i>
+        }
+        </button>
       <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
-      <button id="bookmark" (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
+      <button id="bookmark" (click)="bookmark()">
+        @if(currentUser){
+          <i class="bi bi-bookmark"></i>
+        } @else {
+          <i class="bi bi-bookmark-fill"></i>
+        }
+      </button>
     </div>
   </div>
 </div>

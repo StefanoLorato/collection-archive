@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    
+
 <div class="search-bar">
   <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (keyup.enter)="search()" />
   <button (click)="search()"><i class="bi bi-search"></i></button>
@@ -50,11 +50,20 @@
       <a class="button-dynamic" routerLink="/login">Login</a>
       <a class="button-dynamic" routerLink="/register">Register</a>
     } @else {
-   <a class="profile" [routerLink]="['/user-profile', currentUser.userId]">
-   <i class="bi bi-person-circle"></i>
-   <span class="profile-name">{{ currentUser.name || 'My Profile' }}</span>
-   </a>
-    <button class="button-dynamic" (click)="logout()">Logout</button>
+      <a class="profile" [routerLink]="['/cart-item-list', currentUser.userId]">
+        <i class="bi bi-bag"></i>
+      </a>
+      <a class="profile" [routerLink]="['/order-list', currentUser.userId]">
+        <i class="bi bi-list-ul"></i>
+      </a>
+      <a class="profile" [routerLink]="['item-list']">
+        <i class="bi bi-border-width"></i>
+      </a>
+      <a class="profile" [routerLink]="['/user-profile', currentUser.userId]">
+        <i class="bi bi-person-circle"></i>
+        <span class="profile-name">{{ currentUser.name || 'My Profile' }}</span>
+      </a>
+      <button class="button-dynamic" (click)="logout()">Logout</button>
     }
   </div>
 </nav>

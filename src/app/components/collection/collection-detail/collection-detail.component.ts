@@ -8,10 +8,11 @@ import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-collection-detail',
-  imports: [ItemCardComponent, RouterLink],
+  imports: [ItemCardComponent, RouterLink, FormsModule],
   templateUrl: './collection-detail.component.html',
   styleUrl: './collection-detail.component.css'
 })
@@ -26,7 +27,7 @@ export class CollectionDetailComponent implements OnInit {
   private _dataService = inject(DataService);
   currentUser!: User;
   private _collectionId!: number;
-
+  selectedFilter = "visible";
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -92,6 +93,17 @@ export class CollectionDetailComponent implements OnInit {
         this.collection.visibility = (this.collection.visibility == "visible" ? "hidden" : "visible");
       }
     })
+  }
+
+  get visibleItems() {
+    return this.list.filter(
+      c => c.visibilityStatus === 'visible'
+    );
+  }
+
+  get filteredItems() {
+    if (this.selectedFilter === 'all') return this.list;
+    return this.list.filter(i => i.visibilityStatus === this.selectedFilter);
   }
 
 }
