@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { Item } from "../models/item";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -13,6 +13,11 @@ export class ItemService {
 
   getItems(): Observable<Item[]> {
       return this._http.get<Item[]>(this._url);
+  }
+
+  getOrphanedItems(): Observable<Item[]>{
+    let params = new HttpParams().set("orphaned", true);
+    return this._http.get<Item[]>(this._url, {params});
   }
 
   deleteItem(id: number): Observable<void> {

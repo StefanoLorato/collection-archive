@@ -10,6 +10,12 @@
   <div class="item-info">
     <h3 class="item-title">{{ item.itemName }}</h3>
     <p class="item-description">{{ item.itemDescription }}</p>
+    @if(collection){
+      <p>Collection: {{collection.collectionName}}</p>
+    }
+    @else {
+      <p>No Collection</p>
+    }
 
     @if(item.salePrice != null) {
       <div class="price-row">
@@ -22,15 +28,16 @@
       <div class="owner-buttons">
         <button (click)="onDelete()">Elimina</button>
         <button (click)="onUpdate()">Modifica</button>
-         @if(item.forSale){
-          <button id="buy" [routerLink]="['/purchase/item', item.itemId]">
-            <i class="bi bi-cart"></i>
-          </button>
-        }
       </div>
     }
-    @else if(item.userId != currentUser.userId){
+    @else {
+      @if(item.forSale){
+       <button id="buy" [routerLink]="['/purchase/item', item.itemId]">
+         <i class="bi bi-cart"></i>
+       </button>
+      }
     }
+
   </div>
 </div>
 

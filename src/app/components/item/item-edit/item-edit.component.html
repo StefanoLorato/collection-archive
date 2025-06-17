@@ -7,13 +7,22 @@
 <form class="item-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
   <div>
     <label for="itemName">Item Name</label>
-
     <input name="itemName" [(ngModel)]="item.itemName" id="itemName" type="text" required>
   </div>
 
   <div>
     <label for="itemDescription">Description</label>
     <input name="itemDescription" [(ngModel)]="item.itemDescription" id="itemDescription" type="text">
+  </div>
+
+  <div>
+    <label for="itemCollection">Collection</label>
+    <select [(ngModel)]="item.collectionId" id="collectionId" name="collectionId">
+      <option value="" disabled>-- Choose collection --</option>
+      @for(c of collections; track c.collectionId){
+        <option value="{{c.collectionId}}">{{c.collectionName}}</option>
+      }
+    </select>
   </div>
 
   <div class="photo-upload">

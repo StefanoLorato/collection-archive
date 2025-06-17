@@ -39,5 +39,6 @@ export const routes: Routes = [
      { path: 'shipping-address-form', component: ShippingAddressFormComponent},
      { path: 'payment-form', component: PaymentFormComponent},
      { path: 'order-list/:id', component: OrderListComponent},
-     { path: 'cart-item-list/:id', component: CartItemListComponent}
+     { path: 'cart-item-list/:id', component: CartItemListComponent},
+     { path: 'item-list', component: ItemListComponent}
 ];

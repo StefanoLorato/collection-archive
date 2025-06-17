@@ -57,6 +57,9 @@
       <a class="profile" [routerLink]="['/order-list', currentUser.userId]">
         <i class="bi bi-list-ul"></i>
       </a>
+      <a class="profile" [routerLink]="['item-list']">
+        <i class="bi bi-border-width"></i>
+      </a>
       <a class="profile" [routerLink]="['/user-profile', currentUser.userId]">
         <i class="bi bi-person-circle"></i>
         <span class="profile-name">{{ currentUser.name || 'My Profile' }}</span>
