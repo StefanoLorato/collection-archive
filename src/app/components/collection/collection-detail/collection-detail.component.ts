@@ -21,12 +21,12 @@ export class CollectionDetailComponent implements OnInit {
   private _route = inject(ActivatedRoute);
   private _service = inject(CollectionService);
   private _router = inject(Router);
-  private _itemService = inject(ItemService);
-  private _dataService = inject(DataService);
-  private _collectionId!: number;
   item!: Item;
   list: Item[] = [];
+  private _itemService = inject(ItemService);
+  private _dataService = inject(DataService);
   currentUser!: User;
+  private _collectionId!: number;
   selectedFilter = "visible";
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class CollectionDetailComponent implements OnInit {
       this._collectionId = +id; //potevo fare anche Number(id) per rendere la string un number
       if (this._collectionId != 0 && !isNaN(this._collectionId)) {
         this.findCollection(this._collectionId);
-        this.loadItem(this._collectionId);
+        this.loadItem(this._collectionId)
       } else {
         alert("id non valido");
       }
@@ -54,6 +54,8 @@ export class CollectionDetailComponent implements OnInit {
       error: e => alert("Errore nel caricamento dell'item " + e)
     });
   }
+
+
 
 
   findCollection(id: number) {

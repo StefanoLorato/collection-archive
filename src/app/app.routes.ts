@@ -17,6 +17,10 @@ import { ShippingAddressFormComponent } from './components/order/shipping-addres
 import { PaymentFormComponent } from './components/order/payment-form/payment-form.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { CartItemListComponent } from './components/order/cart-item-list/cart-item-list.component';
+import { PrivateCollectionGuard } from './guards/private-collection-guard';
+import { NotForSaleGuard } from './guards/not-for-sale-guard';
+import { UnauthorizedComponent } from './components/error/unauthorized/unauthorized.component';
+import { NotFoundComponent } from './components/error/not-found/not-found.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,7 +29,7 @@ export const routes: Routes = [
      { path: 'collection-list', component: CollectionListComponent },
      { path: 'collection-list/:categoryId', component: CollectionListComponent },
      { path: 'collection-form', component: CollectionFormComponent },
-     { path: 'collection-detail/:id', component: CollectionDetailComponent },
+     { path: 'collection-detail/:id', component: CollectionDetailComponent, canActivate: [PrivateCollectionGuard]},
      { path: 'edit-collection-form/:id', component: CollectionFormComponent },
      { path: 'item-list', component: ItemListComponent },
      { path: 'item-edit/:id', component: ItemEditComponent },
@@ -34,10 +38,13 @@ export const routes: Routes = [
      { path: 'login', component: LoginFormComponent },
      { path: 'user-profile/:id', component: UserProfileComponent},
      { path: 'wishlist/:id', component: WishListComponent },
-     { path: 'purchase/collection/:id', component: PurchaseComponent},
-     { path: 'purchase/item/:id', component: PurchaseComponent},
+     { path: 'purchase/collection/:id', component: PurchaseComponent, canActivate: [NotForSaleGuard]},
+     { path: 'purchase/item/:id', component: PurchaseComponent, canActivate: [NotForSaleGuard]},
      { path: 'shipping-address-form', component: ShippingAddressFormComponent},
      { path: 'payment-form', component: PaymentFormComponent},
      { path: 'order-list/:id', component: OrderListComponent},
-     { path: 'cart-item-list/:id', component: CartItemListComponent}
+     { path: 'cart-item-list/:id', component: CartItemListComponent},
+     { path: 'item-list', component: ItemListComponent},
+     { path: 'unauthorized', component: UnauthorizedComponent },
+     { path: 'not-found', component: NotFoundComponent }
 ];

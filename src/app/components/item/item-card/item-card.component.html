@@ -22,14 +22,14 @@
       <div class="owner-buttons">
         <button (click)="onDelete()">Elimina</button>
         <button (click)="onUpdate()">Modifica</button>
-         @if(item.forSale){
-          <button id="buy" [routerLink]="['/purchase/item', item.itemId]">
-            <i class="bi bi-cart"></i>
-          </button>
-        }
       </div>
     }
-    @else if(item.userId != currentUser.userId){
+    @else {
+      @if(item.forSale){
+       <button id="buy" [routerLink]="['/purchase/item', item.itemId]">
+         <i class="bi bi-cart"></i>
+       </button>
+      }
     }
   </div>
 </div>

@@ -12,7 +12,7 @@
   <div class="search-containers">
     <!-- Bottone per aprire la finestra -->
     <button class="open-modal-btn" (click)="showModal = true">
-      Categorie
+      Categories
       <span class="arrow">▾</span>
     </button>
 
@@ -21,7 +21,7 @@
 
       <div class="modal-content">
         <button class="close-btn" (click)="showModal = false">✕</button>
-        <h2>Categorie</h2>
+        <h2>Categories</h2>
 
         <div class="dropdown-grid">
           @for(c of list; track c.categoryId){
@@ -37,12 +37,11 @@
       </div>
     </div>
 
-    <div class="search-bar">
-      <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca..." />
-      <button (click)="search()"><i class="bi bi-search"></i></button>
-    </div>
-
-  </div>
+<div class="search-bar">
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (keyup.enter)="search()" />
+  <button (click)="search()"><i class="bi bi-search"></i></button>
+</div>
+</div>
 
   <!-- Login e logout -->
 
@@ -56,6 +55,9 @@
       </a>
       <a class="profile" [routerLink]="['/order-list', currentUser.userId]">
         <i class="bi bi-list-ul"></i>
+      </a>
+      <a class="profile" [routerLink]="['item-list']">
+        <i class="bi bi-border-width"></i>
       </a>
       <a class="profile" [routerLink]="['/user-profile', currentUser.userId]">
         <i class="bi bi-person-circle"></i>
