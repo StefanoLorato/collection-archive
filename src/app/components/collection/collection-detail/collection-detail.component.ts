@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { FormsModule } from '@angular/forms';
+import { ItemAddComponent } from '../../item/item-add/item-add.component';
 
 @Component({
   selector: 'app-collection-detail',
@@ -24,6 +25,8 @@ export class CollectionDetailComponent implements OnInit {
   private _itemService = inject(ItemService);
   private _dataService = inject(DataService);
   private _collectionId!: number;
+  currentUser!: User;
+  list: Item[] = [];
   selectedFilter = "visible";
 
   ngOnInit(): void {
