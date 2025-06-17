@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-   align-items: flex-start;
+   align-items: center;
     margin-bottom: 18px;
     padding-right: 24px;
 }
@@ -38,7 +38,6 @@
   margin-bottom: 6px;
   color: #5f6368;
  font-size: 15px;
-    margin-bottom: 6px;
     font-weight: bold;
 }
 
@@ -49,6 +48,7 @@
   font-size: 16px;
   transition: border 0.2s;
   width: 100%;
+  margin-left: 24px;
 }
 
 .form-group input:focus {
@@ -88,3 +88,43 @@ button[type="submit"]:hover {
     transform: scale(1.05);
     text-decoration: underline;
 }
+
+.password-field {
+  position: relative;
+  margin-bottom: 20px;
+
+}
+
+.password-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #5f6368;
+}
+
+.password-input {
+  width: 100%;
+  padding: 12px;
+  padding-right: 40px; /* spazio per l’occhio */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* ----Eye fot the password--- */
+.password-field i.bi {
+  position: absolute;
+  right: 10px;
+  top: 48px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #666;
+  transition: color 0.2s ease-in-out;
+}
+
+.password-field i.bi:hover {
+  color: #3e88ea
+}
+

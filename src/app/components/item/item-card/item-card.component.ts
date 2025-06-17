@@ -32,7 +32,9 @@ export class ItemCardComponent implements OnInit{
       }
     });
     this.findUserById(this.item.userId);
-    this.findCollectionById(this.item.collectionId);
+    if(this.item.collectionId){
+      this.findCollectionById(this.item.collectionId);
+    }
   }
 
   onDelete(){

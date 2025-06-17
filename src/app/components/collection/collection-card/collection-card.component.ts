@@ -8,12 +8,15 @@ import { Category } from '../../../models/category';
 import { UserService } from '../../../service/userService';
 import { ItemService } from '../../../service/itemService';
 import { Item } from '../../../models/item';
+import { UserLike } from '../../../models/userLike';
+import { UserLikeService } from '../../../service/userLikeService';
+import { CommonModule } from '@angular/common';
 import { BookmarkService } from '../../../service/bookmarkService';
 import { Bookmark } from '../../../models/bookmark';
 
 @Component({
   selector: 'app-collection-card',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './collection-card.component.html',
   styleUrl: './collection-card.component.css'
 })
@@ -24,6 +27,7 @@ export class CollectionCardComponent {
   private _catService = inject(CategoryService);
   private _userService = inject(UserService);
   private _itemService = inject(ItemService);
+  private _likeService = inject(UserLikeService);
   currentUser!: User;
   category!: Category | null;
   owner!: User | null;
@@ -31,8 +35,7 @@ export class CollectionCardComponent {
   showFullDescription = false;
   isLongDescription = false;
   hasTags = false;
-  
-
+  like!: UserLike;
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
@@ -76,7 +79,28 @@ export class CollectionCardComponent {
     })
   }
 
-  like(){
+ toggleLike() {
+    this.like = {
+      userId: this.currentUser.userId,
+      collectionId: this.collection.collectionId
+    };
+    if(!this.collection.liked){
+      this._likeService.addLike(this.like).subscribe({
+        next: (savedLike) => {
+          this.collection = {...this.collection, liked: !this.collection.liked, likeId: savedLike.likeId!};
+          alert("Like aggiunto");
+        },
+        error: err => alert("Errore nell'aggiunta del like: " + err)
+      });
+    } else {
+      this._likeService.deleteLike(this.collection.likeId!).subscribe({
+        next: () => {
+          this.collection = {...this.collection, liked: !this.collection.liked, likeId: null};
+          alert("Like rimosso");
+        },
+        error: err => alert("Errore nella rimozione del like: " + err)
+      });
+    }
   }
   comment(){
   }
@@ -87,7 +111,7 @@ export class CollectionCardComponent {
     }
     this._bookmarkService.createBookmark(bookmark).subscribe({
       next: b => alert("bookmark aggiunto con id: " + b.bookmarkId),
-      error: err => alert("errore nell'aggiunta del bookmark" + err) 
+      error: err => alert("errore nell'aggiunta del bookmark" + err)
     })
   }
 
