@@ -5,11 +5,18 @@
         <img src="{{item.itemPhoto}}" alt="">
       }
     </div> -->
-    <div class="image-carousel">
-      <button class="nav-button left" (click)="prevImage()" [disabled]="currentImageIndex === 0">&#10094;</button>
-      <img [src]="currentImage" class="carousel-image" alt="item image" />
-      <button class="nav-button right" (click)="nextImage()" [disabled]="currentImageIndex === list.length - 1">&#10095;</button>
-    </div>
+    @if(list){
+      <div class="image-carousel">
+        <button class="nav-button left" (click)="prevImage()" [disabled]="currentImageIndex === 0">&#10094;</button>
+        <img [src]="currentImage" class="carousel-image" alt="item image" />
+        <button class="nav-button right" (click)="nextImage()" [disabled]="currentImageIndex === list.length - 1">&#10095;</button>
+      </div>
+    }
+    @else {
+      <div class="image-carousel">
+        <p class="no-image">This collection is Empty</p>
+      </div>
+    }
     <div class="info-container">
       <h2 class="collection title">{{collection.collectionName}}</h2>
       <div class="owner-section">

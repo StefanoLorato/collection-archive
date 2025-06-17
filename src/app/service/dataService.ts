@@ -41,6 +41,10 @@ export class DataService {
     this.shoppingCartObservable = this._shoppingCartBehavior.asObservable();
   }
 
+  getLastSelectedUser(){
+    return this._selectedUserBehavior.value; 
+  }
+
   selectedUser(user: User) {
     this._selectedUserBehavior.next(user);
   }

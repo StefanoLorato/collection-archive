@@ -9,38 +9,36 @@ import { PasswordUpdate } from "../models/passwordUpdate";
     providedIn: 'root'
 })
 export class UserService {
-    list: User[] = [];
-    private _url: string = "http://localhost:8080/api/users"
-    private _http = inject(HttpClient)
+  private _url: string = "http://localhost:8080/api/users"
+  private _http = inject(HttpClient)
 
-    getUser(): Observable<User[]> {
-        return this._http.get<User[]>(this._url);
-    }
+  getUser(): Observable<User[]> {
+      return this._http.get<User[]>(this._url);
+  }
 
-    deleteUser(id: number): Observable<void> {
-        return this._http.delete<void>(`${this._url}/${id}`);
+  deleteUser(id: number): Observable<void> {
+      return this._http.delete<void>(`${this._url}/${id}`);
+  }
 
-    }
+  getUserById(id: number): Observable<User> {
+      return this._http.get<User>(`${this._url}/${id}`);
+  }
 
-    getUserById(id: number): Observable<User> {
-        return this._http.get<User>(`${this._url}/${id}`);
-    }
+  getUserInfo(): Observable<User> {
+      return this._http.get<User>(`${this._url}/userInfo`);
+  }
 
-    getUserInfo(): Observable<User> {
-        return this._http.get<User>(`${this._url}/userInfo`);
-    }
-
-    getUserByEmail(email: string): Observable<User> {
-        return this._http.get<User>(`${this._url}/email/${email}`);
-    }
+  getUserByEmail(email: string): Observable<User> {
+      return this._http.get<User>(`${this._url}/email/${email}`);
+  }
 
 
-    deactivateUser(user: User): Observable<void> {
-        return this._http.put<void>(`${this._url}/${user.userId}`, user);
-    }
+  deactivateUser(user: User): Observable<void> {
+      return this._http.put<void>(`${this._url}/${user.userId}`, user);
+  }
 
-    updatePassword(dto: PasswordUpdate): Observable<void> {
-        return this._http.put<void>(`${this._url}/password`, dto);
-    }
+  updatePassword(dto: PasswordUpdate): Observable<void> {
+      return this._http.put<void>(`${this._url}/password`, dto);
+  }
 
 }
