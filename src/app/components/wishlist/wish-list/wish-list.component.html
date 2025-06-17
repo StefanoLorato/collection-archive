@@ -1,3 +1,16 @@
+<button (click)="toggleForm()">+ Nuova voce wishlist</button>
+
+@if (showAddForm) {
+  <form (ngSubmit)="addWishListItem()" #form="ngForm">
+    <input name="name" [(ngModel)]="newWishList.name" placeholder="Nome" required />
+    <input name="itemDescription" [(ngModel)]="newWishList.itemDescription" placeholder="Descrizione" />
+    <input name="itemId" type="number" [(ngModel)]="newWishList.itemId" placeholder="ID Item (se rilevante)" />
+    <input name="releaseDate" type="date" [(ngModel)]="newWishList.releaseDate" />
+    <input name="itemVersion" [(ngModel)]="newWishList.itemVersion" placeholder="Versione" />
+    <input name="itemEdition" [(ngModel)]="newWishList.itemEdition" placeholder="Edizione" />
+    <button type="submit">Salva</button>
+  </form>
+}
 @if(wishList != null) {
   <h2>Wishlist per la Collection {{ collectionId }}</h2>
 

@@ -6,14 +6,25 @@ import { ActivatedRoute } from '@angular/router';
 import { ItemAddComponent } from '../../item/item-add/item-add.component';
 import { WishList } from '../../../models/wishList';
 import { WishlistItemCardComponent } from '../wishlist-item-card/wishlist-item-card.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-wish-list',
-  imports: [ WishlistItemCardComponent],
+  imports: [FormsModule, WishlistItemCardComponent],
   templateUrl: './wish-list.component.html',
   styleUrl: './wish-list.component.css'
 })
 export class WishListComponent implements OnInit {
+  showAddForm = false;
+
+newWishList: Partial<WishList> = {
+  name: '',
+  itemDescription: '',
+  itemId: 0,
+  releaseDate: new Date(),
+  itemVersion: '',
+  itemEdition: ''
+};
   private _wishListService = inject(WishlistService);
   private _userService = inject(UserService);
   private _route = inject(ActivatedRoute);
@@ -53,4 +64,30 @@ export class WishListComponent implements OnInit {
       }
     });
   }
+  toggleForm() {
+  this.showAddForm = !this.showAddForm;
+}
+
+addWishListItem() {
+  if (!this.collectionId) return;
+
+  const dto: WishList = {
+    id: 0,
+    name: this.newWishList.name ?? '',
+    itemId: this.newWishList.itemId ?? 0,
+    itemDescription: this.newWishList.itemDescription ?? '',
+    releaseDate: this.newWishList.releaseDate ?? new Date(),
+    itemVersion: this.newWishList.itemVersion ?? '',
+    itemEdition: this.newWishList.itemEdition ?? ''
+  };
+
+  this._wishListService.createWishListItem(dto).subscribe({
+    next: (createdItem) => {
+      this.wishList.push(createdItem);
+      this.newWishList = {};
+      this.showAddForm = false;
+    },
+    error: err => alert("Errore nella creazione: " + err)
+  });
+}
 }
