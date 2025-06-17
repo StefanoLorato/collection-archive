@@ -24,9 +24,6 @@ export class CollectionDetailComponent implements OnInit {
   private _itemService = inject(ItemService);
   private _dataService = inject(DataService);
   private _collectionId!: number;
-  item!: Item;
-  list: Item[] = [];
-  currentUser!: User;
   selectedFilter = "visible";
 
   ngOnInit(): void {

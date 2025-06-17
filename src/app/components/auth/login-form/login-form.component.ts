@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { DataService } from '../../../service/dataService';
 import { UserService } from '../../../service/userService';
 import { User } from '../../../models/user';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-form',
@@ -21,6 +22,8 @@ export class LoginFormComponent {
   user : User | null = null;
   formBuilder = inject(FormBuilder);
   loginForm!: FormGroup;
+  show: boolean = false;
+  password: string = '';
 
   constructor() {
     this.loginForm = this.formBuilder.group({
@@ -40,7 +43,7 @@ export class LoginFormComponent {
       next: (res) => {
         this.getUserByEmail(email);
         alert("Login with success!");
-        this._router.navigate(['/home']);
+        this._router.navigate(['/dashboard']);
       },
       error: err => alert("Errore durante login" + err)
     });
@@ -55,6 +58,10 @@ export class LoginFormComponent {
       },
       error: err => alert("Errore durante login" + err)
     })
+  }
+
+  toggle(): void {
+    this.show = !this.show;
   }
 
 }

@@ -6,10 +6,12 @@
   align-items: center;
   gap: 20px;
   padding: 0 30px;
-  background-color: #fbfbfb;
+  background-color: #ffffff;
   height: 130px;
-  font-family: 'Roboto', sans-serif;
   border-bottom: 2px solid #e7e4e4;
+    font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 /* Logo */
@@ -21,7 +23,9 @@
 
 .brand-name {
   color: #0d47a1;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-weight: 600;
   font-size: 2.5rem;
   margin-left: 12px;
@@ -64,7 +68,7 @@
   border: none;
   background: transparent;
   font-size: 24px;
-  padding: 10px;
+  padding: 20px;
   outline: none;
 }
 
@@ -74,6 +78,7 @@
   border-radius: 30px;
   padding: 10px 15px;
   transition: all 0.3s ease-in-out;
+  font-size: 30px;
 }
 
 .search-bar button:hover {
@@ -93,12 +98,11 @@
 .auth-links a,
 .auth-links button {
   background-color: #1a73e8;
-  /* Blu cobalto */
   color: white;
-  padding: 16px 16px;
+  padding: 20px 23px;
   border: none;
   border-radius: 3px;
-  font-size: 28px;
+  font-size: 22px;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
@@ -108,6 +112,56 @@
 .auth-links button:hover {
   background-color: #1669c1;
   /* tono leggermente più scuro */
+}
+ /* AUTH_LINK DEL USER PROFILE */
+.auth-links .profile {
+  color: #000 !important;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+
+}
+
+.auth-links .profile:hover,
+.auth-links .profile:focus,
+.auth-links .profile:active {
+  color: #000 !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+  outline: none !important;
+
+}
+.auth-links .profile i {
+  color: #0d6efd;
+  font-size: 24px;
+  pointer-events: none;
+
+}
+
+.auth-links .profile-name {
+  color: #000;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+ /* Bottoni dinamici per autlink */
+.button-dynamic {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1);
+}
+
+.button-dynamic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-dynamic:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
  /* AUTH_LINK DEL USER PROFILE */
@@ -329,7 +383,6 @@
 
 /*  Finestra modal category  */
 
-
 .open-modal-btn {
   padding: 12px 20px;
   font-size: 22px;
@@ -474,3 +527,6 @@
   font-weight: 800;
   margin-bottom: 40px;
 }
+
+
+

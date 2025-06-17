@@ -22,7 +22,6 @@ export class ItemService {
 
   deleteItem(id: number): Observable<void> {
       return this._http.delete<void>(`${this._url}/${id}`);
-
   }
 
   getItemById(id: number): Observable<Item> {

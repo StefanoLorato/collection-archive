@@ -42,7 +42,7 @@ export class DataService {
   }
 
   getLastSelectedUser(){
-    return this._selectedUserBehavior.value; 
+    return this._selectedUserBehavior.value;
   }
 
   selectedUser(user: User) {

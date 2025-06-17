@@ -9,16 +9,16 @@ import { PasswordUpdate } from "../models/passwordUpdate";
     providedIn: 'root'
 })
 export class UserService {
-  private _url: string = "http://localhost:8080/api/users"
-  private _http = inject(HttpClient)
+    private _url: string = "http://localhost:8080/api/users"
+    private _http = inject(HttpClient)
 
   getUser(): Observable<User[]> {
       return this._http.get<User[]>(this._url);
   }
 
-  deleteUser(id: number): Observable<void> {
-      return this._http.delete<void>(`${this._url}/${id}`);
-  }
+    deleteUser(id: number): Observable<void> {
+        return this._http.delete<void>(`${this._url}/${id}`);
+    }
 
   getUserById(id: number): Observable<User> {
       return this._http.get<User>(`${this._url}/${id}`);

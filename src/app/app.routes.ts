@@ -17,10 +17,10 @@ import { ShippingAddressFormComponent } from './components/order/shipping-addres
 import { PaymentFormComponent } from './components/order/payment-form/payment-form.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { CartItemListComponent } from './components/order/cart-item-list/cart-item-list.component';
-import { UnauthorizedComponent } from './components/error/unauthorized/unauthorized.component';
-import { NotFoundComponent } from './components/error/not-found/not-found.component';
 import { PrivateCollectionGuard } from './guards/private-collection-guard';
 import { NotForSaleGuard } from './guards/not-for-sale-guard';
+import { UnauthorizedComponent } from './components/error/unauthorized/unauthorized.component';
+import { NotFoundComponent } from './components/error/not-found/not-found.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
