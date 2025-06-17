@@ -8,6 +8,8 @@ import { Category } from '../../../models/category';
 import { UserService } from '../../../service/userService';
 import { ItemService } from '../../../service/itemService';
 import { Item } from '../../../models/item';
+import { UserLikeService } from '../../../service/userLikeService';
+import { UserLike } from '../../../models/userLike';
 
 @Component({
   selector: 'app-collection-card',
@@ -21,6 +23,8 @@ export class CollectionCardComponent {
   private _catService = inject(CategoryService);
   private _userService = inject(UserService);
   private _itemService = inject(ItemService);
+  private _likeService = inject(UserLikeService);
+
   currentUser!: User;
   category!: Category | null;
   owner!: User | null;
@@ -73,6 +77,11 @@ export class CollectionCardComponent {
   }
 
   like(){
+    const like: UserLike = {userId: this.currentUser.userId, collectionId: this.collection.collectionId}
+    this._likeService.addLike(like).subscribe({
+      next: like => alert("Like aggiunto"),
+      error: err => alert("Errore nell'aggiunta del like" + err)
+    })
   }
   comment(){
   }
