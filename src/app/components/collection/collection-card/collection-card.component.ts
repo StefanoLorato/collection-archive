@@ -36,6 +36,7 @@ export class CollectionCardComponent {
   isLongDescription = false;
   hasTags = false;
   like!: UserLike;
+  bookmark!: Bookmark;
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
@@ -105,17 +106,30 @@ export class CollectionCardComponent {
   comment(){
   }
   addBookmark(){
-    const bookmark : Bookmark= {
+    this.bookmark = {
       userId: this.currentUser.userId,
       collectionId: this.collection.collectionId,
     }
-    this._bookmarkService.createBookmark(bookmark).subscribe({
-      next: b => alert("bookmark aggiunto con id: " + b.bookmarkId),
-      error: err => alert("errore nell'aggiunta del bookmark" + err)
-    })
+    if(!this.collection.bookmarked){
+      this._bookmarkService.createBookmark(this.bookmark).subscribe({
+        next: b => {
+          this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: b.bookmarkId!};
+          alert("bookmark aggiunto");
+        },
+        error: err => alert("errore nell'aggiunta del bookmark" + err)
+      })
+    } else {
+      this._bookmarkService.deleteBookmark(this.collection.bookmarkId!).subscribe({
+        next: () => {
+          this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: null};
+          alert("bookmark rimosso");
+        },
+        error: err =>  alert("errore nella rimozione del bookmark" + err)
+      })
+    }
   }
 
-    loadItem(id: number) {
+  loadItem(id: number) {
     this._itemService.getItemsByCollectionId(id).subscribe({
       next: items => this.list = items,
       error: e => alert("Errore nel caricamento dell'item " + e)

@@ -8,10 +8,12 @@ import { BookmarkCardItemComponent } from "../bookmark-card-item/bookmark-card-i
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
+import { Collection } from '../../../models/collection';
 
 @Component({
   selector: 'app-bookmarklist',
-  imports: [BookmarkCardItemComponent, CommonModule],
+  imports: [CommonModule, CollectionCardComponent],
   templateUrl: './bookmarklist.component.html',
   styleUrl: './bookmarklist.component.css'
 })
@@ -21,8 +23,8 @@ export class BookmarklistComponent {
   private _userService = inject(UserService);
   private _route = inject(ActivatedRoute);
   list!: Bookmark[];
-  userId!: number; 
-  currentUser!: User; 
+  userId!: number;
+  currentUser!: User;
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -32,7 +34,7 @@ export class BookmarklistComponent {
     });
     this.loadBookmark();
   }
-  
+
   loadBookmark() : void{
     const bookmarkObservable: Observable<Bookmark[]> = this._bookmarkService.getBookmarkByUserId(this.currentUser.userId);
      bookmarkObservable.subscribe({
@@ -53,5 +55,5 @@ export class BookmarklistComponent {
       }
     });
   }
-  
+
 }
