@@ -71,15 +71,17 @@ newWishList: Partial<WishList> = {
 addWishListItem() {
   if (!this.collectionId) return;
 
-  const dto: WishList = {
-    id: 0,
-    name: this.newWishList.name ?? '',
-    itemId: this.newWishList.itemId ?? 0,
-    itemDescription: this.newWishList.itemDescription ?? '',
-    releaseDate: this.newWishList.releaseDate ?? new Date(),
-    itemVersion: this.newWishList.itemVersion ?? '',
-    itemEdition: this.newWishList.itemEdition ?? ''
-  };
+  const dto: any = {
+  id: 0,
+  collectionId: this.collectionId,
+  name: this.newWishList.name ?? '',
+  itemId: this.newWishList.itemId ?? 0,
+  itemDescription: this.newWishList.itemDescription ?? '',
+  releaseDate: this.newWishList.releaseDate ?? new Date(),
+  itemVersion: this.newWishList.itemVersion ?? '',
+  itemEdition: this.newWishList.itemEdition ?? ''
+};
+console.log("DTO inviato:", dto);
 
   this._wishListService.createWishListItem(dto).subscribe({
     next: (createdItem) => {
