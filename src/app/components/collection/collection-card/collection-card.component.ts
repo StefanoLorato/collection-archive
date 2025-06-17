@@ -8,6 +8,8 @@ import { Category } from '../../../models/category';
 import { UserService } from '../../../service/userService';
 import { ItemService } from '../../../service/itemService';
 import { Item } from '../../../models/item';
+import { BookmarkService } from '../../../service/bookmarkService';
+import { Bookmark } from '../../../models/bookmark';
 
 @Component({
   selector: 'app-collection-card',
@@ -16,6 +18,7 @@ import { Item } from '../../../models/item';
   styleUrl: './collection-card.component.css'
 })
 export class CollectionCardComponent {
+  private _bookmarkService = inject(BookmarkService);
   private _dataService = inject(DataService);
   private _router = inject(Router);
   private _catService = inject(CategoryService);
@@ -28,6 +31,7 @@ export class CollectionCardComponent {
   showFullDescription = false;
   isLongDescription = false;
   hasTags = false;
+  
 
 
   @Input('collection') collection!: Collection;
@@ -76,7 +80,15 @@ export class CollectionCardComponent {
   }
   comment(){
   }
-  bookmark(){
+  addBookmark(){
+    const bookmark : Bookmark= {
+      userId: this.currentUser.userId,
+      collectionId: this.collection.collectionId,
+    }
+    this._bookmarkService.createBookmark(bookmark).subscribe({
+      next: b => alert("bookmark aggiunto con id: " + b.bookmarkId),
+      error: err => alert("errore nell'aggiunta del bookmark" + err) 
+    })
   }
 
     loadItem(id: number) {

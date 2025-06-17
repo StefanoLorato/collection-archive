@@ -1,7 +1,9 @@
  export interface Bookmark{
-    userId : number; 
-    itemId : number; 
-    collectionId: number;  
-    savedAt : string; 
+   bookmarkId?: number; 
+   userId : number; 
+   itemId? : number; 
+   collectionId?: number;  
+   savedAt? : string; 
+   name?: string; 
 
  }

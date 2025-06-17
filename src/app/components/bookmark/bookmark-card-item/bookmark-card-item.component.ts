@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Bookmark } from '../../../models/bookmark';
+import { Item } from '../../../models/item';
+import { Collection } from '../../../models/collection';
 
 @Component({
   selector: 'app-bookmark-card-item',
@@ -9,9 +11,13 @@ import { Bookmark } from '../../../models/bookmark';
 })
 export class BookmarkCardItemComponent {
   
+  item: Item | null = null; 
+  collection: Collection | null = null;  
 
   @Input('bookmarkitem') bookmarkitem!: Bookmark;
   @Output('deleteBookmarkItem') deleteBookmarkItem = new EventEmitter<({id: number})>;
+  
+
 
   OnDelete(id: number) {
     this.deleteBookmarkItem.emit({id: id})

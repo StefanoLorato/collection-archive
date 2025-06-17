@@ -1,11 +1,11 @@
-@if(bookmark != null) {
+@if(list != null) {
   <h2>bookmark per User {{ userId }}</h2>
 
-  @if(bookmark.length > 0) {
-    @for (bookmarkItem of bookmark; track bookmarkItem.itemId) {
+  @if(list.length > 0) {
+    @for (bookmarkItem of list; track bookmarkItem.itemId) {
       <app-bookmark-card-item
         [bookmarkitem]="bookmarkItem"
-        (deleteBookmarkItem)="removeItemFromBookmark($event)">
+        (deleteBookmarkItem)="removeBookmark($event)">
       </app-bookmark-card-item>
     }
   } @else {
