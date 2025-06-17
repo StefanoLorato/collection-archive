@@ -15,7 +15,7 @@ import { UserService } from '../../../service/userService';
 })
 export class OrderListComponent {
   orders: Order[] = [];
-  receivedOrderItems: OrderItem[] = [];
+  receivedOrders: Order[] = [];
   currentUser!: User;
   seller!: User;
   sellerMap: Map<number, User> = new Map();
@@ -48,9 +48,11 @@ export class OrderListComponent {
       }
     });
 
-    this._orderItemService.getOrderItemsBySellerId(this.currentUser.userId).subscribe({
+    this._orderService.getOrdersByItemSellerId(this.currentUser.userId).subscribe({
       next: oi => {
-        this.receivedOrderItems = oi;
+        console.log(oi);
+
+        this.receivedOrders = oi;
       }
     })
   }
@@ -64,7 +66,25 @@ export class OrderListComponent {
 
   changeOrderStatus(orderItem: OrderItem, status: string){
     this._orderService.updateOrderItemStatus(status, orderItem.orderId!, orderItem.orderItemId!).subscribe({
-      next: oi => alert("ordine " + oi.status),
+      next: oi => {
+        this.receivedOrders = this.receivedOrders.map( o => {
+          if(o.orderId == oi.orderId){
+            const items = o.orderItems.map(item => {
+              if(item.orderItemId == oi.orderItemId){
+                item.status = status;
+                return item;
+              } else {
+                return item;
+              }
+            });
+            o.orderItems = items;
+            return o;
+          } else {
+            return o;
+          }
+        });
+        alert("ordine " + oi.status)
+      },
       error: err => {
         alert("errore nel cambiamento dello stato dell'ordine");
         console.log("errore nell'cambiamento dello stato dell'ordine " + err);

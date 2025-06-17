@@ -62,7 +62,7 @@ h2{
   border-top: none;
 }
 
-.item-content {
+.order-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,11 +71,15 @@ h2{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.item-info {
+.order-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.order-item img{
+  width: 150px;
 }
 
 /* Bottoni più compatti, sulla stessa riga */
