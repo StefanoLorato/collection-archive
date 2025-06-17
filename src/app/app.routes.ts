@@ -46,5 +46,5 @@ export const routes: Routes = [
      { path: 'cart-item-list/:id', component: CartItemListComponent},
      { path: 'item-list', component: ItemListComponent},
      { path: 'unauthorized', component: UnauthorizedComponent },
-     { path: 'not-found', component: NotFoundComponent }
+     { path: 'not-found', component: NotFoundComponent },
 ];
