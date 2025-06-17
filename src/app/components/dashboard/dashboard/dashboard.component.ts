@@ -69,13 +69,6 @@ export class DashboardComponent {
     });
   }
 
-  like(){
-  }
-  comment(){
-  }
-  bookmark(){
-  }
-
   findUserById(id: number){
     this._userService.getUserById(id).subscribe({
       next: u => this.ownerUser = u,
