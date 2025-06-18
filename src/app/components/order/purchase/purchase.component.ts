@@ -8,7 +8,7 @@ import { User } from '../../../models/user';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../service/userService';
 import { ShippingAddressService } from '../../../service/shippingAddressService';
-import { CartItem } from '../../../models/cart-item';
+import { CartItem } from '../../../models/cartItem';
 import { Bookmark } from '../../../models/bookmark';
 import { BookmarkService } from '../../../service/bookmarkService';
 
