@@ -1,17 +1,49 @@
 <footer class="footer-container">
-  <app-footer-column [title]="'Information'" [links]="infoLinks"></app-footer-column>
-  <app-footer-column [title]="'Buy Collections'" [links]="buyLinks"></app-footer-column>
-  <app-footer-column [title]="'Sell Collections or Items'" [links]="sellLinks"></app-footer-column>
+
+  <div class="trustpilot-section">
+  <span class="trustpilot-rating">Excellent</span>
+  <div class="trustpilot-stars">
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-half"></i>
+  </div>
+  <span class="trustpilot-text">112.157 reviews on</span>
+  <span class="trustpilot-logo">Trustpilot</span>
+</div>
+
+  <div class="smart-access">
+      <a class="button-dynamic" routerLink="/login">Login</a>
+      <a class="button-dynamic" routerLink="/register">Register</a>
+      <p><span>Shop from over 65,000 special collections every week, curated by more than 240 experts</span></p>
+  </div>
+
+  <div class="footer-body">
+    <app-footer-column [title]="'Information'" [links]="infoLinks"></app-footer-column>
+    <app-footer-column [title]="'Buy Collections'" [links]="buyLinks"></app-footer-column>
+    <app-footer-column [title]="'Sell Collections or Items'" [links]="sellLinks"></app-footer-column>
 
     <div class="my-rareblu">
-    <h4>My RareBlu</h4>
-    <a class="button-dynamic" routerLink="/login">Login</a>
-    <a class="button-dynamic" routerLink="/register">Register</a>
+      <h4>My RareBlu</h4>
+      <a class="button-dynamic" routerLink="/login">Login</a>
+      <a class="button-dynamic" routerLink="/register">Register</a>
+    </div>
+
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter-x"></i></a>
+    </div>
   </div>
- 
-  <div class="social-icons">
-    <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
-    <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
-    <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter-x"></i></a>
+
+  <div class="footer-bottom">
+    <p>Terms of Use</p>
+    <p>Privacy and Personal Data Protection Policy</p>
+    <p>Cookie Policy</p>
+    <p>Legal Compliance Policy</p>
+    <p>Other Policies and Disclosures</p>
+    <p> <span>© 2025</span></p>
   </div>
+
 </footer>

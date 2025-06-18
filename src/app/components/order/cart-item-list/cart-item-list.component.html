@@ -1,0 +1,28 @@
+<div class="cart-container">
+  <h2>Your Cart:</h2>
+  @if(cart.items.length == 0 && cart.collections.length == 0){
+    <p class="empty-message">Your cart is empty. <a [routerLink]="['/dashboard']">Go to dashboard</a></p>
+  }
+  @else {
+    @if(cart.items.length > 0){
+      <h3>Item</h3>
+      @for(i of cart.items; track i.id){
+        <div class="cart-item">
+          {{ i.name }} - €{{ i.price }}
+          <button (click)="removeItem(i.id)">Remove</button>
+        </div>
+      }
+    }
+    @if(cart.collections.length > 0){
+      <h3>Collezioni</h3>
+      @for(c of cart.collections; track c.id){
+        <div class="cart-collection">
+          {{ c.name }} - €{{ c.price }}
+          <button (click)="removeCollection(c.id)">Remove</button>
+        </div>
+      }
+    }
+
+    <button class="buy-all-btn" (click)="buyAll()">Buy All</button>
+  }
+</div>

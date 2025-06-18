@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Bookmark } from "../models/bookmark";
 import { Observable } from "rxjs";
+import { Bookmark } from "../models/bookmark";
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 export class BookmarkService{
     private _url: string = "http://localhost:8080/api/bookmarks";
     private _http = inject(HttpClient);
-    
+
     getBookmarkById(id: number): Observable<Bookmark> {
         return this._http.get<Bookmark>(`${this._url}/${id}`);
       }

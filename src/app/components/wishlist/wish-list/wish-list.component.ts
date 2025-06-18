@@ -73,7 +73,7 @@ addWishListItem() {
 
   const dto: any = {
   id: 0,
-  collectionId: this.collectionId, 
+  collectionId: this.collectionId,
   name: this.newWishList.name ?? '',
   itemId: this.newWishList.itemId ?? 0,
   itemDescription: this.newWishList.itemDescription ?? '',

@@ -1,0 +1,218 @@
+.item-form {
+  max-width: 760px;
+  margin: 60px auto;
+  padding: 48px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.item-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input & Select fields */
+input[type="text"],
+input[type="number"],
+input[type="url"],
+input[type="date"],
+select {
+  padding: 20px 24px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 20px;
+  background-color: #f9fafb;
+  font-weight: 500;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+
+/* Submit button */
+button[type="submit"] {
+  padding: 18px 28px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 12px;
+}
+
+button[type="submit"]:hover {
+  background-color: #1e40af;
+}
+
+button[type="submit"]:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Form header */
+.form-header {
+  max-width: 760px;
+  margin: 40px auto 0;
+  padding: 24px 36px;
+  background: linear-gradient(90deg, #e0f2fe, #f0fdf4);
+  border-left: 6px solid #3b82f6;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.form-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+.form-header p {
+  font-size: 16px;
+  color: #374151;
+}
+
+
+.toggle-switch {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #111827;
+  justify-content: flex-start;
+  text-align: start;
+  width: 100%;
+}
+
+/* Label testo */
+.switch-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* forza allineamento a sinistra */
+  gap: 12px; /* spazio tra testo e toggle */
+  cursor: pointer;
+  user-select: none;
+  width: auto; /* togli larghezza fissa */
+}
+
+/* Checkbox nascosto */
+.switch-label input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  width: 56px;
+  height: 32px;
+  background-color: #d1d5db;
+  border-radius: 32px;
+  transition: 0.4s;
+  flex-shrink: 0;
+}
+
+/* Toggle rotondo */
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.switch-label input:checked + .slider {
+  background-color: #2563eb;
+}
+
+.switch-label input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background-color: #f9f9f9;
+  padding: 1rem 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: fit-content;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+/* -----Sezione PHOTO--- */
+.photo-upload label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.photo-upload input[type="file"] {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.photo-upload input[type="file"]::-webkit-file-upload-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.photo-upload input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #0056b3;
+}
+
+.photo-preview {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.photo-preview img {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}

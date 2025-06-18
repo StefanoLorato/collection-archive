@@ -10,13 +10,11 @@ import { Collection } from '../../../models/collection';
   styleUrl: './bookmark-card-item.component.css'
 })
 export class BookmarkCardItemComponent {
-  
-  item: Item | null = null; 
-  collection: Collection | null = null;  
+  item: Item | null = null;
+  collection: Collection | null = null;
 
   @Input('bookmarkitem') bookmarkitem!: Bookmark;
   @Output('deleteBookmarkItem') deleteBookmarkItem = new EventEmitter<({id: number})>;
-  
 
 
   OnDelete(id: number) {

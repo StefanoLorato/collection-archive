@@ -51,29 +51,61 @@ export class PaymentFormComponent implements OnInit{
 
   submit() {
     if (this.paymentForm.valid) {
-      const order: Order = {buyerId: this.currentUser.userId,
-        shippingAddressId: this._addressId, orderItems: []};
-      this.cart.collections.forEach(c => {
-        const orderCollection: OrderItem = {
-          sellerId: c.ownerId,
-          collectionId: c.id,
-          price: c.price
-        };
-        order.orderItems.push(orderCollection);
-      });
-      this.cart.items.forEach(c => {
-        const orderItem: OrderItem = {
-          sellerId: c.ownerId,
-          itemId: c.id,
-          price: c.price
-        };
-        order.orderItems.push(orderItem);
-      })
-      this._orderService.addOrder(order).subscribe({
-        next: o => {
-          alert('Order creato con ID: ' + o.orderId);
-          this._router.navigate(['/order-list', this.currentUser.userId]);
+      const order: Order = {
+        buyerId: this.currentUser.userId,
+        shippingAddressId: this._addressId,
+        orderItems: []
+      };
+
+      const itemId = this._route.snapshot.queryParamMap.get('itemId');
+      const collectionId = this._route.snapshot.queryParamMap.get('collectionId');
+
+      if (itemId) {
+      const item = this.cart.items.find(i => i.id === +itemId);
+        if (item) {
+          order.orderItems.push({
+            sellerId: item.ownerId,
+            itemId: item.id,
+            price: item.price
+          });
         }
+      } else if (collectionId) {
+        const collection = this.cart.collections.find(c => c.id === +collectionId);
+        if (collection) {
+          order.orderItems.push({
+            sellerId: collection.ownerId,
+            collectionId: collection.id,
+            price: collection.price
+          });
+        }
+      } else {
+        this.cart.collections.forEach(c => {
+          const orderCollection: OrderItem = {
+            sellerId: c.ownerId,
+            collectionId: c.id,
+            price: c.price
+          };
+          order.orderItems.push(orderCollection);
+        });
+        this.cart.items.forEach(c => {
+          const orderItem: OrderItem = {
+            sellerId: c.ownerId,
+            itemId: c.id,
+            price: c.price
+          };
+          order.orderItems.push(orderItem);
+        });
+      }
+        this._orderService.addOrder(order).subscribe({
+          next: o => {
+            alert('Order creato con ID: ' + o.orderId);
+            order.orderItems.forEach(oi => {
+              if (oi.itemId) this._dataService.removeItem(oi.itemId);
+              if (oi.collectionId) this._dataService.removeCollection(oi.collectionId);
+            });
+            this._router.navigate(['/order-list', this.currentUser.userId]);
+          },
+          error: err => alert("errore nella conferma dell'ordine" + err)
       })
     }
   }
