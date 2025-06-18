@@ -1,9 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { WishlistService } from '../../../service/wishListService';
 import { Observable } from 'rxjs';
-import { UserService } from '../../../service/userService';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ItemAddComponent } from '../../item/item-add/item-add.component';
 import { WishList } from '../../../models/wishList';
 import { WishlistItemCardComponent } from '../wishlist-item-card/wishlist-item-card.component';
 import { FormsModule, NgForm } from '@angular/forms';

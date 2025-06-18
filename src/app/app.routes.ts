@@ -22,6 +22,7 @@ import { UnauthorizedComponent } from './components/error/unauthorized/unauthori
 import { NotFoundComponent } from './components/error/not-found/not-found.component';
 import { PurchaseComponent } from './components/order/purchase/purchase.component';
 import { BookmarklistComponent } from './components/bookmark/bookmarklist/bookmarklist.component';
+import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -49,4 +50,5 @@ export const routes: Routes = [
      { path: 'item-list', component: ItemListComponent},
      { path: 'unauthorized', component: UnauthorizedComponent },
      { path: 'not-found', component: NotFoundComponent },
+     { path: 'comment-list/:id', component: CommentListComponent }
 ];

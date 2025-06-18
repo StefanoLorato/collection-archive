@@ -11,7 +11,6 @@ import { Cart } from '../../../models/cart';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
   imports: [CommonModule, CollectionCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
