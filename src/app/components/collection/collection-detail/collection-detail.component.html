@@ -26,26 +26,14 @@
           <button [routerLink]="['/wishlist', collection.collectionId]">View Wishlist</button>
         </div>
       }
-
-      <!-- @if(currentUser != null && collection.userId == currentUser.userId){
-        <div class="collection-filter">
-          <select name="status-option" [(ngModel)]="selectedFilter" id="status-option">
-            <option value="visible">Visible</option>
-            <option value="sold">Sold</option>
-            <option value="archived">Archived</option>
-            <option value="all">All</option>
-          </select>
-        </div>
-      } -->
-
     </div>
     <div class="item-container">
       @if(currentUser != null && collection.userId != currentUser.userId){
-        @for (i of visibleItems; track i.itemId) {
+        @for (i of list; track i.itemId) {
           <app-item-card [item]="i" (deleteItem)="handleDelete($event)"></app-item-card>
         }
       } @else {
-        @for (i of filteredItems; track i.itemId) {
+        @for (i of list; track i.itemId) {
           <app-item-card [item]="i" (deleteItem)="handleDelete($event)"></app-item-card>
         }
       }

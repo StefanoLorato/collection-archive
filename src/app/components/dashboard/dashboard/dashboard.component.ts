@@ -11,7 +11,6 @@ import { Cart } from '../../../models/cart';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
   imports: [CommonModule, CollectionCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -67,13 +66,6 @@ export class DashboardComponent {
       },
       error: e => alert("Errore di caricamento della collection " + e)
     });
-  }
-
-  like(){
-  }
-  comment(){
-  }
-  bookmark(){
   }
 
   findUserById(id: number){

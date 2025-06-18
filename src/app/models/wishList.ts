@@ -1,11 +1,9 @@
-import { Item } from "./item";
-
 export interface WishList {
-  id: number;
-  name: string;
-  itemId: number;
+  desiredObjectId: number;
+  collectionId: number;
+  itemName: string;
   itemDescription: string;
-  releaseDate: Date;
+  releaseDate: string;
   itemVersion: string;
   itemEdition: string;
 }

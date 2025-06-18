@@ -18,7 +18,7 @@
   <div>
     <input formControlName="collectionName" type="text" id="collectionName" placeholder="Name Collection">
     @if (collectionName?.invalid && collectionName?.touched) {
-      <p>Insert name collection</p>
+      <p>Insert collection name</p>
     }
   </div>
 
@@ -79,7 +79,7 @@
   <!-- visibilità -->
   <div>
     <select formControlName="visibility" id="visibility">
-      <option value="visible">Pubblic</option>
+      <option value="visible">Public</option>
       <option value="hidden">Private</option>
     </select>
   </div>

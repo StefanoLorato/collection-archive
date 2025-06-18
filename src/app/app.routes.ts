@@ -11,7 +11,6 @@ import { RegisterFormComponent } from './components/auth/register-form/register-
 import { LoginFormComponent } from './components/auth/login-form/login-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
-import { PurchaseComponent } from './components/order/purchase/purchase.component';
 import { WishListComponent } from './components/wishlist/wish-list/wish-list.component';
 import { ShippingAddressFormComponent } from './components/order/shipping-address-form/shipping-address-form.component';
 import { PaymentFormComponent } from './components/order/payment-form/payment-form.component';
@@ -21,6 +20,9 @@ import { PrivateCollectionGuard } from './guards/private-collection-guard';
 import { NotForSaleGuard } from './guards/not-for-sale-guard';
 import { UnauthorizedComponent } from './components/error/unauthorized/unauthorized.component';
 import { NotFoundComponent } from './components/error/not-found/not-found.component';
+import { PurchaseComponent } from './components/order/purchase/purchase.component';
+import { BookmarklistComponent } from './components/bookmark/bookmarklist/bookmarklist.component';
+import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -43,8 +45,10 @@ export const routes: Routes = [
      { path: 'shipping-address-form', component: ShippingAddressFormComponent},
      { path: 'payment-form', component: PaymentFormComponent},
      { path: 'order-list/:id', component: OrderListComponent},
+     { path: 'bookmarkslist/:id', component: BookmarklistComponent},
      { path: 'cart-item-list/:id', component: CartItemListComponent},
      { path: 'item-list', component: ItemListComponent},
      { path: 'unauthorized', component: UnauthorizedComponent },
-     { path: 'not-found', component: NotFoundComponent }
+     { path: 'not-found', component: NotFoundComponent },
+     { path: 'comment-list/:id', component: CommentListComponent }
 ];

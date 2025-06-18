@@ -39,4 +39,9 @@ export class ItemService {
   getItemsByCollectionId(collectionId: number): Observable<Item[]> {
     return this._http.get<Item[]>(`${this._url}/collection/${collectionId}`);
   }
+
+  getItemByBookmarkUserId(): Observable<Item[]> {
+        let params = new HttpParams().set("bookmarked", true);
+        return this._http.get<Item[]>(this._url, {params});
+      }
 }

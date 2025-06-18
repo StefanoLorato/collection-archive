@@ -10,7 +10,6 @@ import { CollectionService } from '../../../service/collectionService';
 
 @Component({
   selector: 'app-item-edit',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './item-edit.component.html',
   styleUrls: ['./item-edit.component.css']

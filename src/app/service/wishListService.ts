@@ -9,16 +9,16 @@ import { WishList } from '../models/wishList'; // Assicurati che il modello esis
 export class WishlistService {
   private _url: string = "http://localhost:8080/api/wishlist";
   private _http = inject(HttpClient);
-  
+
   getWishListItemById(id: number): Observable<WishList> {
     return this._http.get<WishList>(`${this._url}/${id}`);
   }
-  
+
   getAllWishList(): Observable<WishList[]> {
     return this._http.get<WishList[]>(this._url);
   }
 
-  createWishListItem(dto: WishList): Observable<WishList> {
+  createWishListItem(dto: Partial<WishList>): Observable<WishList> {
     return this._http.post<WishList>(this._url, dto);
   }
 
