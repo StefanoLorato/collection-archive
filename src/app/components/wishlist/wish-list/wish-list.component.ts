@@ -44,7 +44,6 @@ export class WishListComponent implements OnInit {
       this._router.navigate(['/collection-list']);
     }
   }
-
   loadWishList(collectionId: number): void {
     const wishListObservable: Observable<WishList[]> = this._wishListService.getWishListByCollectionId(collectionId);
     wishListObservable.subscribe({
@@ -57,7 +56,7 @@ export class WishListComponent implements OnInit {
     if (!this.wishList) return;
     this._wishListService.deleteWishListItem(obj.id).subscribe({
       next: () => {
-        this.wishList = this.wishList.filter((i) => i.desiredObjectId != obj.id);
+        this.wishList = this.wishList.filter((w) => w.desiredObjectId != obj.id);
         alert("l'item è stato eliminato con successo");
       },
       error: e => {

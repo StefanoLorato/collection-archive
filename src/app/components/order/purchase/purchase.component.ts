@@ -9,6 +9,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../service/userService';
 import { ShippingAddressService } from '../../../service/shippingAddressService';
 import { CartItem } from '../../../models/cart-item';
+import { Bookmark } from '../../../models/bookmark';
+import { BookmarkService } from '../../../service/bookmarkService';
 
 @Component({
   selector: 'app-purchase',
@@ -17,7 +19,7 @@ import { CartItem } from '../../../models/cart-item';
   styleUrl: './purchase.component.css'
 })
 export class PurchaseComponent implements OnInit{
-  collection: Collection | null = null;
+  collection!: Collection;
   item: Item | null = null;
   currentUser!: User;
   list: Item[] = [];
@@ -33,7 +35,8 @@ export class PurchaseComponent implements OnInit{
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
   isAlreadyInCart: boolean = false;
-
+  bookmark!: Bookmark;
+  private _bookmarkService = inject(BookmarkService)
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -108,9 +111,6 @@ export class PurchaseComponent implements OnInit{
     })
   }
 
-  handleRemove(id: number){
-
-  }
 
   get currentImage(): string | null {
     return this.list.length > 0 ? this.list[this.currentImageIndex].itemPhoto : null;
@@ -152,5 +152,40 @@ export class PurchaseComponent implements OnInit{
       this._dataService.addItem(cartItem);
     }
     this._router.navigate(['/shipping-address-form'], { queryParams: { itemId: this.item?.itemId, collectionId: this.collection?.collectionId } });
+  }
+
+   addBookmark(){
+    console.log("botton epremuto");
+
+     if(this.collection != null && this.collection){
+      this.bookmark = {
+        userId: this.currentUser.userId,
+        collectionId: this.collection.collectionId,
+      }
+      if(!this.collection.bookmarked){
+        this._bookmarkService.createBookmark(this.bookmark).subscribe({
+          next: b => {
+            this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: b.bookmarkId!};
+            alert("bookmark aggiunto");
+
+          },
+          error: err => alert("errore nell'aggiunta del bookmark" + err)
+        })
+      } else {
+        this._bookmarkService.deleteBookmark(this.collection.bookmarkId!).subscribe({
+          next: () => {
+            this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: null};
+            alert("bookmark rimosso");
+
+          },
+          error: err =>  alert("errore nella rimozione del bookmark" + err)
+        })
+      }
+    }
+  }
+
+  addToCart(){
+    console.log("bootone add to cart premuto");
+
   }
 }
