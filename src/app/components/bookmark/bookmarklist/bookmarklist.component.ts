@@ -9,6 +9,8 @@ import { User } from '../../../models/user';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 import { Collection } from '../../../models/collection';
 import { CollectionService } from '../../../service/collectionService';
+import { Item } from '../../../models/item';
+import { ItemService } from '../../../service/itemService';
 
 @Component({
   selector: 'app-bookmarklist',
@@ -22,9 +24,13 @@ export class BookmarklistComponent {
   private _userService = inject(UserService);
   private _collectionService = inject(CollectionService);
   private _route = inject(ActivatedRoute);
+  private _itemService= inject(ItemService)
   list!: Collection[];
+  listTwo!: Item[];
   userId!: number;
   currentUser!: User;
+  collection!: Collection;
+  item!: Item;
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -32,18 +38,20 @@ export class BookmarklistComponent {
         this.currentUser = user;
       }
     });
-    this.loadBookmark();
+    this.loadCollectionBookmark();
+
   }
 
-  loadBookmark() : void{
+  loadCollectionBookmark() : void{
     this._collectionService.getCollectionByBookmarkUserId().subscribe({
       next: data => this.list = data,
-      error: err => alert("Errore nel caricamento della bookmark: " + err)
+      error: err => alert("Errore nel caricamento del collection bookmark : " + err)
     });
   }
 
-  onBookmarkChanged(obj: { id: number , bookmarked: boolean }) {
-    this.list = this.list.filter((c) => c.collectionId != obj.id);
-  }
 
+  onBookmarkChanged(obj: { id: number , bookmarked: boolean }) {
+  this.list = this.list.filter((c) => c.collectionId != obj.id);
+
+  }
 }

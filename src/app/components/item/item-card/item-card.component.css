@@ -113,3 +113,20 @@
 .owner-buttons button:hover {
   background-color: #e0e0e0;
 }
+
+#buy {
+  background-color: #0a58ca;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: end;
+}
+.buy-button {
+ display: flex;
+ justify-content: end;
+ margin-top: 10px;
+}

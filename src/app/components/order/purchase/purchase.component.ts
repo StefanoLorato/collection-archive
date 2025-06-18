@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { Collection } from '../../../models/collection';
 import { Item } from '../../../models/item';
 import { ItemService } from '../../../service/itemService';
@@ -18,7 +18,7 @@ import { BookmarkService } from '../../../service/bookmarkService';
   templateUrl: './purchase.component.html',
   styleUrl: './purchase.component.css'
 })
-export class PurchaseComponent implements OnInit{
+export class PurchaseComponent implements OnInit {
   collection!: Collection;
   item: Item | null = null;
   currentUser!: User;
@@ -38,9 +38,10 @@ export class PurchaseComponent implements OnInit{
   bookmark!: Bookmark;
   private _bookmarkService = inject(BookmarkService)
 
+  @Output("bookmarkChanged") bookmarkChanged = new EventEmitter<{ id: number, bookmarked: boolean }>()
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
-      if(user != null){
+      if (user != null) {
         this.currentUser = user;
       }
     });
@@ -76,7 +77,7 @@ export class PurchaseComponent implements OnInit{
         this.findUserById(this.collection.userId);
         this._dataService.shoppingCartObservable.subscribe(cart => {
           this.isAlreadyInCart = cart.items.some(i => i.id === this.item?.itemId) ||
-                              cart.collections.some(c => c.id === this.collection?.collectionId);
+            cart.collections.some(c => c.id === this.collection?.collectionId);
         });
       },
       error: e => alert("errore nel caricamento della collection: " + e)
@@ -90,7 +91,7 @@ export class PurchaseComponent implements OnInit{
         this.findUserById(this.item.userId);
         this._dataService.shoppingCartObservable.subscribe(cart => {
           this.isAlreadyInCart = cart.items.some(i => i.id === this.item?.itemId) ||
-                              cart.collections.some(c => c.id === this.collection?.collectionId);
+            cart.collections.some(c => c.id === this.collection?.collectionId);
         });
       },
       error: e => alert("errore nel caricamento del item: " + e)
@@ -104,7 +105,7 @@ export class PurchaseComponent implements OnInit{
     });
   }
 
-  findUserById(id: number){
+  findUserById(id: number) {
     this._userService.getUserById(id).subscribe({
       next: user => this.owner = user,
       error: err => alert("user non trovato" + err)
@@ -128,19 +129,19 @@ export class PurchaseComponent implements OnInit{
     }
   }
 
-  buyNow(){
+  buyNow() {
     if (this.isAlreadyInCart) {
-        alert("Questo oggetto è già nel tuo carrello!");
-        this._router.navigate(['/dashboard']);
+      alert("Questo oggetto è già nel tuo carrello!");
+      this._router.navigate(['/dashboard']);
     }
-    if(this.collection){
+    if (this.collection) {
       const cartItem: CartItem = {
-          id: this.collection.collectionId,
-          name: this.collection.collectionName,
-          ownerId: this.collection.userId,
-          price: this.collection.salePrice
-        }
-        this._dataService.addCollection(cartItem);
+        id: this.collection.collectionId,
+        name: this.collection.collectionName,
+        ownerId: this.collection.userId,
+        price: this.collection.salePrice
+      }
+      this._dataService.addCollection(cartItem);
     }
     if (this.item) {
       const cartItem: CartItem = {
@@ -154,37 +155,68 @@ export class PurchaseComponent implements OnInit{
     this._router.navigate(['/shipping-address-form'], { queryParams: { itemId: this.item?.itemId, collectionId: this.collection?.collectionId } });
   }
 
-   addBookmark(){
-    console.log("botton epremuto");
+  addBookmark() {
+    console.log("Bottone Save for Later premuto");
 
-     if(this.collection != null && this.collection){
-      this.bookmark = {
+    if (!this.currentUser) {
+      console.warn("Utente non definito");
+      alert("Utente non disponibile");
+      return;
+    }
+
+    // Bookmark sulla Collection
+    if (this.collection) {
+      const isBookmarked = !!this.collection.bookmarked;
+      const bookmark: Bookmark = {
         userId: this.currentUser.userId,
         collectionId: this.collection.collectionId,
-      }
-      if(!this.collection.bookmarked){
-        this._bookmarkService.createBookmark(this.bookmark).subscribe({
-          next: b => {
-            this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: b.bookmarkId!};
-            alert("bookmark aggiunto");
+      };
 
+      if (!isBookmarked) {
+        this._bookmarkService.createBookmark(bookmark).subscribe({
+          next: (b) => {
+            console.log("Bookmark collection creato:", b);
+            this.collection = {
+              ...this.collection,
+              bookmarked: true,
+              bookmarkId: b.bookmarkId ?? null,
+            };
+            alert("Collection salvata tra i preferiti");
+            this.bookmarkChanged.emit({ id: this.collection.collectionId, bookmarked: true });
           },
-          error: err => alert("errore nell'aggiunta del bookmark" + err)
-        })
+          error: (err) => {
+            console.error("Errore aggiunta bookmark collection:", err);
+            alert("Errore nel salvataggio della collection");
+          },
+        });
       } else {
-        this._bookmarkService.deleteBookmark(this.collection.bookmarkId!).subscribe({
-          next: () => {
-            this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: null};
-            alert("bookmark rimosso");
+        if (!this.collection.bookmarkId) {
+          alert("BookmarkId mancante");
+          return;
+        }
 
+        this._bookmarkService.deleteBookmark(this.collection.bookmarkId).subscribe({
+          next: () => {
+            console.log("Bookmark collection rimosso");
+            this.collection = {
+              ...this.collection,
+              bookmarked: false,
+              bookmarkId: null,
+            };
+            alert("Collection rimossa dai preferiti");
+            this.bookmarkChanged.emit({ id: this.collection.collectionId, bookmarked: false });
           },
-          error: err =>  alert("errore nella rimozione del bookmark" + err)
-        })
+          error: (err) => {
+            console.error("Errore rimozione bookmark collection:", err);
+            alert("Errore nella rimozione della collection dai preferiti");
+          },
+        });
       }
+      return;
     }
   }
 
-  addToCart(){
+  addToCart() {
     console.log("bootone add to cart premuto");
 
   }

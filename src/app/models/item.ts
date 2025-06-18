@@ -17,4 +17,6 @@ export interface Item {
   liked: boolean;
   numLikes: number;
   likeId: number | null;
+    bookmarked: boolean;
+    bookmarkId: number | null;
 }

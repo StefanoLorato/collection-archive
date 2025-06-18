@@ -26,9 +26,9 @@
       <p class="completed"><strong>Completed: </strong>{{(collection.completed ? 'Yes' : 'No')}}</p>
       <div class="price">Price: {{collection.salePrice}}€</div>
       <div class="actions">
-        <button (click)="buyNow()">Buy Now</button>
-        <button>Add To Cart</button>
-        <button>Save For Later</button>
+            <button (click)="buyNow()">Buy Now</button>
+        <button (click)="addToCart()">Add To Cart</button>
+        <button (click)="addBookmark()">{{collection.bookmarked ? 'Remove From Saved' : 'Save For Later' }}</button>
       </div>
     </div>
   </div>
@@ -57,7 +57,6 @@
       <div class="actions">
         <button (click)="buyNow()">Buy Now</button>
         <button (click)="addToCart()">Add To Cart</button>
-        <button (click)="addBookmark()">Save For Later</button>
       </div>
     </div>
   </div>

@@ -29,6 +29,7 @@ export class ItemCardComponent implements OnInit{
 
   @Input('item') item!: Item;
   @Output('deleteItem') deleteItem = new EventEmitter<{id: number}>();
+  @Output('bookmarkChanged') bookmarkChanged = new EventEmitter<{id: number, bookmarked: boolean}>();
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -102,6 +103,10 @@ export class ItemCardComponent implements OnInit{
         error: err => alert("Errore nella rimozione del like: " + err)
       });
     }
+  }
+  
+  onBookmarkChange(event: { id: number, bookmarked: boolean }) {
+    this.bookmarkChanged.emit({id: this.item.itemId, bookmarked: this.item.bookmarked});
   }
 
 }

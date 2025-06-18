@@ -14,7 +14,7 @@ export interface Collection {
     visibilityStatus: string;
     liked: boolean;
     numLikes: number;
-    bookmarked: boolean;
     likeId: number | null;
+    bookmarked: boolean;
     bookmarkId: number | null;
 }

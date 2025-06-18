@@ -2,7 +2,7 @@
   <h1>Your Bookmarks</h1>
 
   <div class="dashboard-container">
-    @if(list.length > 0) {
+    @if(list.length > 0 || listTwo.length > 0) {
       @for (collection of list; track collection.collectionId) {
         <app-collection-card [collection]="collection" (bookmarkChanged)="onBookmarkChanged($event)"></app-collection-card>
       }
