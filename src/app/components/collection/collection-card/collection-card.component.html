@@ -62,10 +62,16 @@
         <i class="bi" [ngClass]="collection.liked ? 'bi-heart-fill text-primary' : 'bi-heart'"></i>
       </button>
       <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
+      <div *ngIf="isCommenting" class="comment-form">
+      <textarea [(ngModel)]="newCommentText" placeholder="Scrivi un commento..."></textarea>
+      <button (click)="submitComment()">Invia</button>
+      </div>
       <button id="bookmark" (click)="toggleBookmark()">
         <i class="bi" [ngClass]="collection.bookmarked ? 'bi-bookmark-fill text-primary' : 'bi-bookmark'"></i>
       </button>
     </div>
   </div>
 </div>
+
+
 }

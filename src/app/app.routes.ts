@@ -50,5 +50,6 @@ export const routes: Routes = [
      { path: 'item-list', component: ItemListComponent},
      { path: 'unauthorized', component: UnauthorizedComponent },
      { path: 'not-found', component: NotFoundComponent },
-     { path: 'comment-list/:id', component: CommentListComponent }
+     { path: 'comment-list/:id', component: CommentListComponent },
+     { path: 'collection-comments/:id', component: CommentListComponent}
 ];

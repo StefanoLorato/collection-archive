@@ -1,6 +1,8 @@
 export interface UserComment {
-  commentId: number;
+  commentId?: number;
   userId: number;
-  itemId: number;
+  itemId?: number;
+  collectionId?: number;
   comment: string;
+  name: string;
 }
