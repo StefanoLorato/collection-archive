@@ -62,7 +62,7 @@
         <i class="bi" [ngClass]="collection.liked ? 'bi-heart-fill text-primary' : 'bi-heart'"></i>
       </button>
       <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
-      <button id="bookmark" (click)="addBookmark()">
+      <button id="bookmark" (click)="toggleBookmark()">
         <i class="bi" [ngClass]="collection.bookmarked ? 'bi-bookmark-fill text-primary' : 'bi-bookmark'"></i>
       </button>
     </div>

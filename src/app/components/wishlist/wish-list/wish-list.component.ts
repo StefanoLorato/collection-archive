@@ -2,11 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { WishlistService } from '../../../service/wishListService';
 import { Observable } from 'rxjs';
 import { UserService } from '../../../service/userService';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemAddComponent } from '../../item/item-add/item-add.component';
 import { WishList } from '../../../models/wishList';
 import { WishlistItemCardComponent } from '../wishlist-item-card/wishlist-item-card.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Collection } from '../../../models/collection';
+import { CollectionService } from '../../../service/collectionService';
 
 @Component({
   selector: 'app-wish-list',
@@ -16,31 +18,33 @@ import { FormsModule } from '@angular/forms';
 })
 export class WishListComponent implements OnInit {
   showAddForm = false;
-
-newWishList: Partial<WishList> = {
-  name: '',
-  itemDescription: '',
-  itemId: 0,
-  releaseDate: new Date(),
-  itemVersion: '',
-  itemEdition: ''
-};
+  newDesiredItem: Partial<WishList> = {
+    itemName: '',
+    itemDescription: '',
+    releaseDate: '',
+    itemVersion: '',
+    itemEdition: ''
+  };
   private _wishListService = inject(WishlistService);
-  private _userService = inject(UserService);
+  private _collectionService = inject(CollectionService);
   private _route = inject(ActivatedRoute);
-  wishList!: WishList[];
+  private _router = inject(Router);
+  wishList: WishList[] = [];
   collectionId!: number;
-  ngOnInit(): void {
-    const id = this._route.snapshot.paramMap.get("id"); // Ora prendiamo l'ID collection dalla route
-    if (id != null) {
-      this.collectionId = +id;
-      if (this.collectionId != 0 && !isNaN(this.collectionId)) {
-        this.loadWishList(this.collectionId);
-      } else {
-        alert("idcollection non Trovato");
-      }
-    }
+  collection!: Collection;
 
+  ngOnInit(): void {
+    const collectionId = this._route.snapshot.paramMap.get('id');
+
+    if (collectionId) {
+      this.collectionId = Number(collectionId);
+      this.newDesiredItem.collectionId = this.collectionId;
+      this.loadWishList(this.collectionId);
+      this.findCollection(this.collectionId);
+    } else {
+      alert('Miss Collection ID');
+      this._router.navigate(['/collection-list']);
+    }
   }
 
   loadWishList(collectionId: number): void {
@@ -52,10 +56,10 @@ newWishList: Partial<WishList> = {
   }
 
   removeItemFromWishList(obj: { id: number }) {
-    if (!this.wishList || !this.wishList) return;
+    if (!this.wishList) return;
     this._wishListService.deleteWishListItem(obj.id).subscribe({
       next: () => {
-        this.wishList = this.wishList.filter((i) => i.itemId != obj.id);
+        this.wishList = this.wishList.filter((i) => i.desiredObjectId != obj.id);
         alert("l'item è stato eliminato con successo");
       },
       error: e => {
@@ -64,32 +68,30 @@ newWishList: Partial<WishList> = {
       }
     });
   }
+
   toggleForm() {
-  this.showAddForm = !this.showAddForm;
-}
+    this.showAddForm = !this.showAddForm;
+  }
 
-addWishListItem() {
-  if (!this.collectionId) return;
+  addWishListItem(form: NgForm) {
+    if(form.invalid || !this.collectionId) return;
+    this.newDesiredItem.collectionId = this.collectionId;
 
-  const dto: any = {
-  id: 0,
-  collectionId: this.collectionId,
-  name: this.newWishList.name ?? '',
-  itemId: this.newWishList.itemId ?? 0,
-  itemDescription: this.newWishList.itemDescription ?? '',
-  releaseDate: this.newWishList.releaseDate ?? new Date(),
-  itemVersion: this.newWishList.itemVersion ?? '',
-  itemEdition: this.newWishList.itemEdition ?? ''
-};
-console.log("DTO inviato:", dto);
+    this._wishListService.createWishListItem(this.newDesiredItem).subscribe({
+      next: w => {
+        alert('Item creato con ID: ' + w.desiredObjectId);
+        this.wishList.push(w);
+      },
+      error: e => {
+        console.error('Errore nella creazione item:', e)
+      }
+    });
+  }
 
-  this._wishListService.createWishListItem(dto).subscribe({
-    next: (createdItem) => {
-      this.wishList.push(createdItem);
-      this.newWishList = {};
-      this.showAddForm = false;
-    },
-    error: err => alert("Errore nella creazione: " + err)
-  });
-}
+  findCollection(id: number) {
+    this._collectionService.getCollectionById(id).subscribe({
+      next: c => this.collection = c,
+      error: e => alert("errore nel caricamento della collection: " + e)
+    });
+  }
 }

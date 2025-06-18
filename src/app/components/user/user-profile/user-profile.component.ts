@@ -5,7 +5,6 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 import { CollectionService } from '../../../service/collectionService';
 import { Collection } from '../../../models/collection';
-import { CollectionListComponent } from '../../collection/collection-lists/collection-list.component';
 import { DataService } from '../../../service/dataService';
 import { FormsModule } from '@angular/forms';
 

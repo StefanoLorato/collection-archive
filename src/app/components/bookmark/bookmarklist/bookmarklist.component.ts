@@ -36,24 +36,14 @@ export class BookmarklistComponent {
   }
 
   loadBookmark() : void{
-    const bookmarkObservable: Observable<Collection[]> = this._collectionService.getCollectionsByUserId(this.currentUser.userId);
-     bookmarkObservable.subscribe({
+    this._collectionService.getCollectionByBookmarkUserId().subscribe({
       next: data => this.list = data,
       error: err => alert("Errore nel caricamento della bookmark: " + err)
     });
   }
-  removeBookmark(obj: { id: number }) {
-    if (!this.list) return;
-    this._bookmarkService.deleteBookmark(obj.id).subscribe({
-      next: () => {
-        this.list = this.list.filter((b) => b.bookmarkId != obj.id);
-        alert("il bookmark è stato eliminato con successo");
-      },
-      error: e => {
-        alert("Errore nell cancellazione");
-        this.loadBookmark();
-      }
-    });
+
+  onBookmarkChanged(obj: { id: number , bookmarked: boolean }) {
+    this.list = this.list.filter((c) => c.collectionId != obj.id);
   }
 
 }

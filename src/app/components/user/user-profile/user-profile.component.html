@@ -3,7 +3,7 @@
 @if (owner != null) {
   <div class="profile-card">
     @if(currentUser != null && currentUser.userId == owner.userId){
-      <button [routerLink]="['/bookmarkslist', currentUser.userId]">See Bookmarks</button>
+      <button class="bookmark-btn" [routerLink]="['/bookmarkslist', currentUser.userId]">See Bookmarks</button>
     }
     <p><strong>Name:</strong> {{ owner.name }}</p>
     <p><strong>Lastname:</strong> {{ owner.lastname }}</p>

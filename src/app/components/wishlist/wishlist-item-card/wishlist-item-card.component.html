@@ -1,1 +1,9 @@
-<p>wishlist-item-card works!</p>
+<div class="card">
+  <h3>{{ wishlistItem.itemName }}</h3>
+  <p>{{ wishlistItem.itemDescription }}</p>
+  <p><strong>Release date:</strong> {{ wishlistItem.releaseDate }}</p>
+  <p><strong>Version:</strong> {{ wishlistItem.itemVersion }}</p>
+  <p><strong>Edition:</strong> {{ wishlistItem.itemEdition }}</p>
+
+  <button class="remove-btn" (click)="OnDelete(wishlistItem.desiredObjectId)">Rimuovi</button>
+</div>

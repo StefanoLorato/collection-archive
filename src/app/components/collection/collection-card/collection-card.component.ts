@@ -40,6 +40,7 @@ export class CollectionCardComponent {
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
+  @Output("bookmarkChanged") bookmarkChanged = new EventEmitter<{id: number, bookmarked: boolean}>();
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -105,7 +106,8 @@ export class CollectionCardComponent {
   }
   comment(){
   }
-  addBookmark(){
+
+  toggleBookmark(){
     this.bookmark = {
       userId: this.currentUser.userId,
       collectionId: this.collection.collectionId,
@@ -115,6 +117,7 @@ export class CollectionCardComponent {
         next: b => {
           this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: b.bookmarkId!};
           alert("bookmark aggiunto");
+          this.bookmarkChanged.emit({id: this.collection.collectionId, bookmarked: true});
         },
         error: err => alert("errore nell'aggiunta del bookmark" + err)
       })
@@ -123,6 +126,7 @@ export class CollectionCardComponent {
         next: () => {
           this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: null};
           alert("bookmark rimosso");
+          this.bookmarkChanged.emit({id: this.collection.collectionId, bookmarked: false});
         },
         error: err =>  alert("errore nella rimozione del bookmark" + err)
       })
