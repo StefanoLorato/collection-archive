@@ -47,8 +47,8 @@
 
   <div class="auth-links">
     @if (currentUser == null) {
-    <a class="button-dynamic" routerLink="/login">Login</a>
-    <a class="button-dynamic" routerLink="/register">Register</a>
+    <button class="button-dynamic" routerLink="/login">Login</button>
+    <button class="button-dynamic" routerLink="/register">Register</button>
     } @else {
       <a class="profile" [routerLink]="['/cart-item-list', currentUser.userId]">
         <i class="bi bi-bag"></i>

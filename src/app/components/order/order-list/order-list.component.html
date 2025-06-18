@@ -1,45 +1,50 @@
-<h2>My Orders</h2>
-<div class="order-serction">
+<h1>My Orders</h1>
+<div class="order-section">
   @for(order of orders; track order.orderId){
-    <div class="order-card">
-      <h3>Order #{{order.orderId}} - {{order.orderItems.length}} articles</h3>
-      @for(orderItem of order.orderItems; track orderItem.orderItemId){
-        <div class="sent-oi">
-          <p><strong>ID: </strong>{{orderItem.itemId || orderItem.collectionId}}</p>
-          <p><strong>Seller: </strong>{{sellerMap.get(orderItem.sellerId)?.email || 'Loading...'}}</p>
-          <p><strong>Price: </strong>{{orderItem.price}}€</p>
-          <p><strong>Status: </strong>{{orderItem.status}}</p>
-        </div>
-      }
+  <div class="order-card">
+    <h3>Order #{{order.orderId}} - {{order.orderItems.length}} articles</h3>
+    @for(orderItem of order.orderItems; track orderItem.orderItemId){
+    <div class="sent-oi">
+      <p><strong>ID: </strong>{{orderItem.itemId || orderItem.collectionId}}</p>
+      <p><strong>Seller: </strong>{{sellerMap.get(orderItem.sellerId)?.email || 'Loading...'}}</p>
+      <p><strong>Price: </strong>{{orderItem.price}}€</p>
+      <p><strong>Status: </strong>{{orderItem.status}}</p>
     </div>
+    }
+  </div>
   }
 </div>
 
 <h2>Received Orders:</h2>
 <div class="order-section">
   @for(order of receivedOrders; track order.orderId){
-    <div class="order-info">
-      <p>Order #{{order.orderId}}</p>
-      <p>Buyer: {{order.buyerEmail}}</p>
-      <div class="order-items">
-        @for(oi of order.orderItems; track oi.orderItemId){
+  <div class="order-info">
+    <p>Order #{{order.orderId}}</p>
+    <p>Buyer: {{order.buyerEmail}}</p>
+    <div class="order-items">
+      @for(oi of order.orderItems; track oi.orderItemId){
+        <div>
           <div class="order-item">
             <span>OrderItem #{{oi.orderItemId}}</span>
             <span>Name: {{oi.name}}</span>
             <span>Price: {{oi.price}}€</span>
             <span>Status: {{oi.status}}</span>
-            @if(oi.photo){
-              <img [src]="oi.photo" alt="immagine rappresentativa dell'articolo">
-            }
           </div>
           <div class="action-buttons">
             @if(oi.status == "pending" && oi.orderItemId){
-              <button (click)="accept(oi)">Accept</button>
-              <button (click)="decline(oi)">Reject</button>
+            <button (click)="accept(oi)">Accept</button>
+            <button (click)="decline(oi)">Reject</button>
             }
           </div>
-        }
-      </div>
+
+        </div>
+        <div class="order-item-image">
+          @if(oi.photo){
+            <img [src]="oi.photo" alt="immagine rappresentativa dell'articolo">
+          }
+        </div>
+      }
     </div>
-  }
+  </div>
+}
 </div>
