@@ -45,6 +45,7 @@ export class CollectionCardComponent {
   bookmark!: Bookmark;
   showComment = false;
   createComment: string = ''
+  likeId!: number;
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
