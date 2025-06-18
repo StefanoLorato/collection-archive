@@ -106,4 +106,13 @@ onWindowScroll() {
     15: 'bi-camera',
     16: 'bi-watch'
   };
+
+  searchWithEnter() {
+  if (this.searchTerm.trim()) {
+    // implement your search logic here
+    console.log('Searching for:', this.searchTerm);
+  }
+}
+
+
 }

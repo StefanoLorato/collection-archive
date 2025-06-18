@@ -1,14 +1,24 @@
-@if(owner != null){
-  <p>Name: {{ owner.name }}</p>
-  <p>Lastname: {{ owner.lastname}}</p>
-  <p>Email: {{ owner.email}}</p>
-  <p>{{owner.name}}'s collections:</p>
-  <h2>User id: {{ owner.userId }}</h2>
+<h1 class="profile-title">User Profile</h1>
+
+@if (owner != null) {
+  <div class="profile-card">
+    @if(currentUser != null && currentUser.userId == owner.userId){
+      <button class="bookmark-btn" [routerLink]="['/bookmarkslist', currentUser.userId]">See Bookmarks</button>
+    }
+    <p><strong>Name:</strong> {{ owner.name }}</p>
+    <p><strong>Lastname:</strong> {{ owner.lastname }}</p>
+    <p><strong>Email:</strong> {{ owner.email }}</p>
+    <p><strong>{{ owner.name }}'s Collections:</strong></p>
+  </div>
+
   <div class="dashboard-container">
     @for (c of list; track c.collectionId) {
-      <app-collection-card [collection]='c' (deleteCollection)="handleDelete($event)"></app-collection-card>
+      <app-collection-card
+        [collection]="c"
+        (deleteCollection)="handleDelete($event)">
+      </app-collection-card>
     }
   </div>
 } @else {
-  <h2>Caricando la collection...</h2>
+  <h2>Caricamento in corso...</h2>
 }

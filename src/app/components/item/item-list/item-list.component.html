@@ -1,3 +1,11 @@
-@for(i of list; track i.itemId){
-
+<h1>Your Items: </h1>
+@if(list.length == 0){
+  <p>Nothing to see here. <a [routerLink]="['/dashboard']">Go to dashboard</a></p>
+}
+@else {
+  <div class="item-list">
+    @for(i of list; track i.itemId){
+      <app-item-card [item]="i"></app-item-card>
+    }
+  </div>
 }

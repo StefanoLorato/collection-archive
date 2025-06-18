@@ -1,4 +1,3 @@
-
 /* Nav BAr superiore */
 .top-navbar {
   display: grid;
@@ -6,10 +5,12 @@
   align-items: center;
   gap: 20px;
   padding: 0 30px;
-  background-color: #fbfbfb;
+  background-color: #ffffff;
   height: 130px;
-  font-family: 'Roboto', sans-serif;
   border-bottom: 2px solid #e7e4e4;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 /* Logo */
@@ -21,12 +22,15 @@
 
 .brand-name {
   color: #0d47a1;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-weight: 600;
   font-size: 2.5rem;
   margin-left: 12px;
   margin-top: -2px;
-  padding-bottom: 14px;/* meno consigliato ma funziona */
+  padding-bottom: 14px;
+  /* meno consigliato ma funziona */
 }
 
 .logo img {
@@ -36,7 +40,7 @@
 
 
 /* ricerche */
-.search-containers{
+.search-containers {
   display: flex;
   margin: 0 50px;
   justify-content: center;
@@ -64,7 +68,7 @@
   border: none;
   background: transparent;
   font-size: 24px;
-  padding: 10px;
+  padding: 20px;
   outline: none;
 }
 
@@ -74,6 +78,7 @@
   border-radius: 30px;
   padding: 10px 15px;
   transition: all 0.3s ease-in-out;
+  font-size: 30px;
 }
 
 .search-bar button:hover {
@@ -90,15 +95,14 @@
   margin-bottom: 30px;
 }
 
-.auth-links a,
+
 .auth-links button {
   background-color: #1a73e8;
-  /* Blu cobalto */
   color: white;
-  padding: 16px 16px;
+  padding: 20px 23px;
   border: none;
   border-radius: 3px;
-  font-size: 28px;
+  font-size: 22px;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
@@ -110,7 +114,59 @@
   /* tono leggermente più scuro */
 }
 
- /* AUTH_LINK DEL USER PROFILE */
+/* AUTH_LINK DEL USER PROFILE */
+.auth-links .profile {
+  color: #000 !important;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+
+}
+
+.auth-links .profile:hover,
+.auth-links .profile:focus,
+.auth-links .profile:active {
+  color: #000 !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+  outline: none !important;
+
+}
+
+.auth-links .profile i {
+  color: #0d6efd;
+  font-size: 24px;
+  pointer-events: none;
+
+}
+
+.auth-links .profile-name {
+  color: #000;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+/* Bottoni dinamici per autlink */
+.button-dynamic {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1);
+}
+
+.button-dynamic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-dynamic:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* AUTH_LINK DEL USER PROFILE */
 .auth-links .profile {
   color: #000 !important;
   background: transparent;
@@ -130,6 +186,7 @@
   text-decoration: none !important;
   outline: none !important;
 }
+
 .auth-links .profile i {
   color: #0d6efd;
   font-size: 24px;
@@ -138,12 +195,13 @@
 
 .auth-links .profile-name {
   color: #000;
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 23px;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 
- /* Bottoni dinamici per autlink */
+/* Bottoni dinamici per autlink */
 .button-dynamic {
   transition: all 0.2s ease-in-out;
   transform: scale(1);
@@ -165,7 +223,9 @@
   background-color: #fff;
   border-bottom: 3px solid #1a73e8;
   padding: 0 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   height: 110px;
   display: flex;
   align-items: center;
@@ -173,7 +233,9 @@
 
 .nav-links {
   list-style: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -213,7 +275,7 @@
 }
 
 /* -----Scroll Category----- */
-.outer-scroll-container{
+.outer-scroll-container {
   position: relative;
   margin: 0 auto;
   box-sizing: border-box;
@@ -228,17 +290,18 @@
   top: 0;
   z-index: 1000;
   background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   scrollbar-width: none;
   position: relative;
+  margin-bottom: 76px;
 }
 
 .sticky {
-    position: fixed;
-    top: 0;
-    z-index: 1030;
-    right: 150px;
-    left: 150px;
+  position: fixed;
+  top: 0;
+  z-index: 1030;
+  right: 150px;
+  left: 150px;
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -329,7 +392,6 @@
 
 /*  Finestra modal category  */
 
-
 .open-modal-btn {
   padding: 12px 20px;
   font-size: 22px;
@@ -377,7 +439,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
@@ -392,7 +454,7 @@
   padding: 50px;
   max-height: 96vh;
   overflow-y: auto;
-   box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .close-btn {
@@ -419,7 +481,7 @@
   padding: 32px;
   border-radius: 3px;
   background-color: #f8f8f8;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   text-decoration: none;
   color: #222;
   font-size: 22px;
@@ -428,7 +490,7 @@
 
 .category-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .category-text {
@@ -440,8 +502,10 @@
   font-weight: bold;
   unicode-bidi: isolate;
 
-  font-size: 22px; /* opzionale: leggermente più grande */
-  color: #2b2b2b;  /* un grigio elegante */
+  font-size: 22px;
+  /* opzionale: leggermente più grande */
+  color: #2b2b2b;
+  /* un grigio elegante */
 }
 
 .category-image {
@@ -454,7 +518,8 @@
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
-  background-color: #e0e0e0; /* per sicurezza se l’immagine non carica */
+  background-color: #e0e0e0;
+  /* per sicurezza se l’immagine non carica */
   transition: transform 0.3s ease;
 }
 
@@ -473,4 +538,63 @@
   font-size: 48px;
   font-weight: 800;
   margin-bottom: 40px;
+}
+
+/* ----GEstione tendina del profilo */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-trigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #dbe2f1;
+  /* chiaro */
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(237, 7, 7, 0.1);
+  border-radius: 6px;
+  z-index: 3000;
+  width: 250px;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease 0.3s, visibility 0.4s ease 0.3s;
+  /* ritardo di 0.3s per la scomparsa */
+}
+
+.profile-dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+  /* appare subito */
+}
+
+
+
+.dropdown-content a {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: "bond";
+  font-size: 19px;
+  color: #020202;
+  text-decoration: none;
+  padding: 12px 18px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #eaeaea;
 }

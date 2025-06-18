@@ -6,24 +6,30 @@ import { User } from '../../../models/user';
 import { UserService } from '../../../service/userService';
 import { Collection } from '../../../models/collection';
 import { CollectionService } from '../../../service/collectionService';
+import { UserLike } from '../../../models/userLike';
+import { UserLikeService } from '../../../service/userLikeService';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-item-card',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './item-card.component.html',
   styleUrl: './item-card.component.css'
 })
 export class ItemCardComponent implements OnInit{
   private _router = inject(Router);
   private _dataService = inject(DataService);
-  currentUser!: User;
   private _userService = inject(UserService);
   private _collectionService = inject(CollectionService);
-  owner!: User | null;
+  private _likeService = inject(UserLikeService);
+  currentUser!: User;
+  owner!: User| null;
   collection!: Collection | null;
+  like!: UserLike;
 
   @Input('item') item!: Item;
   @Output('deleteItem') deleteItem = new EventEmitter<{id: number}>();
+  @Output('bookmarkChanged') bookmarkChanged = new EventEmitter<{id: number, bookmarked: boolean}>();
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -32,14 +38,15 @@ export class ItemCardComponent implements OnInit{
       }
     });
     this.findUserById(this.item.userId);
-    this.findCollectionById(this.item.collectionId);
+    if(this.item.collectionId){
+      this.findCollectionById(this.item.collectionId);
+    }
   }
 
   onDelete(){
     console.log('onDelete chiamato! itemId:', this.item.itemId);
     this.deleteItem.emit({ id: this.item.itemId });
     console.log("componente interna invia l'evento");
-
   }
 
   onUpdate() {
@@ -62,6 +69,44 @@ export class ItemCardComponent implements OnInit{
       next: collection => this.collection = collection,
       error: err => alert("collezione non trovata" + err)
     })
+  }
+
+  toggleLike() {
+    this.like = {
+      userId: this.currentUser.userId,
+      itemId: this.item.itemId
+    };
+    if(!this.item.liked){
+      this._likeService.addLike(this.like).subscribe({
+        next: (savedLike) => {
+          if (!savedLike || savedLike.likeId == null) {
+            alert("Errore: likeId mancante");
+            return;
+          }
+          console.log(savedLike);
+
+          this.item = {...this.item, liked: !this.item.liked, likeId: savedLike.likeId!, numLikes: this.item.numLikes+1};
+          alert("Like aggiunto");
+          console.log('Like aggiunto:', savedLike);
+          console.log('Stato item:', this.item);
+        },
+        error: err => alert("Errore nell'aggiunta del like: " + err)
+      });
+    } else {
+      this._likeService.deleteLike(this.item.likeId!).subscribe({
+        next: () => {
+          this.item = {...this.item, liked: !this.item.liked, likeId: null, numLikes: this.item.numLikes-1};
+          alert("Like rimosso");
+          console.log('Like rimosso:');
+          console.log('Stato item:', this.item);
+        },
+        error: err => alert("Errore nella rimozione del like: " + err)
+      });
+    }
+  }
+  
+  onBookmarkChange(event: { id: number, bookmarked: boolean }) {
+    this.bookmarkChanged.emit({id: this.item.itemId, bookmarked: this.item.bookmarked});
   }
 
 }

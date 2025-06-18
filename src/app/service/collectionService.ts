@@ -34,6 +34,11 @@ export class CollectionService {
       return this.getCollections({ userId });
     }
 
+    getCollectionByBookmarkUserId(): Observable<Collection[]> {
+      let params = new HttpParams().set("bookmarked", true);
+      return this._http.get<Collection[]>(this._url, {params});
+    }
+
     getLoggedUserCollections(): Observable<Collection[]> {
         return this._http.get<Collection[]>(this._url + "/loggedUser");
     }
@@ -52,6 +57,10 @@ export class CollectionService {
 
     updateCollection(updateCollection: Collection): Observable<void> {
         return this._http.put<void>(`${this._url}/${updateCollection.collectionId}`, updateCollection);
+    }
+
+    toggleVisibility(id: number): Observable<void> {
+        return this._http.put<void>(`${this._url}/${id}/visibility`, null);
     }
 
 }

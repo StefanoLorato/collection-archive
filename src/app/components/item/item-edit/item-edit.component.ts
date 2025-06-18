@@ -5,18 +5,21 @@ import { ItemService } from '../../../service/itemService';
 import { Item } from '../../../models/item';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Collection } from '../../../models/collection';
+import { CollectionService } from '../../../service/collectionService';
 
 @Component({
   selector: 'app-item-edit',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './item-edit.component.html',
   styleUrls: ['./item-edit.component.css']
 })
 export class ItemEditComponent implements OnInit {
-  item: Item | undefined;
+  item!: Item;
+  collections: Collection[] = [];
 
   private _service = inject(ItemService);
+  private _collectionService = inject(CollectionService);
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
 
@@ -31,6 +34,7 @@ export class ItemEditComponent implements OnInit {
         }
       });
     }
+    this.loadMyCollections();
   }
 
   onSubmit(form: NgForm) {
@@ -44,4 +48,25 @@ export class ItemEditComponent implements OnInit {
       error: () => alert('Error during update items')
     });
   }
+
+  onFileSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.item.itemPhoto = reader.result as string; // salva come base64
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  loadMyCollections() {
+    this._collectionService.getLoggedUserCollections().subscribe({
+      next: c => this.collections = c,
+      error: e => alert("Errore di caricamento delle collections " + e)
+    });
+  }
+
 }

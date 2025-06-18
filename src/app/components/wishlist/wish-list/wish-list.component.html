@@ -1,14 +1,27 @@
-@if(wishList != null) {
-  <h2>Wishlist per la Collection {{ collectionId }}</h2>
+<button class="add-btn" (click)="toggleForm()">+ Add to WishList</button>
 
+@if (showAddForm) {
+  <form (ngSubmit)="addWishListItem(form)" #form="ngForm" class="wishlist-form">
+    <input name="name" [(ngModel)]="newDesiredItem.itemName" placeholder="Name" required />
+    <input name="itemDescription" [(ngModel)]="newDesiredItem.itemDescription" placeholder="Description" />
+    <input name="releaseDate" type="date" [(ngModel)]="newDesiredItem.releaseDate" />
+    <input name="itemVersion" [(ngModel)]="newDesiredItem.itemVersion" placeholder="Version" />
+    <input name="itemEdition" [(ngModel)]="newDesiredItem.itemEdition" placeholder="Edition" />
+    <button type="submit">Save</button>
+  </form>
+}
+@if(wishList != null) {
+  <h2>{{ collection.collectionName }}'s Wishlist</h2>
   @if(wishList.length > 0) {
-    @for (wishListitem of wishList; track wishListitem.itemId) {
-      <app-wishlist-item-card [wishlistItem]='wishListitem' (deleteWishListItem)="removeItemFromWishList($event)"></app-wishlist-item-card>
-    }
+    <div class="wishlist-container">
+      @for (wishListitem of wishList; track wishListitem.desiredObjectId) {
+        <app-wishlist-item-card [wishlistItem]='wishListitem' (deleteWishListItem)="removeItemFromWishList($event)"></app-wishlist-item-card>
+      }
+    </div>
   } @else {
-    <p>La wishlist è vuota.</p>
+    <p>This Wishlist is empty.</p>
   }
 
 } @else {
-  <h2>Caricando la wishlist...</h2>
+  <h2>Loading wishlist...</h2>
 }

@@ -8,10 +8,11 @@ import { ItemService } from '../../../service/itemService';
 import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-collection-detail',
-  imports: [ItemCardComponent, RouterLink],
+  imports: [ItemCardComponent, RouterLink, FormsModule],
   templateUrl: './collection-detail.component.html',
   styleUrl: './collection-detail.component.css'
 })
@@ -26,7 +27,7 @@ export class CollectionDetailComponent implements OnInit {
   private _dataService = inject(DataService);
   currentUser!: User;
   private _collectionId!: number;
-
+  selectedFilter = "visible";
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -54,9 +55,6 @@ export class CollectionDetailComponent implements OnInit {
     });
   }
 
-
-  
-
   findCollection(id: number) {
     this._service.getCollectionById(id).subscribe({
       next: c => this.collection = c,
@@ -83,5 +81,20 @@ export class CollectionDetailComponent implements OnInit {
   navigateToEdit() {
     this._router.navigate(['/edit-collection-form/', this.collection.collectionId])
   }
+
+  navigateToWishlist() {
+  this._router.navigate(['/wishlist', this.collection.collectionId]); // Passiamo l'ID collection alla route
+}
+
+  toggleVisibility(){
+    console.log(this.collection.visibility)
+    this._service.toggleVisibility(this._collectionId).subscribe({
+      next: () => {
+        alert("Changed visibility");
+        this.collection.visibility = (this.collection.visibility == "visible" ? "hidden" : "visible");
+      }
+    })
+  }
+
 
 }

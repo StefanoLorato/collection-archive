@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { Item } from "../models/item";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { OrderItem } from "../models/orderItem";
 
@@ -14,6 +14,11 @@ export class OrderItemService {
 
   getOrderItems(): Observable<OrderItem[]> {
     return this._http.get<OrderItem[]>(this._url);
+  }
+
+  getOrderItemsBySellerId(id: number): Observable<OrderItem[]> {
+    let params = new HttpParams().set("sellerId", id);
+    return this._http.get<OrderItem[]>(this._url, {params});
   }
 
   getOrderItemById(id: number): Observable<OrderItem> {

@@ -1,6 +1,5 @@
-@if(collection.visibility == "visible" || (currentUser != null && collection.userId == currentUser.userId)){
+@if(collection.visibility == "visible"  || (currentUser != null && collection.userId == currentUser.userId)){
 <div class="collection-card">
-
   @if(list!= null){
   <div
     class="collection-img {{ list.length === 1 ? 'one-item' : list.length === 2 ? 'two-items' : list.length === 3 ? 'three-items' : '' }}"
@@ -51,32 +50,30 @@
     @if(collection.forSale){
     <p class="sale">For Sale: {{ collection.salePrice }} €</p>
     }
-    <!-- <div class="collection-meta">
-      @if(collection.completed){
-        <p>Completed</p>
-      }
-      @if(collection.collectionDate != null){
-        <p>{{ collection.collectionDate }}</p>
-      }
-      <p>Category: {{ category?.categoryName }}</p>
-    </div> -->
 
   </div>
   <div class="card-footer">
     <button id="view" [routerLink]="['/collection-detail', collection.collectionId]">View Details</button>
-
     <div class="interact">
-      @if(collection.forSale == true){
-      <button id="buy" [routerLink]="['/purchase/collection', collection.collectionId]">
-        <i class="bi bi-cart"></i>
-      </button>
+      @if(collection.forSale == true && currentUser.userId != collection.userId){
+        <button id="buy" [routerLink]="['/purchase/collection', collection.collectionId]">
+          <i class="bi bi-cart"></i>
+        </button>
       }
       <button id="like" (click)="toggleLike()">
-        <i class="bi" [ngClass]="liked ? 'bi-heart-fill text-primary' : 'bi-heart'"></i>
+        <i class="bi" [ngClass]="collection.liked ? 'bi-heart-fill text-primary' : 'bi-heart'"></i>
       </button>
       <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
-      <button id="bookmark" (click)="bookmark()"><i class="bi bi-bookmark"></i></button>
+      <div *ngIf="isCommenting" class="comment-form">
+      <textarea [(ngModel)]="newCommentText" placeholder="Scrivi un commento..."></textarea>
+      <button (click)="submitComment()">Invia</button>
+      </div>
+      <button id="bookmark" (click)="toggleBookmark()">
+        <i class="bi" [ngClass]="collection.bookmarked ? 'bi-bookmark-fill text-primary' : 'bi-bookmark'"></i>
+      </button>
     </div>
   </div>
 </div>
+
+
 }
