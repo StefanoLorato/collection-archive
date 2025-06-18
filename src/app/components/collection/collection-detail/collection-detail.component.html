@@ -26,6 +26,9 @@
           <button [routerLink]="['/wishlist', collection.collectionId]">View Wishlist</button>
         </div>
       }
+      <div class="collection-actions">
+        <button [routerLink]="['/collection-comments', collection.collectionId]">View Comments</button>
+      </div>
     </div>
     <div class="item-container">
       @if(currentUser != null && collection.userId != currentUser.userId){

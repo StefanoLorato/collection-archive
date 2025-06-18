@@ -1,1 +1,9 @@
-<p>comment-list works!</p>
+<div class="comment-container">
+  @if(collection){
+    <h1>{{collection.collectionName}}</h1>
+    @for (comment of comments; track comment.commentId) {
+      <div class="commentUser">{{comment.name}}</div>
+      <div class="content">{{comment.comment}}</div>
+    }
+  }
+</div>

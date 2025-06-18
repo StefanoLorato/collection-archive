@@ -13,10 +13,13 @@ import { CommonModule } from '@angular/common';
 import { BookmarkService } from '../../../service/bookmarkService';
 import { Bookmark } from '../../../models/bookmark';
 import { UserLike } from '../../../models/userLike';
+import { FormsModule } from '@angular/forms';
+import { UserCommentService } from '../../../service/userCommentService';
+import { UserComment } from '../../../models/userComment';
 
 @Component({
   selector: 'app-collection-card',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './collection-card.component.html',
   styleUrl: './collection-card.component.css'
 })
@@ -28,6 +31,8 @@ export class CollectionCardComponent {
   private _userService = inject(UserService);
   private _itemService = inject(ItemService);
   private _likeService = inject(UserLikeService);
+  private _commentService = inject(UserCommentService);
+
   currentUser!: User;
   category!: Category | null;
   owner!: User | null;
@@ -37,6 +42,11 @@ export class CollectionCardComponent {
   hasTags = false;
   like!: UserLike;
   bookmark!: Bookmark;
+  showComment = false;
+  createComment: string = '';
+  likeId!: number;
+  isCommenting = false;
+  newCommentText = '';
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
@@ -102,7 +112,27 @@ export class CollectionCardComponent {
       });
     }
   }
+
   comment() {
+    this.isCommenting = !this.isCommenting;
+  }
+
+  submitComment() {
+    const comment: UserComment = {
+      userId: this.currentUser.userId,
+      collectionId: this.collection.collectionId,
+      comment: this.newCommentText,
+      name: this.currentUser.name,
+    };
+
+    this._commentService.createComment(comment).subscribe({
+      next: () => {
+        alert("Commento aggiunto!");
+        this.newCommentText = '';
+        this.isCommenting = false;
+      },
+      error: err => alert("Errore nell'aggiunta del commento: " + err)
+    });
   }
 
   toggleBookmark() {

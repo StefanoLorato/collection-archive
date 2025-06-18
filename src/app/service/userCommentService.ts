@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserComment } from '../models/userComment';
 
@@ -33,5 +33,10 @@ export class UserCommentService {
   // DELETE comment
   deleteComment(id: number): Observable<void> {
     return this._http.delete<void>(`${this._url}/${id}`);
+  }
+
+  getCommentsByCollectionId(id: Number):Observable<UserComment[]> {
+    let params = new HttpParams().set("collectionId",""+ id);
+    return this._http.get<UserComment[]>(this._url, {params});
   }
 }

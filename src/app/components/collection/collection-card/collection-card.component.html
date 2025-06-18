@@ -68,4 +68,9 @@
     </div>
   </div>
 </div>
+
+ <div *ngIf="isCommenting" class="comment-form">
+    <textarea [(ngModel)]="newCommentText" placeholder="Scrivi un commento..."></textarea>
+    <button (click)="submitComment()">Invia</button>
+  </div>
 }
