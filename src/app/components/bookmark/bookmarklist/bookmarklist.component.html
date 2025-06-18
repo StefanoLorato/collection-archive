@@ -7,10 +7,10 @@
         <app-collection-card [collection]="collection" (bookmarkChanged)="onBookmarkChanged($event)"></app-collection-card>
       }
     } @else {
-      <p>bookmark è vuota.</p>
+      <p>You don't have any bookmark.</p>
     }
   </div>
 
 } @else {
-  <h2>Caricando la bookmark...</h2>
+  <h2>Loading bookmark...</h2>
 }

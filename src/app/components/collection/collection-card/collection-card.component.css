@@ -9,7 +9,7 @@
   width: 100%;
   margin: auto;
   margin-bottom: 15px;
-  
+
 }
 
 .card-header {
@@ -150,7 +150,7 @@
 }
 
 .description-box{
-  
+
   overflow: hidden;
   font-size: 0.95rem;
   line-height: 1.4;
@@ -212,4 +212,71 @@
 
 .interact button:hover {
   transform: translateY(-2px);
+}
+
+.comment-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999; /* assicura che stia sopra gli altri elementi */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comment-form textarea {
+  height: 100px;
+  resize: none;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.comment-form .send-btn {
+  align-self: flex-end;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.comment-form button:hover {
+  background-color: #155cb0;
+}
+
+.comment-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  color: black;
+  background-color: white;
+  border: none;
+}
+
+.close-button:hover {
+  color: #1a73e8;
 }

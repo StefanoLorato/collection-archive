@@ -27,7 +27,7 @@
         </div>
       }
       <div class="collection-actions">
-        <button [routerLink]="['/collection-comments', collection.collectionId]">View Comments</button>
+        <button (click)="toggleComments()">View Comments</button>
       </div>
     </div>
     <div class="item-container">
@@ -41,6 +41,15 @@
         }
       }
     </div>
+
+    @if(showComment){
+      <div class="popup-overlay-comment">
+        <div class="popup-comments">
+          <button class="close-btn" (click)="toggleComments()">X</button>
+          <app-comment-list></app-comment-list>
+        </div>
+      </div>
+    }
   }
 } @else {
   <h2>Caricando la collection...</h2>

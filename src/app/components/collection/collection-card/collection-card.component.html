@@ -70,7 +70,11 @@
 </div>
 
  <div *ngIf="isCommenting" class="comment-form">
-    <textarea [(ngModel)]="newCommentText" placeholder="Scrivi un commento..."></textarea>
-    <button (click)="submitComment()">Invia</button>
+    <button class="close-button" (click)="comment()">✕</button>
+    <div class="comment-header">
+      <h3>{{collection.collectionName}}</h3>
+    </div>
+    <textarea [(ngModel)]="newCommentText" placeholder="Leave a comment..."></textarea>
+    <button class="send-btn" (click)="submitComment()">Send</button>
   </div>
 }

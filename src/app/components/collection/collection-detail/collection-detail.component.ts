@@ -9,10 +9,11 @@ import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { FormsModule } from '@angular/forms';
+import { CommentListComponent } from '../../comment/comment-list/comment-list.component';
 
 @Component({
   selector: 'app-collection-detail',
-  imports: [ItemCardComponent, RouterLink, FormsModule],
+  imports: [ItemCardComponent, CommentListComponent, RouterLink, FormsModule, ],
   templateUrl: './collection-detail.component.html',
   styleUrl: './collection-detail.component.css'
 })
@@ -28,6 +29,7 @@ export class CollectionDetailComponent implements OnInit {
   currentUser!: User;
   private _collectionId!: number;
   selectedFilter = "visible";
+  showComment = false;
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -94,6 +96,10 @@ export class CollectionDetailComponent implements OnInit {
         this.collection.visibility = (this.collection.visibility == "visible" ? "hidden" : "visible");
       }
     })
+  }
+
+  toggleComments(){
+    this.showComment = !this.showComment;
   }
 
 

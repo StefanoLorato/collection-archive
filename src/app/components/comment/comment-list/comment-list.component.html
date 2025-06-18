@@ -2,8 +2,10 @@
   @if(collection){
     <h1>{{collection.collectionName}}</h1>
     @for (comment of comments; track comment.commentId) {
-      <div class="commentUser">{{comment.name}}</div>
-      <div class="content">{{comment.comment}}</div>
+      <div class="comment">
+        <div class="commentUser">{{comment.name}}: </div>
+        <div class="content">{{comment.comment}}</div>
+      </div>
     }
   }
 </div>
