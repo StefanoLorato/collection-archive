@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { User } from '../../models/user';
 import { DataService } from '../../service/dataService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { DataService } from '../../service/dataService';
 export class HomeComponent {
   private _dataService = inject(DataService);
   currentUser!: User;
+  private _router = inject(Router);
 
 
   ngOnInit(): void {
@@ -19,6 +21,10 @@ export class HomeComponent {
         this.currentUser = user;
       }
     });
+  }
+
+  directToDashboard(){
+    this._router.navigate(['/dashboard']);
   }
 
 }

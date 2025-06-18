@@ -5,12 +5,26 @@
   align-items: center;
   gap: 20px;
   padding: 0 30px;
-  background-color: #ffffff;
+  background: linear-gradient(120deg, 
+    rgba(30, 60, 114, 0.2), 
+    rgba(42, 82, 152, 0.2), 
+    rgba(174, 208, 216, 0.2), 
+    rgba(33, 147, 176, 0.2)
+  );
+  background-size: 300% 300%;
+  animation: gradientMove 15s ease infinite;
+  z-index: -1;
   height: 130px;
   border-bottom: 2px solid #e7e4e4;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Logo */

@@ -143,4 +143,8 @@ export class CollectionCardComponent {
   toggleDescription() {
     this.showFullDescription = !this.showFullDescription;
   }
+
+  directWishlist(){
+    this._router.navigate(['/wishlist', this.collection.collectionId]);
+  }
 }

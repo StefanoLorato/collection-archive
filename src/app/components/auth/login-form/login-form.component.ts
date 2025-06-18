@@ -43,7 +43,7 @@ export class LoginFormComponent {
       next: (res) => {
         this.getUserByEmail(email);
         alert("Login with success!");
-        this._router.navigate(['/dashboard']);
+        this._router.navigate(['/home']);
       },
       error: err => alert("Errore durante login" + err)
     });
