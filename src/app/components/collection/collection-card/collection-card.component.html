@@ -58,20 +58,12 @@
           <i class="bi bi-cart"></i>
         </button>
       }
-      <button id="like" (click)="like()">
-        @if(currentUser){
-          <i class="bi bi-heart"></i>
-        } @else {
-          <i class="bi bi-heart-fill"></i>
-        }
-        </button>
+      <button id="like" (click)="toggleLike()">
+        <i class="bi" [ngClass]="collection.liked ? 'bi-heart-fill text-primary' : 'bi-heart'"></i>
+      </button>
       <button id="comment" (click)="comment()"><i class="bi bi-chat"></i></button>
-      <button id="bookmark" (click)="bookmark()">
-        @if(currentUser){
-          <i class="bi bi-bookmark"></i>
-        } @else {
-          <i class="bi bi-bookmark-fill"></i>
-        }
+      <button id="bookmark" (click)="toggleBookmark()">
+        <i class="bi" [ngClass]="collection.bookmarked ? 'bi-bookmark-fill text-primary' : 'bi-bookmark'"></i>
       </button>
     </div>
   </div>

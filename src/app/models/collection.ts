@@ -12,4 +12,9 @@ export interface Collection {
     forSale: boolean;
     salePrice: number;
     visibilityStatus: string;
+    liked: boolean;
+    numLikes: number;
+    bookmarked: boolean;
+    likeId: number | null;
+    bookmarkId: number | null;
 }

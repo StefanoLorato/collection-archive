@@ -18,12 +18,11 @@
 <h2>Received Orders:</h2>
 <div class="order-section">
   @for(order of receivedOrders; track order.orderId){
-  <div class="order-info">
-    <p>Order #{{order.orderId}}</p>
-    <p>Buyer: {{order.buyerEmail}}</p>
-    <div class="order-items">
-      @for(oi of order.orderItems; track oi.orderItemId){
-        <div>
+    <div class="order-info">
+      <p>Order #{{order.orderId}}</p>
+      <p>Buyer: {{order.buyerEmail}}</p>
+      <div class="order-items">
+        @for(oi of order.orderItems; track oi.orderItemId){
           <div class="order-item">
             <span>OrderItem #{{oi.orderItemId}}</span>
             <span>Name: {{oi.name}}</span>

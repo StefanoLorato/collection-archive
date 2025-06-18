@@ -55,9 +55,6 @@ export class CollectionDetailComponent implements OnInit {
     });
   }
 
-
-
-
   findCollection(id: number) {
     this._service.getCollectionById(id).subscribe({
       next: c => this.collection = c,
@@ -85,6 +82,10 @@ export class CollectionDetailComponent implements OnInit {
     this._router.navigate(['/edit-collection-form/', this.collection.collectionId])
   }
 
+  navigateToWishlist() {
+  this._router.navigate(['/wishlist', this.collection.collectionId]); // Passiamo l'ID collection alla route
+}
+
   toggleVisibility(){
     console.log(this.collection.visibility)
     this._service.toggleVisibility(this._collectionId).subscribe({
@@ -95,15 +96,5 @@ export class CollectionDetailComponent implements OnInit {
     })
   }
 
-  get visibleItems() {
-    return this.list.filter(
-      c => c.visibilityStatus === 'visible'
-    );
-  }
-
-  get filteredItems() {
-    if (this.selectedFilter === 'all') return this.list;
-    return this.list.filter(i => i.visibilityStatus === this.selectedFilter);
-  }
 
 }

@@ -1,17 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../../service/userService';
 import { User } from '../../../models/user';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 import { CollectionService } from '../../../service/collectionService';
 import { Collection } from '../../../models/collection';
-import { CollectionListComponent } from '../../collection/collection-lists/collection-list.component';
 import { DataService } from '../../../service/dataService';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [CollectionCardComponent, FormsModule],
+  imports: [CollectionCardComponent, FormsModule, RouterLink],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
