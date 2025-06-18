@@ -26,7 +26,6 @@ export class BookmarklistComponent {
   private _route = inject(ActivatedRoute);
   private _itemService= inject(ItemService)
   list!: Collection[];
-  listTwo!: Item[];
   userId!: number;
   currentUser!: User;
   collection!: Collection;
