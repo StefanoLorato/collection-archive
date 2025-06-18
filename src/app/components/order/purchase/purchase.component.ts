@@ -227,6 +227,14 @@ export class PurchaseComponent implements OnInit {
         price: this.collection.salePrice
       }
       this._dataService.addCollection(cartItem);
+    } else if (this.item && !this.isAlreadyInCart) {
+      const cartItem: CartItem = {
+        id: this.item.itemId,
+        name: this.item.itemName,
+        ownerId: this.item.userId,
+        price: this.item.salePrice
+      }
+      this._dataService.addItem(cartItem);
     } else {
       alert('Non è possibile aggiungere questo oggetto al carrello');
     }

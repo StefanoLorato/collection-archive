@@ -40,11 +40,11 @@ export class CollectionCardComponent {
 
   @Input('collection') collection!: Collection;
   @Output("deleteCollection") deleteCollection = new EventEmitter<{ id: number }>();
-  @Output("bookmarkChanged") bookmarkChanged = new EventEmitter<{id: number, bookmarked: boolean}>();
+  @Output("bookmarkChanged") bookmarkChanged = new EventEmitter<{ id: number, bookmarked: boolean }>();
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
-      if(user != null){
+      if (user != null) {
         this.currentUser = user;
       }
     });
@@ -67,68 +67,64 @@ export class CollectionCardComponent {
     }
   }
 
-  findCategoryById(id: number){
+  findCategoryById(id: number) {
     this._catService.getCategoryById(id).subscribe({
       next: category => this.category = category,
       error: err => alert("categoria non trovata" + err)
     })
   }
 
-  findUserById(id: number){
+  findUserById(id: number) {
     this._userService.getUserById(id).subscribe({
       next: user => this.owner = user,
       error: err => alert("user non trovato" + err)
     })
   }
 
- toggleLike() {
+  toggleLike() {
     this.like = {
       userId: this.currentUser.userId,
       collectionId: this.collection.collectionId
     };
-    if(!this.collection.liked){
+    if (!this.collection.liked) {
       this._likeService.addLike(this.like).subscribe({
         next: (savedLike) => {
-          this.collection = {...this.collection, liked: !this.collection.liked, likeId: savedLike.likeId!};
-          alert("Like aggiunto");
+          this.collection = { ...this.collection, liked: !this.collection.liked, likeId: savedLike.likeId! };
         },
         error: err => alert("Errore nell'aggiunta del like: " + err)
       });
     } else {
       this._likeService.deleteLike(this.collection.likeId!).subscribe({
         next: () => {
-          this.collection = {...this.collection, liked: !this.collection.liked, likeId: null};
-          alert("Like rimosso");
+          this.collection = { ...this.collection, liked: !this.collection.liked, likeId: null };
         },
         error: err => alert("Errore nella rimozione del like: " + err)
       });
     }
   }
-  comment(){
+  comment() {
   }
 
-  toggleBookmark(){
+  toggleBookmark() {
     this.bookmark = {
       userId: this.currentUser.userId,
       collectionId: this.collection.collectionId,
     }
-    if(!this.collection.bookmarked){
+    if (!this.collection.bookmarked) {
       this._bookmarkService.createBookmark(this.bookmark).subscribe({
         next: b => {
-          this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: b.bookmarkId!};
-          alert("bookmark aggiunto");
-          this.bookmarkChanged.emit({id: this.collection.collectionId, bookmarked: true});
+          this.collection = { ...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: b.bookmarkId! };
+          this.bookmarkChanged.emit({ id: this.collection.collectionId, bookmarked: true });
         },
         error: err => alert("errore nell'aggiunta del bookmark" + err)
       })
     } else {
       this._bookmarkService.deleteBookmark(this.collection.bookmarkId!).subscribe({
         next: () => {
-          this.collection = {...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: null};
-          alert("bookmark rimosso");
-          this.bookmarkChanged.emit({id: this.collection.collectionId, bookmarked: false});
+          this.collection = { ...this.collection, bookmarked: !this.collection.bookmarked, bookmarkId: null };
+          this.bookmarkChanged.emit({ id: this.collection.collectionId, bookmarked: false });
         },
-        error: err =>  alert("errore nella rimozione del bookmark" + err)
+        error: err => alert("errore nella rimozione del bookmark" + err)
       })
     }
   }
@@ -144,7 +140,7 @@ export class CollectionCardComponent {
     this.showFullDescription = !this.showFullDescription;
   }
 
-  directWishlist(){
+  directWishlist() {
     this._router.navigate(['/wishlist', this.collection.collectionId]);
   }
 }
