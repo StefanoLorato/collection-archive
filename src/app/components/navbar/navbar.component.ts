@@ -113,4 +113,6 @@ onWindowScroll() {
     console.log('Searching for:', this.searchTerm);
   }
 }
+
+
 }

@@ -1,43 +1,39 @@
-
 <div class="item-grid">
-<div class="item-card">
-  <div class="image-container">
-    <img [src]="item.itemPhoto" alt="{{ item.itemName }}" />
-    <div class="like-badge">
-      <i class="bi bi-heart"></i>
+  <div class="item-card">
+    <div class="image-container">
+      <img [src]="item.itemPhoto" alt="{{ item.itemName }}" />
+      <div class="like-badge">
+        <button id="like-btn" (click)="toggleLike()">
+          <i class="bi" [ngClass]="item.liked ? 'bi-heart-fill text-primary' : 'bi-heart'"></i>
+        </button>
+        <span>{{item.numLikes}}</span>
+      </div>
     </div>
-  </div>
-  <div class="item-info">
-    <h3 class="item-title">{{ item.itemName }}</h3>
-    <p class="item-description">{{ item.itemDescription }}</p>
-    @if(collection){
-      <p>Collection: {{collection.collectionName}}</p>
-    }
-    @else {
-      <p>No Collection</p>
-    }
+    <div class="item-info">
+      <h3 class="item-title">{{ item.itemName }}</h3>
+      <p class="item-description">{{ item.itemDescription }}</p>
 
-    @if(item.salePrice != null) {
+      @if(item.salePrice != null) {
       <div class="price-row">
         <span class="label">Offerta attuale</span>
         <span class="price">{{ item.salePrice }} €</span>
       </div>
-    }
+      }
 
-    @if(item.userId == currentUser.userId){
+      @if(item.userId == currentUser.userId){
       <div class="owner-buttons">
         <button (click)="onDelete()">Elimina</button>
         <button (click)="onUpdate()">Modifica</button>
       </div>
-    }
-    @else {
-      @if(item.forSale){
-       <button id="buy" [routerLink]="['/purchase/item', item.itemId]">
-         <i class="bi bi-cart"></i>
-       </button>
       }
-    }
-
+      @else {
+      <div class="buy-button">
+        @if(item.forSale){
+        <button id="buy" [routerLink]="['/purchase/item', item.itemId]">
+          <i class="bi bi-cart"></i>
+        </button>
+        }
+      </div>
+      }
+    </div>
   </div>
-</div>
-

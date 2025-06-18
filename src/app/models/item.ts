@@ -14,4 +14,9 @@ export interface Item {
   itemEdition: string;
   forSale: boolean;
   visibilityStatus: string;
+  liked: boolean;
+  numLikes: number;
+  likeId: number | null;
+    bookmarked: boolean;
+    bookmarkId: number | null;
 }

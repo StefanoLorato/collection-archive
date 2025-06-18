@@ -45,6 +45,15 @@
   margin-right: 4px;
 }
 
+.like-badge button {
+  border: none;
+  color: #0a58ca;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-size: 1.3rem;
+}
+
 .item-info {
   padding: 12px;
 }
@@ -103,4 +112,21 @@
 
 .owner-buttons button:hover {
   background-color: #e0e0e0;
+}
+
+#buy {
+  background-color: #0a58ca;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: end;
+}
+.buy-button {
+ display: flex;
+ justify-content: end;
+ margin-top: 10px;
 }
