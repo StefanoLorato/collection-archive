@@ -1,27 +1,51 @@
 <div class="cart-container">
   <h2>Your Cart:</h2>
-  @if(cart.items.length == 0 && cart.collections.length == 0){
-    <p class="empty-message">Your cart is empty. <a [routerLink]="['/dashboard']">Go to dashboard</a></p>
+
+  @if(cart.items.length === 0 && cart.collections.length === 0){
+    <p class="empty-message">
+      Your cart is empty.
+      <a [routerLink]="['/dashboard']">Go to dashboard</a>
+    </p>
   }
   @else {
     @if(cart.items.length > 0){
-      <h3>Item</h3>
+      <h3>
+        Items
+        <span class="badge">{{ cart.items.length }}</span>
+      </h3>
+
       @for(i of cart.items; track i.id){
         <div class="cart-item">
-          {{ i.name }} - €{{ i.price }}
+          <div class="item-info">
+            <span class="item-name">{{ i.name }}</span>
+            <span class="item-price">€{{ i.price }}</span>
+          </div>
           <button (click)="removeItem(i.id)">Remove</button>
         </div>
       }
     }
+
     @if(cart.collections.length > 0){
-      <h3>Collezioni</h3>
+      <h3>
+        Collezioni
+        <span class="badge">{{ cart.collections.length }}</span>
+      </h3>
+
       @for(c of cart.collections; track c.id){
         <div class="cart-collection">
-          {{ c.name }} - €{{ c.price }}
+          <div class="item-info">
+            <span class="item-name">{{ c.name }}</span>
+            <span class="item-price">€{{ c.price }}</span>
+          </div>
           <button (click)="removeCollection(c.id)">Remove</button>
         </div>
       }
     }
+
+    <div class="cart-summary">
+  Totale provvisorio ({{ cart.items.length + cart.collections.length }} articoli): 
+  <strong>€{{ getTotalPrice() }}</strong>
+</div>
 
     <button class="buy-all-btn" (click)="buyAll()">Buy All</button>
   }

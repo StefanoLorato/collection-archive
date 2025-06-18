@@ -1,14 +1,13 @@
-
 @if (showForm) {
-  <div class="form-header">
-    @if(!isUpdate) {
-      <h2>Add Your Collection</h2>
-      <p>Here you can add your fantastic collections. Let your passions take shape!</p>
-    } @else {
-      <h2>Update Your Collection</h2>
-      <p>Here you can update your fantastic collections. Let your passions take shape!</p>
-    }
-  </div>
+<div class="form-header">
+  @if(!isUpdate) {
+  <h2>Add Your Collection</h2>
+  <p>Here you can add your fantastic collections. Let your passions take shape!</p>
+  } @else {
+  <h2>Update Your Collection</h2>
+  <p>Here you can update your fantastic collections. Let your passions take shape!</p>
+  }
+</div>
 }
 
 
@@ -18,7 +17,7 @@
   <div>
     <input formControlName="collectionName" type="text" id="collectionName" placeholder="Name Collection">
     @if (collectionName?.invalid && collectionName?.touched) {
-      <p>Insert collection name</p>
+    <p>Insert collection name</p>
     }
   </div>
 
@@ -26,7 +25,7 @@
   <div>
     <input formControlName="description" type="text" id="description" placeholder="Description">
     @if (description?.invalid && description?.touched) {
-      <p>Insert collection's description</p>
+    <p>Insert collection's description</p>
     }
   </div>
 
@@ -34,7 +33,7 @@
   <div>
     <input formControlName="collectionDate" type="date" id="collectionDate">
     @if (collectionDate?.invalid && collectionDate?.touched) {
-      <p>Insert collection's date</p>
+    <p>Insert collection's date</p>
     }
   </div>
 
@@ -43,46 +42,47 @@
     <select formControlName="categoryId" id="category">
       <option value="" disabled>-- Choose category --</option>
       @for(c of list; track c.categoryId){
-        <option value="{{c.categoryId}}">{{c.categoryName}}</option>
+      <option value="{{c.categoryId}}">{{c.categoryName}}</option>
       }
     </select>
     @if (categoryId?.invalid && categoryId?.touched) {
-      <p>Insert category</p>
+    <p>Insert category</p>
     }
 
   </div>
 
-  <!-- In vendita -->
-  <div class="toggle-switch">
-  <label class="switch-label">
-   For Sale    <input type="checkbox" formControlName="forSale" />
-    <span class="slider"></span>
-  </label>
-</div>
-
-  <!-- Prezzo -->
-  <div>
-    <input disablesd="!forSale" formControlName="salePrice" type="number" id="salePrice" placeholder="Price (€)">
-    @if (salePrice?.invalid && salePrice?.touched) {
-      <p>Insert valid price</p>
-    }
-  </div>
-
-  <!-- Completata -->
-<div class="toggle-switch">
-  <label class="switch-label">
-    Complete
-    <input type="checkbox" formControlName="completed" />
-    <span class="slider"></span>
-  </label>
-</div>
-  <!-- visibilità -->
   <div>
     <select formControlName="visibility" id="visibility">
+      <option value="" disabled>-- Choose visibility --</option>
       <option value="visible">Public</option>
       <option value="hidden">Private</option>
     </select>
   </div>
+  <!-- Prezzo -->
+  <div>
+    <input disablesd="!forSale" formControlName="salePrice" type="number" id="salePrice" placeholder="Price (€)">
+    @if (salePrice?.invalid && salePrice?.touched) {
+    <p>Insert valid price</p>
+    }
+  </div>
+  <!-- In vendita -->
+  <div class="toggle-switch">
+    <label class="switch-label">
+      For Sale <input type="checkbox" formControlName="forSale" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+
+  <!-- Completata -->
+  <div class="toggle-switch">
+    <label class="switch-label">
+      Complete
+      <input type="checkbox" formControlName="completed" />
+      <span class="slider"></span>
+    </label>
+  </div>
+  <!-- visibilità -->
 
   <button type="submit" [disabled]="collectionForm.invalid">Submit</button>
 </form>

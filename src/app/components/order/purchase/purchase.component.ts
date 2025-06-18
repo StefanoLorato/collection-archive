@@ -132,16 +132,18 @@ export class PurchaseComponent implements OnInit {
   buyNow() {
     if (this.isAlreadyInCart) {
       alert("Questo oggetto è già nel tuo carrello!");
-      this._router.navigate(['/dashboard']);
+      this._router.navigate(['/cart-item-list']);
     }
-    if (this.collection) {
-      const cartItem: CartItem = {
-        id: this.collection.collectionId,
-        name: this.collection.collectionName,
-        ownerId: this.collection.userId,
-        price: this.collection.salePrice
+    else {
+      if (this.collection) {
+        const cartItem: CartItem = {
+          id: this.collection.collectionId,
+          name: this.collection.collectionName,
+          ownerId: this.collection.userId,
+          price: this.collection.salePrice
+        }
+        this._dataService.addCollection(cartItem);
       }
-      this._dataService.addCollection(cartItem);
     }
     if (this.item) {
       const cartItem: CartItem = {
@@ -217,7 +219,24 @@ export class PurchaseComponent implements OnInit {
   }
 
   addToCart() {
-    console.log("bootone add to cart premuto");
-
+    if (this.collection && !this.isAlreadyInCart) {
+      const cartItem: CartItem = {
+        id: this.collection.collectionId,
+        name: this.collection.collectionName,
+        ownerId: this.collection.userId,
+        price: this.collection.salePrice
+      }
+      this._dataService.addCollection(cartItem);
+    } else if (this.item && !this.isAlreadyInCart) {
+      const cartItem: CartItem = {
+        id: this.item.itemId,
+        name: this.item.itemName,
+        ownerId: this.item.userId,
+        price: this.item.salePrice
+      }
+      this._dataService.addItem(cartItem);
+    } else {
+      alert('Non è possibile aggiungere questo oggetto al carrello');
+    }
   }
 }

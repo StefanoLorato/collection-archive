@@ -14,13 +14,27 @@
     <input name="itemDescription" [(ngModel)]="item.itemDescription" id="itemDescription" type="text">
   </div>
 
-  <div class="photo-upload">
-    <label for="itemPhoto">Add Photo for yout item</label>
-    <input id="itemPhoto" type="file" (change)="onFileSelected($event)">
+
+  <div>
+    <label for="condition">Condition</label>
+    <input name="condition" [(ngModel)]="item.condition" id="condition" type="text">
+  </div>
+  <div>
+    <label for="edition">Edition</label>
+    <input name="edition" [(ngModel)]="item.itemEdition" id="edition" type="text">
+  </div>
+  <div>
+    <label for="version">Version</label>
+    <input name="version" [(ngModel)]="item.itemVersion" id="version" type="text">
+  </div>
+  <div>
+    <label for="releaseDate">Release Date</label>
+    <input name="releaseDate" [(ngModel)]="item.releaseDate" id="releaseDate" type="date">
   </div>
 
-  <div *ngIf="item?.itemPhoto" class="photo-preview">
-  <img [src]="item.itemPhoto" alt="Item Photo Preview">
+  <div>
+    <label for="itemSalePrice">Sale Price (€)</label>
+    <input name="itemSalePrice" [(ngModel)]="item.salePrice" id="itemSalePrice" type="number">
   </div>
 
   <div class="toggle-switch">
@@ -31,9 +45,13 @@
     </label>
   </div>
 
-  <div>
-    <label for="itemSalePrice">Sale Price (€)</label>
-    <input name="itemSalePrice" [(ngModel)]="item.salePrice" id="itemSalePrice" type="number">
+  <div class="photo-upload">
+    <label for="itemPhoto">Add Photo for yout item</label>
+    <input id="itemPhoto" type="file" (change)="onFileSelected($event)">
+  </div>
+
+  <div *ngIf="item?.itemPhoto" class="photo-preview">
+    <img [src]="item.itemPhoto" alt="Item Photo Preview">
   </div>
 
   <button type="submit">Save</button>

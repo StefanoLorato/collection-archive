@@ -39,7 +39,7 @@ export class DashboardComponent {
   }
   get visibleCollections() {
     return this.list.filter(
-      c => c.visibilityStatus === 'visible'
+      c => c.visibility === 'visible'
     );
   }
 

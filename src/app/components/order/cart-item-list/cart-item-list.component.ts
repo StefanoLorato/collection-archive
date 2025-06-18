@@ -3,10 +3,11 @@ import { User } from '../../../models/user';
 import { Cart } from '../../../models/cart';
 import { DataService } from '../../../service/dataService';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart-item-list',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './cart-item-list.component.html',
   styleUrl: './cart-item-list.component.css'
 })
@@ -36,4 +37,10 @@ export class CartItemListComponent {
   removeItem(id: number){
     this._dataService.removeItem(id);
   }
+
+  getTotalPrice(): number {
+  const itemTotal = this.cart.items.reduce((acc, i) => acc + i.price, 0);
+  const collTotal = this.cart.collections.reduce((acc, c) => acc + c.price, 0);
+  return itemTotal + collTotal;
+}
 }
