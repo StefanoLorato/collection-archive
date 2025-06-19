@@ -1,0 +1,29 @@
+<h1>Your Chats</h1>
+@if(buyerDiscussionList != null) {
+  <h2>Your Chats as a Buyer</h2>
+  <div class="dashboard-container">
+    @if(buyerDiscussionList.length > 0) {
+      @for (discussion of buyerDiscussionList; track discussion.discussionId) {
+        <app-discussion-card [discussion]="discussion"></app-discussion-card>
+      }
+    } @else {
+      <p>No chats as buyer.</p>
+    }
+  </div>
+} @else {
+  <h2>Loading buyer discussion list...</h2>
+}
+@if(sellerDiscussionList != null) {
+  <h2>Your Chats as a Seller</h2>
+  <div class="dashboard-container">
+    @if(sellerDiscussionList.length > 0) {
+      @for (discussion of sellerDiscussionList; track discussion.discussionId) {
+        <app-discussion-card [discussion]="discussion"></app-discussion-card>
+      }
+    } @else {
+      <p>No chats as seller.</p>
+    }
+  </div>
+} @else {
+  <h2>Loading seller discussion list...</h2>
+}

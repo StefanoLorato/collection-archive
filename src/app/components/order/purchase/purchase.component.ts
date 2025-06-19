@@ -220,4 +220,5 @@ export class PurchaseComponent implements OnInit {
     console.log("bootone add to cart premuto");
 
   }
+  
 }
