@@ -1,0 +1,63 @@
+.discussionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  width: 500px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.discussionContainer p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.discussionContainer button {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.discussionContainer button:hover {
+  background-color: #0056b3;
+}
+
+
+.discussion-wrapper {
+  position: fixed;
+  right: 35%;
+  transform: translateX(50%);
+  z-index: 1000;
+}
+
+.close-btn {
+  position: absolute;
+  top: -240px;
+  right: 200px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1001;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: #cc0000;
+}

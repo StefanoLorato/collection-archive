@@ -3,6 +3,10 @@
     <p>{{discussion.name}}</p>
     <button (click)="toggleChat()">OPEN CHAT</button>
 </div>
-@if(showChat) {
-  <app-discussion [discussion]="discussion!"></app-discussion>
-}
+
+ @if(showChat) {
+    <div class="discussion-wrapper">
+      <button class="close-btn" (click)="toggleChat()">✕</button>
+      <app-discussion [discussion]="discussion!"></app-discussion>
+    </div>
+  }

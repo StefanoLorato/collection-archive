@@ -1,4 +1,4 @@
-<div>
-    <p>{{message.senderName}}</p>
-    <p>{{message.content}}</p>
+<div [class]="currentUser.userId === message.senderId ? 'message-container mine' : 'message-container'">
+    <p class="name">{{message.senderName}}</p>
+    <p class="content">{{message.content}}</p>
 </div>

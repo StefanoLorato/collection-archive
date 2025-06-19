@@ -1,10 +1,10 @@
-<div class="discussion">
-    <div class="messages">
+<div class="discussion-box">
+    <div class="discussion-body">
         @for(message of list; track message.messageId){
-            <app-message [message]="message" ></app-message>
+            <app-message [message]="message" class="discussion-message"></app-message>
         }
     </div>
-    <form [formGroup]="form" class="add-msg">
+    <form [formGroup]="form" class="discussion-footer">
         <textarea name="newMessage" id="newMessage" formControlName="content"></textarea>
         <button [disabled]="form.invalid" (click)="onSubmit()">SEND</button>
     </form>

@@ -33,7 +33,10 @@
     </div>
   </div>
   @if(showDiscussion) {
-    <app-discussion [collection]="collection.collectionId"></app-discussion>
+    <div class="discussion-wrapper">
+      <button class="close-btn" (click)="toggleDiscussion()">✕</button>
+      <app-discussion [collection]="collection.collectionId"></app-discussion>
+    </div>
   }
 }
 @if(item != null){

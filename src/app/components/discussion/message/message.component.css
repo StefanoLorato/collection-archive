@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  margin-bottom: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+  word-wrap: break-word;
+}
+
+.message-container.mine {
+  color: white;
+  align-self: flex-end;
+}
+
+.message-container .name {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #007bff;
+}
+
+.message-container .content{
+  margin: 0;
+  font-size: 0.9rem;
+  color: black;
+}
