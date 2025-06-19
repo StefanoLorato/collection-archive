@@ -51,7 +51,10 @@ export class CollectionCardComponent {
     this.findCategoryById(this.collection.categoryId);
     this.findUserById(this.collection.userId);
     this.loadItem(this.collection.collectionId);
-    this.isLongDescription = this.collection.description.length > 120;
+    if(this.collection.description){
+      this.isLongDescription = this.collection.description.length > 120;
+    }
+    
   }
 
   onDelete() {

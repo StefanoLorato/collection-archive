@@ -1,0 +1,8 @@
+<div class="discussionContainer">
+    <p>{{currentUser.userId==discussion.buyerId ? discussion.sellerName : discussion.buyerName}}</p>
+    <p>{{discussion.name}}</p>
+    <button (click)="toggleChat()">OPEN CHAT</button>
+</div>
+@if(showForm) {
+    <app-discussion [collection]="discussion.collectionId!"></app-discussion>
+  }

@@ -8,13 +8,14 @@ import { User } from '../../../models/user';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../service/userService';
 import { ShippingAddressService } from '../../../service/shippingAddressService';
-import { CartItem } from '../../../models/cart-item';
 import { Bookmark } from '../../../models/bookmark';
 import { BookmarkService } from '../../../service/bookmarkService';
+import { CartItem } from '../../../models/cartItem';
+import { DiscussionComponent } from '../../discussion/discussion/discussion.component';
 
 @Component({
   selector: 'app-purchase',
-  imports: [],
+  imports: [RouterLink, DiscussionComponent],
   templateUrl: './purchase.component.html',
   styleUrl: './purchase.component.css'
 })
@@ -25,6 +26,7 @@ export class PurchaseComponent implements OnInit {
   list: Item[] = [];
   owner!: User;
   currentImageIndex = 0;
+  showDiscussion = false;
   private _collectionId!: number;
   private _itemId!: number;
   private _itemService = inject(ItemService);
@@ -217,7 +219,11 @@ export class PurchaseComponent implements OnInit {
   }
 
   addToCart() {
-    console.log("bootone add to cart premuto");
+    console.log("bottone add to cart premuto");
 
   }
+
+   toggleDiscussion() {
+    this.showDiscussion = !this.showDiscussion
+   }
 }
