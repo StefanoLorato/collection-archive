@@ -10,7 +10,8 @@ import { Collection } from '../../../models/collection';
 import { DiscussionService } from '../../../service/discussionService';
 import { MessageService } from '../../../service/messageService';
 import { MessageComponent } from '../message/message.component';
-import { CollectionService } from '../../../service/collectionService';
+import { CollectionService } from '../../../services/collectionService';
+
 
 
 @Component({
