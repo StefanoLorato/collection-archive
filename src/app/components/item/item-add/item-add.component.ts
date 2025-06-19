@@ -61,7 +61,7 @@ export class ItemAddComponent implements OnInit {
     });
   }
 
-  
+
   onFileSelected(event: Event) {
   const fileInput = event.target as HTMLInputElement;
   if (fileInput.files && fileInput.files.length > 0) {
