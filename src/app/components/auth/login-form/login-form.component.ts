@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../../service/authService';
+
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../../service/dataService';
-import { UserService } from '../../../service/userService';
+
 import { User } from '../../../models/user';
 import { CommonModule } from '@angular/common';
 

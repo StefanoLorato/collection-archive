@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { AuthService } from './service/authService';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from "./components/footer/footer.component";
+import { AuthService } from './services/authService';
 
 @Component({
   selector: 'app-root',

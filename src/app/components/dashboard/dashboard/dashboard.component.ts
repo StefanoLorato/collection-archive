@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Collection } from '../../../models/collection';
-import { CollectionService } from '../../../service/collectionService';
 import { Observable } from 'rxjs';
 import { UserService } from '../../../service/userService';
 import { DataService } from '../../../service/dataService';

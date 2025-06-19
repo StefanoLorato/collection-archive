@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Item } from '../../../models/item';
-import { ItemService } from '../../../service/itemService';
+
 import { Observable } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ItemCardComponent } from '../item-card/item-card.component';
+import { ItemService } from '../../../services/itemService';
 
 @Component({
   selector: 'app-item-list',

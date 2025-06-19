@@ -2,11 +2,12 @@ import { AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, Vie
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { DataService } from '../../service/dataService';
 import { User } from '../../models/user';
-import { AuthService } from '../../service/authService';
-import { CategoryService } from '../../service/categoryService';
+
 import { Category } from '../../models/category';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/authService';
+import { CategoryService } from '../../services/categoryService';
 
 @Component({
   selector: 'app-navbar',

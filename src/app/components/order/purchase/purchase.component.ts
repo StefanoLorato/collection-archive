@@ -1,12 +1,11 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { Collection } from '../../../models/collection';
 import { Item } from '../../../models/item';
-import { ItemService } from '../../../service/itemService';
-import { CollectionService } from '../../../service/collectionService';
+
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { UserService } from '../../../service/userService';
+
 import { ShippingAddressService } from '../../../service/shippingAddressService';
 import { Bookmark } from '../../../models/bookmark';
 import { BookmarkService } from '../../../service/bookmarkService';

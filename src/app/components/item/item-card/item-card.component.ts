@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Item } from '../../../models/item';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
-import { UserService } from '../../../service/userService';
+
 import { Collection } from '../../../models/collection';
 import { CollectionService } from '../../../service/collectionService';
 import { UserLike } from '../../../models/userLike';
