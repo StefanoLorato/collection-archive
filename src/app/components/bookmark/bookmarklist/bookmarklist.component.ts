@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { BookmarkService } from '../../../service/bookmarkService';
-import { UserService } from '../../../service/userService';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -8,9 +7,10 @@ import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 import { Collection } from '../../../models/collection';
-import { CollectionService } from '../../../service/collectionService';
 import { Item } from '../../../models/item';
-import { ItemService } from '../../../service/itemService';
+import { CollectionService } from '../../../services/collectionService';
+import { ItemService } from '../../../services/itemService';
+import { UserService } from '../../../services/userService';
 
 @Component({
   selector: 'app-bookmarklist',

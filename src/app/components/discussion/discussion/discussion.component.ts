@@ -34,48 +34,47 @@ export class DiscussionComponent implements OnInit {
   })
 
   currentUser!:User;
-  discussion!:Discussion;
+
   @Input("collection") collectionId!:number;
+  @Input("discussion") discussion!: Discussion;
   list: Message [] = [];
   collection!:Collection;
 
-  
+
   ngOnInit(): void {
     const collectionId = this._route.snapshot.paramMap.get("id");
     if(collectionId){
       this.collectionId = Number(collectionId);
       this.findCollectionById();
+    } else {
+      console.log("id della discussione: " + this.discussion.discussionId);
+      this.loadMessages(this.discussion.discussionId!);
     }
 
-    else{
-      alert("Missing collectionId!")
-    }  
-   
     this._dataService.selectedUserObservable.subscribe(user => {
       if(user != null){
-        this.currentUser = user;    
+        this.currentUser = user;
       }
     });
-
-    console.log("controllo")
-    console.log(this.discussion)
-    console.log(this.list)
   }
 
   loadDiscussion(){
     this._discussionService.getDiscussionByCollectionAndUserId(this.collection.collectionId).subscribe({
       next: d => {
+        console.log(d);
         this.discussion = d[0];
         console.log(this.discussion)
-        this.loadMessages();
+        this.loadMessages(this.discussion.discussionId!);
       } ,
       error: e => alert("Errore nel caricamento della discussione!")
     });
   }
 
-  loadMessages(){
+  loadMessages(discussionId: number){
     if(this.discussion) {
-      this._messageService.getMessagesByDiscussionId(this.discussion.discussionId!).subscribe({
+      console.log("caricando i messaggi per la discussione con id: " + discussionId);
+
+      this._messageService.getMessagesByDiscussionId(discussionId).subscribe({
         next: m => {
           this.list = m
           console.log(this.list);
@@ -113,22 +112,22 @@ export class DiscussionComponent implements OnInit {
           };
           this.discussion.messages.push(newMessage);
           this.list.push(newMessage);
-          
+
         };
-    
+
         console.log("formValue", this.form.value)
         this._discussionService.addDiscussion(this.discussion).subscribe({
           next: d => {
             this.discussion = d;
-            alert("Discussion creata con id: " + d.discussionId);      
+            alert("Discussion creata con id: " + d.discussionId);
           },
           error:err => alert("Errore nella creazione della discussione!" + err)
         });
-        
+
       }
         else{
           const newMessage:Message = {
-            discussionId:this.discussion.discussionId, 
+            discussionId:this.discussion.discussionId,
             content: this.form.get("content")?.value,
             senderId: this.currentUser.userId,
             receiverId: (this.currentUser.userId == this.discussion.buyerId ? this.discussion.sellerId:this.discussion.buyerId)
@@ -140,14 +139,14 @@ export class DiscussionComponent implements OnInit {
           this.list.push(newMessage);
           this._messageService.addMessage(newMessage).subscribe({
            next: m => {
-            alert("Discussion creata con id: " + m.messageId);      
+            alert("messaggio inviato con id: " + m.messageId);
           },
-          error:err => alert("Errore nella creazione del messaggio!" + err) 
+          error:err => alert("Errore nella creazione del messaggio!" + err)
           });
           }
         }
       }
-    
+
   }
-  
+
 

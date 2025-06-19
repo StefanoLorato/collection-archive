@@ -7,6 +7,8 @@ import { CollectionCardComponent } from '../../collection/collection-card/collec
 import { Collection } from '../../../models/collection';
 import { DataService } from '../../../service/dataService';
 import { FormsModule } from '@angular/forms';
+import { CollectionService } from '../../../services/collectionService';
+import { UserService } from '../../../services/userService';
 
 @Component({
   selector: 'app-user-profile',

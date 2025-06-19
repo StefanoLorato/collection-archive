@@ -3,6 +3,6 @@
     <p>{{discussion.name}}</p>
     <button (click)="toggleChat()">OPEN CHAT</button>
 </div>
-@if(showForm) {
-    <app-discussion [collection]="discussion.collectionId!"></app-discussion>
-  }
+@if(showChat) {
+  <app-discussion [discussion]="discussion!"></app-discussion>
+}

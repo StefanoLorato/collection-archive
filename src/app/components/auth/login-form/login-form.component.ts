@@ -6,6 +6,8 @@ import { DataService } from '../../../service/dataService';
 
 import { User } from '../../../models/user';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../services/authService';
+import { UserService } from '../../../services/userService';
 
 @Component({
   selector: 'app-login-form',

@@ -6,7 +6,7 @@ import { WishList } from '../../../models/wishList';
 import { WishlistItemCardComponent } from '../wishlist-item-card/wishlist-item-card.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Collection } from '../../../models/collection';
-import { CollectionService } from '../../../service/collectionService';
+import { CollectionService } from '../../../services/collectionService';
 
 @Component({
   selector: 'app-wish-list',

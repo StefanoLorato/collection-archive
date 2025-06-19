@@ -14,8 +14,8 @@ export class DiscussionCardComponent {
   @Input("discussion") discussion!:Discussion;
   currentUser!:User;
   private _dataService = inject(DataService);
-  showForm: boolean = false;  
-  
+  showChat: boolean = false;
+
     ngOnInit(): void {
       this._dataService.selectedUserObservable.subscribe(user => {
         if(user != null){
@@ -25,7 +25,6 @@ export class DiscussionCardComponent {
     }
 
     toggleChat(){
-      this.showForm = !this.showForm;
-
+      this.showChat = !this.showChat;
     }
 }

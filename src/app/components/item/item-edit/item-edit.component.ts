@@ -6,7 +6,8 @@ import { Item } from '../../../models/item';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Collection } from '../../../models/collection';
-import { CollectionService } from '../../../service/collectionService';
+import { ItemService } from '../../../services/itemService';
+import { CollectionService } from '../../../services/collectionService';
 
 @Component({
   selector: 'app-item-edit',

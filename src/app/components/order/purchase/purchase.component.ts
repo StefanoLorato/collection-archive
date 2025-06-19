@@ -11,6 +11,9 @@ import { Bookmark } from '../../../models/bookmark';
 import { BookmarkService } from '../../../service/bookmarkService';
 import { CartItem } from '../../../models/cartItem';
 import { DiscussionComponent } from '../../discussion/discussion/discussion.component';
+import { CollectionService } from '../../../services/collectionService';
+import { ItemService } from '../../../services/itemService';
+import { UserService } from '../../../services/userService';
 
 @Component({
   selector: 'app-purchase',

@@ -39,4 +39,8 @@ export class DiscussionService {
     let params = new HttpParams().set("collectionId", collectionId);
     return this._http.get<Discussion[]>(this._url, {params});
   }
+
+  getDiscussionByBuyerAndSeller(): Observable<Discussion[][]> {
+    return this._http.get<Discussion[][]>(`${this._url}/logged-user/buyer-and-seller`);
+  }
 }

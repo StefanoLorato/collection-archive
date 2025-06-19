@@ -5,10 +5,11 @@ import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 
 import { Collection } from '../../../models/collection';
-import { CollectionService } from '../../../service/collectionService';
 import { UserLike } from '../../../models/userLike';
 import { UserLikeService } from '../../../service/userLikeService';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../../services/userService';
+import { CollectionService } from '../../../services/collectionService';
 
 @Component({
   selector: 'app-item-card',
@@ -104,7 +105,7 @@ export class ItemCardComponent implements OnInit{
       });
     }
   }
-  
+
   onBookmarkChange(event: { id: number, bookmarked: boolean }) {
     this.bookmarkChanged.emit({id: this.item.itemId, bookmarked: this.item.bookmarked});
   }

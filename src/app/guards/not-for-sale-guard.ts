@@ -1,10 +1,10 @@
 import { inject, Injectable } from "@angular/core";
-import { CollectionService } from "../service/collectionService";
-import { ItemService } from "../service/itemService";
 import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { catchError, map, Observable, of } from "rxjs";
 import { DataService } from "../service/dataService";
 import { GeneralItem } from "../models/general-item";
+import { CollectionService } from "../services/collectionService";
+import { ItemService } from "../services/itemService";
 
 @Injectable({
   providedIn: 'root'

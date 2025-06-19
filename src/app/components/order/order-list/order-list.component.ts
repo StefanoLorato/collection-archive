@@ -5,7 +5,7 @@ import { DataService } from '../../../service/dataService';
 import { OrderService } from '../../../service/orderService';
 import { OrderItemService } from '../../../service/orderItemService';
 import { OrderItem } from '../../../models/orderItem';
-import { UserService } from '../../../service/userService';
+import { UserService } from '../../../services/userService';
 
 @Component({
   selector: 'app-order-list',

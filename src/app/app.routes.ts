@@ -54,6 +54,6 @@ export const routes: Routes = [
      { path: 'not-found', component: NotFoundComponent },
      { path: 'comment-list/:id', component: CommentListComponent },
      { path: 'discussion/:id', component: DiscussionComponent},
-     { path: 'discussion-list/:id', component: DiscussionListComponent}
+     { path: 'discussion-list', component: DiscussionListComponent}
 
 ];

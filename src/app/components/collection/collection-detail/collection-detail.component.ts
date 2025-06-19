@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { FormsModule } from '@angular/forms';
+import { CollectionService } from '../../../services/collectionService';
+import { ItemService } from '../../../services/itemService';
 
 @Component({
   selector: 'app-collection-detail',

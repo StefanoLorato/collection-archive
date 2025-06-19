@@ -15,9 +15,10 @@ import { DiscussionCardComponent } from '../discussion-card/discussion-card.comp
 export class DiscussionListComponent {
   private _dataService = inject(DataService);
   private _discussionService = inject(DiscussionService);
-  list!:Discussion[];
+  buyerDiscussionList!:Discussion[];
+  sellerDiscussionList!: Discussion[];
   currentUser!:User;
-  
+
 
   ngOnInit(): void {
     this._dataService.selectedUserObservable.subscribe(user => {
@@ -26,13 +27,14 @@ export class DiscussionListComponent {
         this.loadDiscussions();
       }
     });
-    
-
   }
 
   loadDiscussions(){
-    this._discussionService.getDiscussionsByUserId(this.currentUser.userId).subscribe({
-      next:d => this.list = d, 
+    this._discussionService.getDiscussionByBuyerAndSeller().subscribe({
+      next:d => {
+        this.buyerDiscussionList = d[0];
+        this.sellerDiscussionList = d[1];
+      },
       error:(err) => {
           alert("Non è possibile recuperare la conversazione con questo utente!")
       },

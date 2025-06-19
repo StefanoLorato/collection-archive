@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Collection } from '../../../models/collection';
 import { Observable } from 'rxjs';
-import { UserService } from '../../../service/userService';
 import { DataService } from '../../../service/dataService';
 import { User } from '../../../models/user';
 import { CollectionCardComponent } from '../../collection/collection-card/collection-card.component';
 import { Cart } from '../../../models/cart';
+import { CollectionService } from '../../../services/collectionService';
+import { UserService } from '../../../services/userService';
 
 @Component({
   selector: 'app-dashboard',

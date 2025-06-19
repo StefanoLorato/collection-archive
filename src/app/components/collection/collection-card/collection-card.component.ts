@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { BookmarkService } from '../../../service/bookmarkService';
 import { Bookmark } from '../../../models/bookmark';
 import { UserLike } from '../../../models/userLike';
+import { CategoryService } from '../../../services/categoryService';
+import { ItemService } from '../../../services/itemService';
+import { UserService } from '../../../services/userService';
 
 @Component({
   selector: 'app-collection-card',
@@ -51,7 +54,7 @@ export class CollectionCardComponent {
     if(this.collection.description){
       this.isLongDescription = this.collection.description.length > 120;
     }
-    
+
   }
 
   onDelete() {
