@@ -71,7 +71,7 @@ export class CollectionDetailComponent implements OnInit {
     this._itemService.deleteItem(obj.id).subscribe({
       next: () => {
         this.list = this.list.filter((i) => i.itemId != obj.id);
-        alert("l'item è stato eliminato con successo");
+        console.log("l'item è stato eliminato con successo");
       },
       error: e => {
         alert("Errore nell cancellazione");
@@ -92,7 +92,7 @@ export class CollectionDetailComponent implements OnInit {
     console.log(this.collection.visibility)
     this._service.toggleVisibility(this._collectionId).subscribe({
       next: () => {
-        alert("Changed visibility");
+        console.log("Changed visibility");
         this.collection.visibility = (this.collection.visibility == "visible" ? "hidden" : "visible");
       }
     })

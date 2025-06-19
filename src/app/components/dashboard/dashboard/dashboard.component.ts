@@ -48,7 +48,7 @@ export class DashboardComponent {
     this._collectionService.deleteCollection(obj.id).subscribe({
       next: () => {
         this.list = this.list.filter((c) => c.collectionId != obj.id);
-        alert("La collection è stata eliminata con successo");
+        console.log("La collection è stata eliminata con successo");
       },
       error: e => {
         alert("Errore nella cancellazione della collection");

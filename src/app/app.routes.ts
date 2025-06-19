@@ -23,6 +23,8 @@ import { NotFoundComponent } from './components/error/not-found/not-found.compon
 import { PurchaseComponent } from './components/order/purchase/purchase.component';
 import { BookmarklistComponent } from './components/bookmark/bookmarklist/bookmarklist.component';
 import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
+import { DiscussionComponent } from './components/discussion/discussion/discussion.component';
+import { DiscussionListComponent } from './components/discussion/discussion-list/discussion-list.component';
 
 export const routes: Routes = [
      { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -51,5 +53,7 @@ export const routes: Routes = [
      { path: 'unauthorized', component: UnauthorizedComponent },
      { path: 'not-found', component: NotFoundComponent },
      { path: 'comment-list/:id', component: CommentListComponent },
-     { path: 'collection-comments/:id', component: CommentListComponent}
+     { path: 'collection-comments/:id', component: CommentListComponent},
+     { path: 'discussion/:id', component: DiscussionComponent},
+     { path: 'discussion-list', component: DiscussionListComponent}
 ];

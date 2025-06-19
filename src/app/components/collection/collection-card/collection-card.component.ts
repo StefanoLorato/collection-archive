@@ -127,7 +127,7 @@ export class CollectionCardComponent {
 
     this._commentService.createComment(comment).subscribe({
       next: c => {
-        alert("Commento aggiunto!");
+        console.log("Commento aggiunto!");
         this.newCommentText = '';
         this.isCommenting = false;
       },

@@ -80,7 +80,7 @@ export class CollectionFormComponent {
     if (!this.isUpdate) {
       return this._service.createCollection(this.collectionForm.value).subscribe({
         next: () => {
-          alert("Collezione aggiunta!");
+          console.log("Collezione aggiunta!");
           if (this.user != null) {
             this._router.navigate(['/user-profile', this.user.userId]);
           }
@@ -129,7 +129,7 @@ export class CollectionFormComponent {
       error: err => alert("Errore nella ricerca delle categorie" + err)
     })
   }
-  
+
   get collectionName() { return this.collectionForm.get('collectionName'); }
   get description() { return this.collectionForm.get('description'); }
   get collectionDate() { return this.collectionForm.get('collectionDate'); }

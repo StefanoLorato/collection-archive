@@ -17,7 +17,9 @@
 
       <p><strong>Description:</strong> {{ collection.description }}</p>
       <p><strong>Date:</strong> {{ collection.collectionDate }}</p>
-      <p><strong>Sale Price:</strong> €{{ collection.salePrice }}</p>
+      @if(collection.forSale){
+        <p><strong>Sale Price:</strong> €{{ collection.salePrice }}</p>
+      }
 
       @if(currentUser != null && collection.userId == currentUser.userId){
         <div class="collection-actions">

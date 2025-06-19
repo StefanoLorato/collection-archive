@@ -11,10 +11,11 @@ import { ShippingAddressService } from '../../../service/shippingAddressService'
 import { CartItem } from '../../../models/cart-item';
 import { Bookmark } from '../../../models/bookmark';
 import { BookmarkService } from '../../../service/bookmarkService';
+import { DiscussionComponent } from '../../discussion/discussion/discussion.component';
 
 @Component({
   selector: 'app-purchase',
-  imports: [],
+  imports: [DiscussionComponent],
   templateUrl: './purchase.component.html',
   styleUrl: './purchase.component.css'
 })
@@ -25,6 +26,7 @@ export class PurchaseComponent implements OnInit {
   list: Item[] = [];
   owner!: User;
   currentImageIndex = 0;
+  showDiscussion = false;
   private _collectionId!: number;
   private _itemId!: number;
   private _itemService = inject(ItemService);
@@ -238,5 +240,9 @@ export class PurchaseComponent implements OnInit {
     } else {
       alert('Non è possibile aggiungere questo oggetto al carrello');
     }
+  }
+
+  toggleDiscussion() {
+    this.showDiscussion = !this.showDiscussion
   }
 }

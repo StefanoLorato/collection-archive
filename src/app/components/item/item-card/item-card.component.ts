@@ -86,7 +86,6 @@ export class ItemCardComponent implements OnInit{
           console.log(savedLike);
 
           this.item = {...this.item, liked: !this.item.liked, likeId: savedLike.likeId!, numLikes: this.item.numLikes+1};
-          alert("Like aggiunto");
           console.log('Like aggiunto:', savedLike);
           console.log('Stato item:', this.item);
         },
@@ -96,7 +95,6 @@ export class ItemCardComponent implements OnInit{
       this._likeService.deleteLike(this.item.likeId!).subscribe({
         next: () => {
           this.item = {...this.item, liked: !this.item.liked, likeId: null, numLikes: this.item.numLikes-1};
-          alert("Like rimosso");
           console.log('Like rimosso:');
           console.log('Stato item:', this.item);
         },
@@ -104,7 +102,7 @@ export class ItemCardComponent implements OnInit{
       });
     }
   }
-  
+
   onBookmarkChange(event: { id: number, bookmarked: boolean }) {
     this.bookmarkChanged.emit({id: this.item.itemId, bookmarked: this.item.bookmarked});
   }

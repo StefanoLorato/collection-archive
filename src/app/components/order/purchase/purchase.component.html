@@ -18,7 +18,7 @@
             <p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>
             <p><a href="mailto:{{owner.email}}">{{owner.email}}</a></p>
           </div>
-          <button class="chat">Contact Seller</button>
+          <button class="chat" (click)="toggleDiscussion()">Contact Seller</button>
         }
       </div>
       <p class="description">{{collection.description}}</p>
@@ -32,6 +32,9 @@
       </div>
     </div>
   </div>
+  @if(showDiscussion) {
+    <app-discussion [collection]="collection.collectionId"></app-discussion>
+  }
 }
 @if(item != null){
   <div class="item-container">
@@ -46,7 +49,6 @@
             <p class="collection-owner">{{owner.name}} {{owner.lastname}}</p>
             <p><a href="mailto:{{owner.email}}">{{owner.email}}</a></p>
           </div>
-          <button class="chat">Contact Seller</button>
         }
       </div>
       <p class="description">{{item.itemDescription}}</p>

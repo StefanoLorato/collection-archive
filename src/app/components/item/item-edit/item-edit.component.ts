@@ -42,7 +42,6 @@ export class ItemEditComponent implements OnInit {
 
     this._service.updateItem(this.item).subscribe({
       next: () => {
-        alert('Update Item With Success');
         this._router.navigate(['/collection-detail', this.item!.collectionId]);
       },
       error: () => alert('Error during update items')

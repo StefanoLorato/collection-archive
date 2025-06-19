@@ -42,7 +42,7 @@ export class LoginFormComponent {
     this._authService.login({ email, password }).subscribe({
       next: (res) => {
         this.getUserByEmail(email);
-        alert("Login with success!");
+        console.log("Login with success!");
         this._router.navigate(['/home']);
       },
       error: err => alert("Errore durante login" + err)

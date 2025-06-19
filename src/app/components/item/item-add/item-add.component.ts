@@ -57,6 +57,7 @@ export class ItemAddComponent implements OnInit {
       },
       error: e => {
         console.error('Errore nella creazione item:', e);
+        alert("Errore nella creazione item:");
       }
     });
   }
